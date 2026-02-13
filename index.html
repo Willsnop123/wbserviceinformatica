@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WB Service | Informática y Consolas</title>
+
+  <!-- Fuente profesional -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --blue-main: #2563eb;
+      --blue-soft: #3b82f6;
+      --text-main: #ffffff;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    header img {
+      height: 80px;
+    }
+
+    /* BOTONES */
+    .btn {
+      background: var(--blue-main);
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: #1d4ed8;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(37, 99, 235, 0.45);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      margin-bottom: 30px;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: var(--blue-soft);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    /* TARJETAS */
+    .card {
+      background: var(--bg-card);
+      padding: 25px;
+      border-radius: 14px;
+      border: 1px solid #243041;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      border-color: var(--blue-main);
+    }
+
+    .card h3 {
+      margin-bottom: 15px;
+      color: #ffffff;
+    }
+
+    .card ul li {
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      list-style: none;
+    }
+
+    .plans {
+      border: 2px solid var(--blue-main);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid #1e293b;
+    }
+
+    .social a {
+      margin: 0 10px;
+      color: var(--blue-soft);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="logo.png" alt="WB Service" />
+  <a class="btn" href="https://wa.me/5493444569948" target="_blank">WhatsApp</a>
+</header>
+
+<section class="hero">
+  <h1>WB Servicio Técnico Informático y Consolas</h1>
+  <p>Evitá pérdidas y problemas técnicos. Mantenimiento, reparación y soporte profesional para hogares, comercios y empresas.</p>
+  <a class="btn" href="https://wa.me/5493444569948" target="_blank">Contactar por WhatsApp</a>
+</section>
+
+<section>
+  <h2>Informática – PC y Notebooks</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Servicios Informáticos</h3>
+      <ul>
+        <li>✔ Mantenimiento y optimización de equipos</li>
+        <li>✔ Armado de PC a medida (hogar y trabajo)</li>
+        <li>✔ Reparación de PC y notebooks</li>
+        <li>✔ Formateo e instalación de software</li>
+        <li>✔ Redes hogareñas y empresariales</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Consolas</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>PlayStation & Xbox</h3>
+      <ul>
+        <li>✔ Mantenimiento PS4 / PS5</li>
+        <li>✔ Mantenimiento Xbox One / Series</li>
+        <li>✔ Limpieza interna y cambio de pasta térmica</li>
+        <li>✔ Reparación de joysticks (drift, botones)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Planes de Mantenimiento Mensual</h2>
+  <p style="text-align:center; color:#94a3b8; margin-bottom:40px;">Servicio preventivo para que tu negocio funcione siempre sin interrupciones.</p>
+  <div class="grid">
+    <div class="card plans">
+      <h3>Plan Estándar</h3>
+      <ul>
+        <li>✔ 1 computadora</li>
+        <li>✔ Chequeo de red</li>
+        <li>✔ Mantenimiento mensual preventivo</li>
+        <li>✔ Ideal para negocios chicos</li>
+      </ul>
+      <a class="btn" href="https://wa.me/5493444569948" target="_blank">Consultar</a>
+    </div>
+    <div class="card plans">
+      <h3>Plan Pro</h3>
+      <ul>
+        <li>✔ 2 computadoras</li>
+        <li>✔ Revisión completa de red</li>
+        <li>✔ Soporte prioritario</li>
+        <li>✔ Ideal para comercios y oficinas</li>
+      </ul>
+      <a class="btn" href="https://wa.me/5493444569948" target="_blank">Consultar</a>
+    </div>
+    <div class="card plans">
+      <h3>Plan Premium</h3>
+      <ul>
+        <li>✔ Hasta 4 computadoras</li>
+        <li>✔ Revisión completa de red</li>
+        <li>✔ Atención preferencial</li>
+        <li>✔ Ideal para empresas</li>
+      </ul>
+      <a class="btn" href="https://wa.me/5493444569948" target="_blank">Consultar</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>¿Por qué elegir WB Service?</h2>
+  <div class="grid">
+    <div class="card">
+      <ul>
+        <li>✔ Atención personalizada</li>
+        <li>✔ Diagnóstico claro y honesto</li>
+        <li>✔ Experiencia en informática y consolas</li>
+        <li>✔ Trabajo responsable y profesional</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Sobre WB Service</h2>
+  <div class="grid">
+    <div class="card">
+      <p style="color:#94a3b8; line-height:1.8;">
+        Soy técnico en informática y consolas, especializado en mantenimiento y reparación de equipos para hogares, comercios y empresas.
+        Trabajo desde mi taller de servicio técnico, sin local a la calle, atendiendo únicamente por turnos previamente coordinados por WhatsApp.
+        Esto me permite brindar una atención personalizada, organizada y profesional en cada trabajo.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+<section>
+  <h2>Ubicación y Atención</h2>
+  <div class="grid">
+    <div class="card">
+      <p style="color:#94a3b8; line-height:1.8;">
+        📍 Atención en Gualeguay y alrededores.
+        <br><br>
+        🛠 Servicio desde taller privado (sin local a la calle).
+        <br>
+        📲 Se trabaja únicamente con turno previo coordinado por WhatsApp.
+        <br><br>
+        También realizamos visitas a domicilio para hogares, comercios y empresas.
+      </p>
+      <div style="margin-top:20px;">
+        <a class="btn" href="https://wa.me/5493444569948" target="_blank">Solicitar Turno</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Trabajos Reales</h2>
+  <p style="text-align:center; color:#94a3b8;">Podés ver trabajos reales de mantenimiento y reparaciones en nuestro Instagram.</p>
+  <div style="text-align:center; margin-top:20px;">
+    <a class="btn" href="https://www.instagram.com/wbservice.informatica?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Ver Instagram</a>
+  </div>
+</section>
+
+<footer>
+  <p>WB Service – Informática y Consolas</p>
+  <p style="color:#94a3b8;">Atención en hogares, comercios y empresas</p>
+</footer>
+
+</body>
+</html>
+
+</body>
+</html>
+
