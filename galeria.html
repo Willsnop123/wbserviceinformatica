@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería WB Service - Antes y Después</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ANIMACIONES DE ENTRADA */
+    @keyframes fadeInScale {
+      0% {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideInFromBottom {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    body {
+      background: #0f172a;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      animation: fadeInScale 0.5s ease-out;
+    }
+    
+    /* HEADER DE LA GALERÍA */
+    .galeria-header {
+      text-align: center;
+      padding: 30px 20px;
+      border-bottom: 1px solid #1e293b;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    }
+    
+    .galeria-header h1 {
+      color: #3b82f6;
+      margin-bottom: 10px;
+      font-size: 2rem;
+    }
+    
+    .galeria-header a {
+      color: #94a3b8;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+    
+    .galeria-header a:hover {
+      color: #3b82f6;
+      background: #1e293b;
+    }
+    
+    /* CONTENEDOR DEL CARRUSEL */
+    .carrusel-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+      position: relative;
+      animation: slideInFromBottom 0.6s ease-out 0.2s both;
+    }
+    
+    .carrusel-principal {
+      position: relative;
+      background: #1e293b;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      border: 1px solid #243041;
+    }
+    
+    .carrusel-slide {
+      display: none;
+      position: relative;
+    }
+    
+    .carrusel-slide.active {
+      display: block;
+    }
+    
+    .comparacion {
+      display: flex;
+      height: 600px;
+    }
+    
+    .antes, .despues {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .antes img, .despues img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .antes:hover img, .despues:hover img {
+      transform: scale(1.08);
+    }
+    
+    .etiqueta {
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      background: rgba(239, 68, 68, 0.95);
+      color: white;
+      padding: 12px 30px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+    
+    .etiqueta.despues {
+      left: auto;
+      right: 30px;
+      background: rgba(16, 185, 129, 0.95);
+    }
+    
+    .descripcion {
+      padding: 25px;
+      text-align: center;
+      border-top: 2px solid #243041;
+    }
+    
+    .descripcion h2 {
+      color: white;
+      margin-bottom: 8px;
+      font-size: 1.5rem;
+    }
+    
+    .descripcion p {
+      color: #94a3b8;
+      font-size: 1.1rem;
+    }
+    
+    /* CONTROLES DEL CARRUSEL */
+    .controles {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+    
+    .btn-control {
+      background: #1e293b;
+      border: 1px solid #243041;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 24px;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-control:hover {
+      background: #2563eb;
+      transform: scale(1.1);
+    }
+    
+    .indicadores {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .indicador {
+      width: 50px;
+      height: 4px;
+      background: #1e293b;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .indicador.active {
+      background: #2563eb;
+      width: 80px;
+    }
+    
+    /* NÚMERO DE TRABAJO */
+    .contador {
+      text-align: center;
+      color: #94a3b8;
+      margin-top: 15px;
+      font-size: 1rem;
+    }
+    
+    .contador span {
+      color: #3b82f6;
+      font-weight: 600;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .comparacion {
+        flex-direction: column;
+        height: 500px;
+      }
+      
+      .etiqueta {
+        font-size: 1rem;
+        padding: 8px 20px;
+        bottom: 15px;
+        left: 15px;
+      }
+      
+      .etiqueta.despues {
+        right: 15px;
+      }
+      
+      .btn-control {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+      }
+      
+      .indicador {
+        width: 30px;
+      }
+      
+      .indicador.active {
+        width: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="galeria-header">
+    <h1><i class="fas fa-camera"></i> Galería de Trabajos WB Service</h1>
+    <p style="color:#94a3b8; margin-bottom: 15px;">Deslizá para ver más trabajos</p>
+    <a href="index.html"><i class="fas fa-arrow-left"></i> Volver a la página principal</a>
+  </div>
+  
+  <div class="carrusel-container">
+    <div class="carrusel-principal" id="carrusel">
+      
+      <!-- TRABAJO 1: PS4 -->
+      <div class="carrusel-slide active" data-index="0">
+        <div class="comparacion">
+          <div class="antes">
+            <img src="imagenes/ps4-antes.jpg" alt="PS4 antes">
+            <span class="etiqueta">ANTES</span>
+          </div>
+          <div class="despues">
+            <img src="imagenes/ps4-despues.jpg" alt="PS4 después">
+            <span class="etiqueta despues">DESPUÉS</span>
+          </div>
+        </div>
+        <div class="descripcion">
+          <h2>PS4 - Limpieza y pasta térmica</h2>
+          <p>Temperatura bajó de 85°C a 68°C</p>
+        </div>
+      </div>
+      
+      <!-- TRABAJO 2: PC Gamer -->
+      <div class="carrusel-slide" data-index="1">
+        <div class="comparacion">
+          <div class="antes">
+            <img src="imagenes/pc-antes.jpg" alt="PC antes">
+            <span class="etiqueta">ANTES</span>
+          </div>
+          <div class="despues">
+            <img src="imagenes/pc-despues.jpg" alt="PC después">
+            <span class="etiqueta despues">DESPUÉS</span>
+          </div>
+        </div>
+        <div class="descripcion">
+          <h2>PC Gamer - Mantenimiento completo</h2>
+          <p>Limpieza de componentes y nueva pasta térmica</p>
+        </div>
+      </div>
+      
+      <!-- TRABAJO 3: Joystick -->
+      <div class="carrusel-slide" data-index="2">
+        <div class="comparacion">
+          <div class="antes">
+            <img src="imagenes/joystick-antes.jpg" alt="Joystick antes">
+            <span class="etiqueta">ANTES</span>
+          </div>
+          <div class="despues">
+            <img src="imagenes/joystick-despues.jpg" alt="Joystick después">
+            <span class="etiqueta despues">DESPUÉS</span>
+          </div>
+        </div>
+        <div class="descripcion">
+          <h2>Joystick PS5 - Reparación de drift</h2>
+          <p>Cambio de potenciómetros y calibración</p>
+        </div>
+      </div>
+      
+      <!-- TRABAJO 4: PS3 -->
+      <div class="carrusel-slide" data-index="3">
+        <div class="comparacion">
+          <div class="antes">
+            <img src="imagenes/ps3-antes.jpg" alt="PS3 antes">
+            <span class="etiqueta">ANTES</span>
+          </div>
+          <div class="despues">
+            <img src="imagenes/ps3-despues.jpg" alt="PS3 después">
+            <span class="etiqueta despues">DESPUÉS</span>
+          </div>
+        </div>
+        <div class="descripcion">
+          <h2>PS3 - Limpieza y mantenimiento</h2>
+          <p>Prevención de fallos por calor</p>
+        </div>
+      </div>
+      
+      <!-- TRABAJO 5: Xbox (NUEVO) -->
+      <div class="carrusel-slide" data-index="4">
+        <div class="comparacion">
+          <div class="antes">
+            <img src="imagenes/Xbox-antes.jpg" alt="Xbox antes">
+            <span class="etiqueta">ANTES</span>
+          </div>
+          <div class="despues">
+            <img src="imagenes/Xbox-despues.jpg" alt="Xbox después">
+            <span class="etiqueta despues">DESPUÉS</span>
+          </div>
+        </div>
+        <div class="descripcion">
+          <h2>Xbox One - Mantenimiento preventivo</h2>
+          <p>Limpieza interna y cambio de pasta térmica</p>
+        </div>
+      </div>
+      
+    </div>
+    
+    <!-- CONTROLES -->
+    <div class="controles">
+      <button class="btn-control" onclick="cambiarSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+      
+      <div class="indicadores" id="indicadores">
+        <span class="indicador active" onclick="irASlide(0)"></span>
+        <span class="indicador" onclick="irASlide(1)"></span>
+        <span class="indicador" onclick="irASlide(2)"></span>
+        <span class="indicador" onclick="irASlide(3)"></span>
+        <span class="indicador" onclick="irASlide(4)"></span>
+      </div>
+      
+      <button class="btn-control" onclick="cambiarSlide(1)"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    
+    <div class="contador">
+      Trabajo <span id="actual">1</span> de <span id="total">5</span>
+    </div>
+  </div>
+
+  <script>
+    let slideActual = 0;
+    const slides = document.querySelectorAll('.carrusel-slide');
+    const indicadores = document.querySelectorAll('.indicador');
+    const totalSlides = slides.length;
+    
+    document.getElementById('total').textContent = totalSlides;
+    
+    function actualizarSlide() {
+      // Actualizar slides
+      slides.forEach(slide => slide.classList.remove('active'));
+      slides[slideActual].classList.add('active');
+      
+      // Actualizar indicadores
+      indicadores.forEach(ind => ind.classList.remove('active'));
+      indicadores[slideActual].classList.add('active');
+      
+      // Actualizar contador
+      document.getElementById('actual').textContent = slideActual + 1;
+    }
+    
+    function cambiarSlide(direccion) {
+      slideActual = (slideActual + direccion + totalSlides) % totalSlides;
+      actualizarSlide();
+    }
+    
+    function irASlide(index) {
+      slideActual = index;
+      actualizarSlide();
+    }
+    
+    // Auto-rotación cada 6 segundos
+    setInterval(() => {
+      cambiarSlide(1);
+    }, 6000);
+  </script>
+</body>
+</html>
