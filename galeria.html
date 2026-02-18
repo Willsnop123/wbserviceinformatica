@@ -87,13 +87,18 @@
       border: 1px solid #243041;
     }
     
+    /* CAMBIO IMPORTANTE: Transición con opacidad */
     .carrusel-slide {
-      display: none;
       position: relative;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+      height: 0;
+      overflow: hidden;
     }
     
     .carrusel-slide.active {
-      display: block;
+      opacity: 1;
+      height: auto;
     }
     
     .comparacion {
@@ -379,7 +384,7 @@
     document.getElementById('total').textContent = totalSlides;
     
     function actualizarSlide() {
-      // Actualizar slides
+      // Actualizar slides con transición suave
       slides.forEach(slide => slide.classList.remove('active'));
       slides[slideActual].classList.add('active');
       
