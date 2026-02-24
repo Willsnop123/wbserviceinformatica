@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería de Trabajos — WB Service Gualeguay</title>
+  <meta name="description" content="Galería de trabajos de WB Service. Antes y después de reparaciones de PS4, PS5, Xbox, joysticks y PC en Gualeguay.">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg:        #0a0f1c;
+      --bg-card:   #111827;
+      --border:    #1e2d45;
+      --blue:      #2563eb;
+      --blue-soft: #3b82f6;
+      --blue-glow: rgba(37,99,235,0.25);
+      --green:     #10b981;
+      --red:       #ef4444;
+      --muted:     #94a3b8;
+      --light:     #cbd5e1;
+      --white:     #ffffff;
+      --whatsapp:  #25d366;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ===== ANIMACIONES ===== */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50%      { transform: scale(1.08); }
+    }
+    @keyframes scanline {
+      0%   { transform: translateY(-100%); }
+      100% { transform: translateY(100vh); }
+    }
+
+    /* ===== HEADER ===== */
+    .galeria-header {
+      background: linear-gradient(135deg, #0a0f1c 0%, #111827 100%);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      animation: fadeInDown 0.5s ease-out;
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 24px;
+      gap: 14px;
+    }
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .header-brand img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+    .header-brand:hover img {
+      transform: rotate(8deg) scale(1.08);
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .header-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      transition: all 0.25s;
+      white-space: nowrap;
+    }
+    .header-back:hover {
+      color: var(--white);
+      background: var(--bg-card);
+      border-color: var(--blue);
+      transform: translateX(-3px);
+    }
+    @media (max-width: 500px) {
+      .header-brand-sub { display: none; }
+      .header-back span { display: none; }
+    }
+
+    /* ===== HERO ===== */
+    .galeria-hero {
+      text-align: center;
+      padding: 60px 24px 50px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(37,99,235,0.1) 0%, transparent 70%);
+      animation: fadeInUp 0.6s ease-out 0.1s both;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(37,99,235,0.12);
+      border: 1px solid rgba(37,99,235,0.3);
+      color: var(--blue-soft);
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+    .galeria-hero h2 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 30%, #94a3b8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .galeria-hero p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* ===== FILTROS ===== */
+    .filtros-wrapper {
+      max-width: 1200px;
+      margin: 0 auto 36px;
+      padding: 0 24px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeInUp 0.6s ease-out 0.2s both;
+    }
+    .filtro-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 8px 18px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s;
+      font-family: 'Inter', sans-serif;
+    }
+    .filtro-btn:hover {
+      color: var(--white);
+      border-color: var(--blue);
+    }
+    .filtro-btn.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: white;
+      box-shadow: 0 4px 16px var(--blue-glow);
+    }
+    .filtro-count {
+      background: rgba(255,255,255,0.15);
+      padding: 1px 7px;
+      border-radius: 10px;
+      font-size: 0.75rem;
+    }
+    .filtro-btn.active .filtro-count {
+      background: rgba(255,255,255,0.25);
+    }
+
+    /* ===== GRID DE TRABAJOS ===== */
+    .trabajos-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+      animation: fadeInUp 0.6s ease-out 0.3s both;
+    }
+
+    /* ===== CARD DE TRABAJO ===== */
+    .trabajo-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.35s ease;
+      cursor: pointer;
+    }
+    .trabajo-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--blue);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(37,99,235,0.2);
+    }
+    .trabajo-card.hidden {
+      display: none;
+    }
+
+    /* Imagen comparación en card */
+    .card-comparacion {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+    .card-antes,
+    .card-despues {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .card-antes { left: 0; }
+    .card-despues { right: 0; }
+
+    .card-antes img,
+    .card-despues img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+    .trabajo-card:hover .card-antes img,
+    .trabajo-card:hover .card-despues img {
+      transform: scale(1.06);
+    }
+
+    /* Divisor central */
+    .card-divisor {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: white;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+    .card-divisor::before {
+      content: '↔';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      color: #0a0f1c;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 900;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    /* Etiquetas ANTES / DESPUÉS */
+    .card-label {
+      position: absolute;
+      bottom: 12px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      z-index: 11;
+      backdrop-filter: blur(4px);
+    }
+    .card-label.antes {
+      left: 10px;
+      background: rgba(239,68,68,0.9);
+      color: white;
+    }
+    .card-label.despues {
+      right: 10px;
+      background: rgba(16,185,129,0.9);
+      color: white;
+    }
+
+    /* Badge de categoría */
+    .card-cat-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(10,15,28,0.85);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--blue-soft);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      backdrop-filter: blur(6px);
+      z-index: 12;
+    }
+
+    /* Info del card */
+    .card-info {
+      padding: 20px 22px;
+      border-top: 1px solid var(--border);
+    }
+    .card-titulo {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .card-resultado {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--green);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .card-resultado i { font-size: 0.8rem; }
+    .card-ver-mas {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue-soft);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: gap 0.2s;
+      background: none;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      padding: 0;
+    }
+    .card-ver-mas:hover { gap: 10px; }
+
+    /* ===== LIGHTBOX / MODAL ===== */
+    .lightbox-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 8, 16, 0.97);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 20px;
+    }
+    .lightbox-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lightbox-header {
+      width: 100%;
+      max-width: 960px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .lightbox-titulo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: white;
+    }
+    .lightbox-subtitulo {
+      color: var(--green);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .lightbox-cerrar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .lightbox-cerrar:hover {
+      background: rgba(239,68,68,0.3);
+      border-color: var(--red);
+    }
+
+    /* Comparación en lightbox */
+    .lightbox-comparacion {
+      width: 100%;
+      max-width: 960px;
+      height: clamp(300px, 55vh, 520px);
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.7);
+      user-select: none;
+    }
+    .lb-antes, .lb-despues {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    .lb-antes {
+      left: 0;
+      width: 50%;
+    }
+    .lb-despues {
+      right: 0;
+      width: 50%;
+    }
+
+    /* Cada imagen ocupa el ancho COMPLETO del contenedor (lightbox-comparacion),
+       no el del div recortado. Así object-fit: cover centra bien
+       sin importar cuánto se mueva el slider. */
+    .lb-antes img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: var(--lb-width, 960px);
+      max-width: none;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+    .lb-despues img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: var(--lb-width, 960px);
+      max-width: none;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    /* Slider drag */
+    .lb-slider {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 4px;
+      height: 100%;
+      background: white;
+      transform: translateX(-50%);
+      z-index: 20;
+      cursor: ew-resize;
+    }
+    .lb-slider-handle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: white;
+      color: #0a0f1c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      cursor: ew-resize;
+    }
+
+    .lb-label {
+      position: absolute;
+      bottom: 20px;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      z-index: 30;
+      pointer-events: none;
+    }
+    .lb-label.antes  { left: 20px;  background: rgba(239,68,68,0.92); }
+    .lb-label.despues { right: 20px; background: rgba(16,185,129,0.92); }
+
+    /* Instrucción drag */
+    .lb-hint {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-top: 14px;
+    }
+
+    /* Controles lightbox */
+    .lightbox-controles {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-top: 22px;
+    }
+    .lb-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s;
+    }
+    .lb-btn:hover { background: var(--blue); border-color: var(--blue); transform: scale(1.1); }
+
+    .lb-indicadores { display: flex; gap: 10px; }
+    .lb-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .lb-dot.active {
+      background: var(--blue);
+      transform: scale(1.4);
+    }
+
+    /* WA Cta */
+    .lb-cta {
+      margin-top: 20px;
+    }
+    .lb-cta a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--whatsapp);
+      color: white;
+      text-decoration: none;
+      padding: 11px 24px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: all 0.25s;
+    }
+    .lb-cta a:hover { background: #20ba5a; transform: translateY(-2px); }
+
+    /* ===== CTA BOTTOM ===== */
+    .galeria-cta {
+      max-width: 700px;
+      margin: 0 auto 60px;
+      padding: 40px 32px;
+      background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(10,15,28,0.9));
+      border: 1px solid rgba(37,99,235,0.25);
+      border-radius: 20px;
+      text-align: center;
+    }
+    .galeria-cta h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .galeria-cta p {
+      color: var(--muted);
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+    }
+    .btn-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--whatsapp);
+      color: white;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      box-shadow: 0 6px 20px rgba(37,211,102,0.35);
+      transition: all 0.3s;
+      animation: pulse 2.5s infinite;
+    }
+    .btn-wa:hover { background: #20ba5a; transform: translateY(-3px); animation: none; }
+
+    /* ===== FOOTER ===== */
+    .galeria-footer {
+      text-align: center;
+      padding: 28px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.83rem;
+    }
+    .galeria-footer a {
+      color: var(--blue-soft);
+      text-decoration: none;
+    }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+      display: none;
+    }
+    .empty-state.visible { display: block; }
+    .empty-state i { font-size: 3rem; margin-bottom: 16px; color: var(--border); display: block; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .trabajos-grid { grid-template-columns: 1fr; }
+      .lightbox-comparacion { height: clamp(240px, 45vw, 360px); }
+      .lb-hint { display: none; }
+    }
+    @media (max-width: 500px) {
+      .header-brand img { max-width: 120px; }
+      .header-brand .divider, .header-brand h1, .header-brand span { display: none; }
+      .galeria-hero { padding: 40px 16px 30px; }
+      .trabajos-grid { padding: 0 16px 40px; }
+      .filtros-wrapper { padding: 0 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="galeria-header">
+  <div class="header-inner">
+    <a href="index.html" class="header-brand">
+      <img src="logo_icon.png" alt="WB Service">
+    </a>
+    <div class="header-right">
+      <div style="color:var(--muted); font-size:0.82rem; font-weight:600;">
+        <i class="fas fa-images" style="margin-right:6px; color:var(--blue-soft);"></i>Galería de Trabajos
+      </div>
+      <a href="index.html" class="header-back">
+        <i class="fas fa-arrow-left"></i> <span>Volver al inicio</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="galeria-hero">
+  <div class="hero-badge"><i class="fas fa-star"></i> Resultados reales de clientes en Gualeguay</div>
+  <h2>Los resultados hablan por sí solos</h2>
+  <p>Cada trabajo es una historia de reparación real. Hacé clic en cualquier imagen para ver la comparación completa.</p>
+</div>
+
+<!-- FILTROS -->
+<div class="filtros-wrapper">
+  <button class="filtro-btn active" data-cat="todos" onclick="filtrar('todos', this)">
+    <i class="fas fa-th"></i> Todos <span class="filtro-count" id="count-todos">5</span>
+  </button>
+  <button class="filtro-btn" data-cat="playstation" onclick="filtrar('playstation', this)">
+    <i class="fab fa-playstation"></i> PlayStation <span class="filtro-count" id="count-playstation">3</span>
+  </button>
+  <button class="filtro-btn" data-cat="xbox" onclick="filtrar('xbox', this)">
+    <i class="fab fa-xbox"></i> Xbox <span class="filtro-count" id="count-xbox">1</span>
+  </button>
+  <button class="filtro-btn" data-cat="joystick" onclick="filtrar('joystick', this)">
+    <i class="fas fa-gamepad"></i> Joystick <span class="filtro-count" id="count-joystick">1</span>
+  </button>
+  <button class="filtro-btn" data-cat="pc" onclick="filtrar('pc', this)">
+    <i class="fas fa-desktop"></i> PC <span class="filtro-count" id="count-pc">1</span>
+  </button>
+</div>
+
+<!-- GRID DE TRABAJOS -->
+<div class="trabajos-grid" id="grid-trabajos">
+
+  <!-- TRABAJO 1: PS4 -->
+  <div class="trabajo-card" data-cat="playstation" data-index="0" onclick="abrirLightbox(0)">
+    <div class="card-comparacion">
+      <div class="card-antes">
+        <img src="imagenes/ps4-antes.jpg" alt="PS4 antes limpieza">
+      </div>
+      <div class="card-despues">
+        <img src="imagenes/ps4-despues.jpg" alt="PS4 después limpieza">
+      </div>
+      <div class="card-divisor"></div>
+      <span class="card-label antes">ANTES</span>
+      <span class="card-label despues">DESPUÉS</span>
+      <div class="card-cat-badge"><i class="fab fa-playstation"></i> PS4</div>
+    </div>
+    <div class="card-info">
+      <div class="card-titulo">PS4 — Limpieza completa y pasta térmica</div>
+      <div class="card-resultado"><i class="fas fa-thermometer-half"></i> Temperatura bajó de 85°C a 68°C</div>
+      <button class="card-ver-mas">Ver en detalle <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <!-- TRABAJO 2: PC Gamer -->
+  <div class="trabajo-card" data-cat="pc" data-index="1" onclick="abrirLightbox(1)">
+    <div class="card-comparacion">
+      <div class="card-antes">
+        <img src="imagenes/pc-antes.jpg" alt="PC antes mantenimiento">
+      </div>
+      <div class="card-despues">
+        <img src="imagenes/pc-despues.jpg" alt="PC después mantenimiento">
+      </div>
+      <div class="card-divisor"></div>
+      <span class="card-label antes">ANTES</span>
+      <span class="card-label despues">DESPUÉS</span>
+      <div class="card-cat-badge"><i class="fas fa-desktop"></i> PC</div>
+    </div>
+    <div class="card-info">
+      <div class="card-titulo">PC Gamer — Mantenimiento completo</div>
+      <div class="card-resultado"><i class="fas fa-check-circle"></i> Limpieza de componentes y nueva pasta térmica</div>
+      <button class="card-ver-mas">Ver en detalle <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <!-- TRABAJO 3: Joystick PS5 -->
+  <div class="trabajo-card" data-cat="joystick" data-index="2" onclick="abrirLightbox(2)">
+    <div class="card-comparacion">
+      <div class="card-antes">
+        <img src="imagenes/joystick-antes.jpg" alt="Joystick PS5 antes reparación">
+      </div>
+      <div class="card-despues">
+        <img src="imagenes/joystick-despues.jpg" alt="Joystick PS5 después reparación">
+      </div>
+      <div class="card-divisor"></div>
+      <span class="card-label antes">ANTES</span>
+      <span class="card-label despues">DESPUÉS</span>
+      <div class="card-cat-badge" style="color:#10b981;"><i class="fas fa-gamepad"></i> Joystick</div>
+    </div>
+    <div class="card-info">
+      <div class="card-titulo">Joystick PS5 — Reparación de drift</div>
+      <div class="card-resultado"><i class="fas fa-check-circle"></i> Cambio de potenciómetros y calibración</div>
+      <button class="card-ver-mas">Ver en detalle <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <!-- TRABAJO 4: PS3 -->
+  <div class="trabajo-card" data-cat="playstation" data-index="3" onclick="abrirLightbox(3)">
+    <div class="card-comparacion">
+      <div class="card-antes">
+        <img src="imagenes/ps3-antes.jpg" alt="PS3 antes limpieza">
+      </div>
+      <div class="card-despues">
+        <img src="imagenes/ps3-despues.jpg" alt="PS3 después limpieza">
+      </div>
+      <div class="card-divisor"></div>
+      <span class="card-label antes">ANTES</span>
+      <span class="card-label despues">DESPUÉS</span>
+      <div class="card-cat-badge"><i class="fab fa-playstation"></i> PS3</div>
+    </div>
+    <div class="card-info">
+      <div class="card-titulo">PS3 — Limpieza y mantenimiento</div>
+      <div class="card-resultado"><i class="fas fa-shield-alt"></i> Prevención de fallos por calor</div>
+      <button class="card-ver-mas">Ver en detalle <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <!-- TRABAJO 5: Xbox -->
+  <div class="trabajo-card" data-cat="xbox" data-index="4" onclick="abrirLightbox(4)">
+    <div class="card-comparacion">
+      <div class="card-antes">
+        <img src="imagenes/Xbox-antes.jpg" alt="Xbox One antes limpieza">
+      </div>
+      <div class="card-despues">
+        <img src="imagenes/Xbox-despues.jpg" alt="Xbox One después limpieza">
+      </div>
+      <div class="card-divisor"></div>
+      <span class="card-label antes">ANTES</span>
+      <span class="card-label despues">DESPUÉS</span>
+      <div class="card-cat-badge" style="color:#22c55e;"><i class="fab fa-xbox"></i> Xbox</div>
+    </div>
+    <div class="card-info">
+      <div class="card-titulo">Xbox One — Mantenimiento preventivo</div>
+      <div class="card-resultado"><i class="fas fa-check-circle"></i> Limpieza interna y cambio de pasta térmica</div>
+      <button class="card-ver-mas">Ver en detalle <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+
+</div>
+
+<!-- EMPTY STATE -->
+<div class="empty-state" id="empty-state">
+  <i class="fas fa-search"></i>
+  <p>No hay trabajos en esta categoría todavía.<br>¡Pronto agregamos más!</p>
+</div>
+
+<!-- CTA BOTTOM -->
+<div style="padding: 0 24px;">
+  <div class="galeria-cta">
+    <h3>¿Tu equipo necesita este tratamiento?</h3>
+    <p>Turno el mismo día, presupuesto sin compromiso y seguimiento por WhatsApp de todo el proceso.</p>
+    <a href="https://wa.me/5493444569948?text=Hola%21%20Vi%20la%20galer%C3%ADa%20y%20quiero%20consultar%20por%20mi%20equipo" class="btn-wa" target="_blank">
+      <i class="fab fa-whatsapp"></i> Quiero turno ahora
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="galeria-footer">
+  <a href="index.html"><i class="fas fa-arrow-left" style="margin-right:6px;"></i>Volver a WB Service</a>
+  &nbsp;·&nbsp;
+  <span>© 2026 WB Service — Gualeguay, Entre Ríos</span>
+</footer>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox-overlay" id="lightbox" onclick="cerrarLightboxClick(event)">
+  <div class="lightbox-header">
+    <div>
+      <div class="lightbox-titulo" id="lb-titulo">Trabajo</div>
+      <div class="lightbox-subtitulo" id="lb-subtitulo"><i class="fas fa-check-circle"></i> <span></span></div>
+    </div>
+    <button class="lightbox-cerrar" onclick="cerrarLightbox()"><i class="fas fa-times"></i></button>
+  </div>
+
+  <div class="lightbox-comparacion" id="lb-comparacion">
+    <div class="lb-antes" id="lb-antes">
+      <img id="lb-img-antes" src="" alt="Antes">
+    </div>
+    <div class="lb-despues" id="lb-despues">
+      <img id="lb-img-despues" src="" alt="Después">
+    </div>
+    <div class="lb-slider" id="lb-slider">
+      <div class="lb-slider-handle"><i class="fas fa-arrows-alt-h"></i></div>
+    </div>
+    <span class="lb-label antes">ANTES</span>
+    <span class="lb-label despues">DESPUÉS</span>
+  </div>
+
+  <div class="lb-hint"><i class="fas fa-hand-point-left" style="margin-right:6px;"></i>Arrastrá el divisor para comparar</div>
+
+  <div class="lightbox-controles">
+    <button class="lb-btn" onclick="navegarLb(-1)"><i class="fas fa-chevron-left"></i></button>
+    <div class="lb-indicadores" id="lb-dots"></div>
+    <button class="lb-btn" onclick="navegarLb(1)"><i class="fas fa-chevron-right"></i></button>
+  </div>
+
+  <div class="lb-cta">
+    <a href="https://wa.me/5493444569948?text=Hola%21%20Quiero%20consultar%20por%20mi%20equipo" target="_blank">
+      <i class="fab fa-whatsapp"></i> ¿Tu equipo necesita esto? Consultá ahora
+    </a>
+  </div>
+</div>
+
+<script>
+  // ===== DATOS DE TRABAJOS =====
+  const trabajos = [
+    {
+      titulo: "PS4 — Limpieza completa y pasta térmica",
+      resultado: "Temperatura bajó de 85°C a 68°C",
+      antes:   "imagenes/ps4-antes.jpg",
+      despues: "imagenes/ps4-despues.jpg",
+      cat: "playstation"
+    },
+    {
+      titulo: "PC Gamer — Mantenimiento completo",
+      resultado: "Limpieza de componentes y nueva pasta térmica",
+      antes:   "imagenes/pc-antes.jpg",
+      despues: "imagenes/pc-despues.jpg",
+      cat: "pc"
+    },
+    {
+      titulo: "Joystick PS5 — Reparación de drift",
+      resultado: "Cambio de potenciómetros y calibración",
+      antes:   "imagenes/joystick-antes.jpg",
+      despues: "imagenes/joystick-despues.jpg",
+      cat: "joystick"
+    },
+    {
+      titulo: "PS3 — Limpieza y mantenimiento",
+      resultado: "Prevención de fallos por calor",
+      antes:   "imagenes/ps3-antes.jpg",
+      despues: "imagenes/ps3-despues.jpg",
+      cat: "playstation"
+    },
+    {
+      titulo: "Xbox One — Mantenimiento preventivo",
+      resultado: "Limpieza interna y cambio de pasta térmica",
+      antes:   "imagenes/Xbox-antes.jpg",
+      despues: "imagenes/Xbox-despues.jpg",
+      cat: "xbox"
+    }
+  ];
+
+  // ===== LIGHTBOX =====
+  let lbActual = 0;
+  let isDragging = false;
+
+  function abrirLightbox(index) {
+    lbActual = index;
+    renderLightbox();
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // Esperar un frame para que el modal sea visible y tenga dimensiones reales
+    requestAnimationFrame(() => {
+      updateLbWidth();
+      resetSlider();
+    });
+  }
+
+  function cerrarLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function cerrarLightboxClick(e) {
+    if (e.target === document.getElementById('lightbox')) cerrarLightbox();
+  }
+
+  function renderLightbox() {
+    const t = trabajos[lbActual];
+    document.getElementById('lb-titulo').textContent    = t.titulo;
+    document.querySelector('#lb-subtitulo span').textContent = t.resultado;
+    document.getElementById('lb-img-antes').src   = t.antes;
+    document.getElementById('lb-img-despues').src = t.despues;
+
+    // dots
+    const dotsEl = document.getElementById('lb-dots');
+    dotsEl.innerHTML = trabajos.map((_, i) =>
+      `<span class="lb-dot ${i === lbActual ? 'active' : ''}" onclick="irALb(${i})"></span>`
+    ).join('');
+
+    resetSlider();
+  }
+
+  function navegarLb(dir) {
+    lbActual = (lbActual + dir + trabajos.length) % trabajos.length;
+    renderLightbox();
+  }
+
+  function irALb(index) {
+    lbActual = index;
+    renderLightbox();
+  }
+
+  // ===== SLIDER DRAG =====
+  function resetSlider() {
+    const container = document.getElementById('lb-comparacion');
+    const slider    = document.getElementById('lb-slider');
+    const antes     = document.getElementById('lb-antes');
+    const despues   = document.getElementById('lb-despues');
+    slider.style.left   = '50%';
+    antes.style.width   = '50%';
+    despues.style.width = '50%';
+    // Sincronizar el ancho real del contenedor para que las imágenes se vean completas
+    updateLbWidth();
+  }
+
+  function updateLbWidth() {
+    const container = document.getElementById('lb-comparacion');
+    if (!container) return;
+    const w = container.getBoundingClientRect().width;
+    container.style.setProperty('--lb-width', w + 'px');
+  }
+
+  function initSlider() {
+    const container = document.getElementById('lb-comparacion');
+    const slider    = document.getElementById('lb-slider');
+    const antes     = document.getElementById('lb-antes');
+    const despues   = document.getElementById('lb-despues');
+
+    // Actualizar ancho al redimensionar
+    window.addEventListener('resize', updateLbWidth);
+
+    function mover(clientX) {
+      const rect = container.getBoundingClientRect();
+      let pct = (clientX - rect.left) / rect.width;
+      pct = Math.max(0.05, Math.min(0.95, pct));
+      slider.style.left     = (pct * 100) + '%';
+      antes.style.width     = (pct * 100) + '%';
+      despues.style.width   = ((1 - pct) * 100) + '%';
+    }
+
+    slider.addEventListener('mousedown',  e => { isDragging = true; e.preventDefault(); });
+    window.addEventListener('mousemove',  e => { if (isDragging) mover(e.clientX); });
+    window.addEventListener('mouseup',    ()  => { isDragging = false; });
+
+    slider.addEventListener('touchstart', e => { isDragging = true; e.preventDefault(); }, { passive: false });
+    window.addEventListener('touchmove',  e => { if (isDragging) mover(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchend',   ()  => { isDragging = false; });
+  }
+  initSlider();
+
+  // ===== FILTROS =====
+  function filtrar(cat, btn) {
+    document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const cards = document.querySelectorAll('.trabajo-card');
+    let visibles = 0;
+    cards.forEach(card => {
+      if (cat === 'todos' || card.dataset.cat === cat) {
+        card.classList.remove('hidden');
+        visibles++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    const empty = document.getElementById('empty-state');
+    empty.classList.toggle('visible', visibles === 0);
+  }
+
+  // Teclado
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'ArrowRight') navegarLb(1);
+    if (e.key === 'ArrowLeft')  navegarLb(-1);
+    if (e.key === 'Escape')     cerrarLightbox();
+  });
+</script>
+
+</body>
+</html>
