@@ -1,0 +1,13 @@
+{
+  "name": "WB Service — Servicio Técnico Informático",
+  "short_name": "WB Service",
+  "description": "Reparación de PC, notebooks, PlayStation y Xbox en Gualeguay, Entre Ríos.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#0a0f1c",
+  "background_color": "#0a0f1c",
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/android-chrome-512x512.png",  "sizes": "512x512",  "type": "image/png" }
+  ]
+}
