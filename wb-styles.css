@@ -2720,6 +2720,9 @@ body.menu-open .wa-float   { opacity: 0; pointer-events: none; }
 .review-card[style*="#a855f7"] { --av-color: #ec4899; }
 .review-card[style*="#0ea5e9"] { --av-color: #6366f1; }
 .review-card[style*="#f59e0b"] { --av-color: #ef4444; }
+.review-card[style*="#06b6d4"] { --av-color: #0284c7; }
+.review-card[style*="#84cc16"] { --av-color: #16a34a; }
+.review-card[style*="#8b5cf6"] { --av-color: #a78bfa; }
 
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }
