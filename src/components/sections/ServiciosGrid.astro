@@ -1,0 +1,51 @@
+---
+const servicios = [
+  {
+    href: '/pc-y-notebooks/',
+    titulo: 'PC y Notebooks',
+    texto: 'Limpieza profunda, pasta térmica, cambio de componentes y diagnóstico completo de escritorio y portátiles.',
+    icono: '<path d="M3 5h18v11H3z" stroke-linejoin="round"/><path d="M2 20h20" stroke-linecap="round"/>',
+  },
+  {
+    href: '/consolas/',
+    titulo: 'PlayStation y Xbox',
+    texto: 'PS3, PS4, PS5, Xbox 360, One y Series. Limpieza, HDMI roto, lector de disco y sobrecalentamiento.',
+    icono: '<rect x="2" y="7" width="20" height="10" rx="5"/><path d="M7 11v2M6 12h2" stroke-linecap="round"/><circle cx="16.5" cy="11.5" r=".9" fill="currentColor" stroke="none"/><circle cx="18.5" cy="13.5" r=".9" fill="currentColor" stroke="none"/>',
+  },
+  {
+    href: '/joysticks/',
+    titulo: 'Joysticks con drift',
+    texto: 'Cambio de joystick analógico, botones y calibración. Con prueba antes de devolvértelo.',
+    icono: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path d="M12 3v3M12 18v3" stroke-linecap="round"/>',
+  },
+  {
+    href: '/comercios/',
+    titulo: 'Planes para comercios',
+    texto: 'Mantenimiento preventivo mensual para negocios de Gualeguay, con soporte prioritario.',
+    icono: '<path d="M3 21V8l9-5 9 5v13" stroke-linejoin="round"/><path d="M9 21v-6h6v6" stroke-linejoin="round"/>',
+  },
+];
+---
+
+<section class="porque servicios-grid-sec" id="servicios" data-screen-label="01 Servicios">
+  <div class="porque-inner">
+    <div class="porque-head">
+      <div class="kicker"><span class="bar"></span> Servicios</div>
+      <h2>Qué reparamos<br/><span class="accent">en el taller.</span></h2>
+      <p>Cada servicio tiene su página con el detalle de lo que incluye y cómo trabajamos.</p>
+    </div>
+    <div class="porque-grid servicios-grid">
+      {servicios.map((s) => (
+        <a class="pq-card sv-card" href={s.href} data-fade>
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" set:html={s.icono} /></div>
+          <h3>{s.titulo}</h3>
+          <p>{s.texto}</p>
+          <span class="sv-mas">
+            Ver detalle
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

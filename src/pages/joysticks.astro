@@ -1,0 +1,34 @@
+---
+import WbServiceLayout from '../layouts/WbServiceLayout.astro';
+import PageHead from '../components/layout/PageHead.astro';
+import Drift from '../components/sections/Drift.astro';
+import Resenas from '../components/sections/Resenas.astro';
+import CtaContacto from '../components/sections/CtaContacto.astro';
+
+const title = 'Reparación de Joysticks con Drift en Gualeguay | WB Service';
+const description = 'Reparación de joysticks con drift en Gualeguay, Entre Ríos. Cambio de joystick analógico en controles de PS4, PS5, Xbox One y Xbox Series. Con calibración y prueba.';
+const keywords = 'joystick drift Gualeguay, reparación joystick PS4, reparación joystick PS5, drift Xbox One, control se mueve solo, cambio de analógico joystick, reparar mando PlayStation';
+---
+
+<WbServiceLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonical="https://www.wbserviceinformatica.com.ar/joysticks/"
+  active="joysticks"
+>
+  <PageHead
+    kicker="Joysticks / Drift"
+    titulo="Tu joystick,"
+    acento="quieto otra vez."
+    texto="Si el personaje se mueve solo, es drift. Cambio el joystick analógico, reviso botones y calibro antes de devolvértelo."
+    crumb="Joysticks"
+  />
+  <Drift />
+  <Resenas />
+  <CtaContacto
+    titulo="¿Se te mueve solo el personaje?"
+    texto="Eso es drift y tiene arreglo. Contame qué control es y te digo cuánto sale y en cuánto lo tenés listo."
+    mensaje="Hola! Tengo un joystick con drift y quiero consultar"
+  />
+</WbServiceLayout>

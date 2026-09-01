@@ -1,0 +1,36 @@
+---
+import WbServiceLayout from '../layouts/WbServiceLayout.astro';
+import PageHead from '../components/layout/PageHead.astro';
+import PlayStation from '../components/sections/PlayStation.astro';
+import Xbox from '../components/sections/Xbox.astro';
+import Resenas from '../components/sections/Resenas.astro';
+import CtaContacto from '../components/sections/CtaContacto.astro';
+
+const title = 'Reparación de PlayStation y Xbox en Gualeguay | WB Service';
+const description = 'Reparación de PS3, PS4, PS5, Xbox 360, Xbox One y Xbox Series en Gualeguay, Entre Ríos. HDMI roto, sobrecalentamiento, lector de disco y limpieza profunda.';
+const keywords = 'reparación PlayStation Gualeguay, reparación PS4 Gualeguay, reparación PS5, reparación PS3, reparación Xbox Gualeguay, Xbox 360 Xbox One Xbox Series, HDMI roto PS4, consola se apaga sola';
+---
+
+<WbServiceLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonical="https://www.wbserviceinformatica.com.ar/consolas/"
+  active="consolas"
+>
+  <PageHead
+    kicker="PlayStation y Xbox"
+    titulo="Tu consola,"
+    acento="fría y silenciosa."
+    texto="PS3, PS4, PS5, Xbox 360, One y Series. Limpieza profunda, cambio de pasta térmica, HDMI roto, lector de disco y sobrecalentamiento."
+    crumb="Consolas"
+  />
+  <PlayStation />
+  <Xbox />
+  <Resenas />
+  <CtaContacto
+    titulo="¿Se apaga sola o hace mucho ruido?"
+    texto="Decime el modelo de la consola y qué síntoma tiene. Te paso el diagnóstico y el presupuesto por WhatsApp."
+    mensaje="Hola! Tengo un problema con mi consola y quiero consultar"
+  />
+</WbServiceLayout>

@@ -2767,3 +2767,63 @@ body.menu-open .wa-float   { opacity: 0; pointer-events: none; }
    ACCESIBILIDAD — h3 en cards "Por qué elegirnos"
    ============================================================ */
 .pq-card h3 { font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; }
+
+/* ============================================================
+   Grilla de servicios de la home (fase 2)
+   Reutiliza .pq-card; solo agrega lo propio del enlace.
+   ============================================================ */
+.servicios-grid { grid-template-columns: repeat(4, 1fr); }
+.sv-card { display: block; text-decoration: none; color: inherit; }
+.sv-card h3 { color: var(--text); }
+.sv-mas {
+  display: inline-flex; align-items: center; gap: 7px;
+  margin-top: 18px;
+  font-size: 0.85rem; font-weight: 600; color: var(--blue-soft);
+}
+.sv-mas svg { transition: transform .25s ease; }
+.sv-card:hover .sv-mas svg { transform: translateX(4px); }
+.sv-card:focus-visible { outline: 2px solid var(--blue-soft); outline-offset: 3px; }
+
+@media (max-width: 1040px) { .servicios-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px)  { .servicios-grid { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   Banda de CTA reutilizable en las paginas de servicio (fase 2)
+   ============================================================ */
+.cta-band { padding: 110px 24px; background: var(--bg-2); border-top: 1px solid var(--line); }
+.cta-band-inner {
+  max-width: 720px; margin: 0 auto; text-align: center;
+  opacity: 0; transform: translateY(28px);
+}
+.cta-band-inner.in { opacity: 1; transform: translateY(0); transition: opacity .8s ease, transform .8s ease; }
+.cta-band .kicker { justify-content: center; }
+.cta-band h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); letter-spacing: -0.03em; margin-bottom: 16px; }
+.cta-band p { color: var(--muted); font-size: 1.02rem; line-height: 1.7; margin-bottom: 34px; }
+.cta-band-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* ============================================================
+   Encabezado de pagina de servicio (fase 2)
+   ============================================================ */
+.page-head { padding: 150px 24px 20px; text-align: center; }
+.page-head .kicker { justify-content: center; }
+.page-head h1 {
+  font-size: clamp(2.1rem, 5.5vw, 3.6rem);
+  font-weight: 800; letter-spacing: -0.045em; line-height: 1.05;
+  margin-bottom: 18px;
+}
+.page-head h1 .accent {
+  background: linear-gradient(135deg, var(--blue-soft), #818cf8);
+  background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.page-head p { max-width: 620px; margin: 0 auto; color: var(--muted); font-size: 1.05rem; line-height: 1.7; }
+
+.crumbs { max-width: 1200px; margin: 0 auto; padding: 100px 24px 0; font-size: 0.82rem; color: var(--muted); }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--blue-soft); }
+.crumbs span { margin: 0 8px; opacity: 0.5; }
+.crumbs + .page-head { padding-top: 30px; }
+
+.servicios-grid-sec .porque-head h2 .accent {
+  background: linear-gradient(135deg, var(--blue-soft), #818cf8);
+  background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}

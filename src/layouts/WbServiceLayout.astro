@@ -1,5 +1,9 @@
 ---
 import '../styles/wb-service.css';
+import Nav from '../components/layout/Nav.astro';
+import MobileMenu from '../components/layout/MobileMenu.astro';
+import WhatsAppFloat from '../components/layout/WhatsAppFloat.astro';
+import Footer from '../components/layout/Footer.astro';
 
 interface Props {
   title: string;
@@ -8,6 +12,7 @@ interface Props {
   canonical: string;
   ogImage?: string;
   jsonLd?: unknown;
+  active?: string;
 }
 
 const {
@@ -17,6 +22,7 @@ const {
   canonical,
   ogImage = 'https://www.wbserviceinformatica.com.ar/assets/og-image.webp',
   jsonLd,
+  active,
 } = Astro.props;
 ---
 
@@ -77,7 +83,12 @@ const {
 {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 </head>
 <body>
+<Nav active={active} />
+<div class="mob-overlay" id="mobOverlay"></div>
+<MobileMenu active={active} />
+<WhatsAppFloat />
 <slot />
+<Footer />
 <script src="/wb-script.js" is:inline></script>
 </body>
 </html>

@@ -1,0 +1,34 @@
+---
+import WbServiceLayout from '../layouts/WbServiceLayout.astro';
+import PageHead from '../components/layout/PageHead.astro';
+import Pc from '../components/sections/Pc.astro';
+import Resenas from '../components/sections/Resenas.astro';
+import CtaContacto from '../components/sections/CtaContacto.astro';
+
+const title = 'Reparación de PC y Notebooks en Gualeguay | WB Service';
+const description = 'Reparación y mantenimiento de computadoras de escritorio y notebooks en Gualeguay, Entre Ríos. Limpieza profunda, pasta térmica, cambio de componentes y diagnóstico sin cargo.';
+const keywords = 'reparación PC Gualeguay, reparación notebook Gualeguay, limpieza de PC Gualeguay, pasta térmica notebook, service de computadoras Entre Ríos, técnico PC Gualeguay';
+---
+
+<WbServiceLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonical="https://www.wbserviceinformatica.com.ar/pc-y-notebooks/"
+  active="pc"
+>
+  <PageHead
+    kicker="PC y Notebooks"
+    titulo="Tu computadora,"
+    acento="andando como debe."
+    texto="Limpieza profunda, cambio de pasta térmica, reemplazo de componentes y diagnóstico completo. Para equipos de escritorio y portátiles de cualquier marca."
+    crumb="PC y Notebooks"
+  />
+  <Pc />
+  <Resenas />
+  <CtaContacto
+    titulo="¿Tu PC anda lenta o se apaga sola?"
+    texto="Contame el modelo y qué le pasa. Te digo qué puede ser y cuánto sale antes de que traigas el equipo."
+    mensaje="Hola! Tengo un problema con mi PC/notebook y quiero consultar"
+  />
+</WbServiceLayout>

@@ -608,7 +608,14 @@
       }
     });
   }, { threshold: 0.25 });
-  document.querySelectorAll('.planes .kicker, .planes h2, .galeria-text .kicker, .galeria-text h2, .ubic-head .kicker, .ubic-head h2, .porque-head .kicker, .porque-head h2, .porque-head p').forEach(el => sectIO.observe(el));
+  // Las secciones cinematicas (hero, pc, ps, xbox, drift) manejan sus propios
+  // kickers y ademas les quitan is-in al salir. Si este observer las tocara,
+  // los dos se pisarian. Por eso se excluyen y el resto se toma por defecto:
+  // asi una seccion nueva revela su kicker sin tener que anotarse en una lista.
+  const CINEMATICAS = '.hero, .cine, .cine-ps, .cine-xbox, .drift';
+  document
+    .querySelectorAll('.kicker, .planes h2, .galeria-text h2, .ubic-head h2, .porque-head h2, .porque-head p')
+    .forEach(el => { if(!el.closest(CINEMATICAS)) sectIO.observe(el); });
 
   // ----- Comparador antes / después -----
   (function(){

@@ -1,0 +1,34 @@
+---
+import WbServiceLayout from '../layouts/WbServiceLayout.astro';
+import PageHead from '../components/layout/PageHead.astro';
+import Planes from '../components/sections/Planes.astro';
+import Porque from '../components/sections/Porque.astro';
+import CtaContacto from '../components/sections/CtaContacto.astro';
+
+const title = 'Planes de Mantenimiento para Comercios en Gualeguay | WB Service';
+const description = 'Planes mensuales de mantenimiento preventivo para comercios y empresas de Gualeguay. Limpieza de equipos, actualización de software y soporte técnico prioritario.';
+const keywords = 'mantenimiento PC comercios Gualeguay, soporte técnico empresas Entre Ríos, plan mantenimiento informático, service informático mensual Gualeguay, soporte IT comercios';
+---
+
+<WbServiceLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonical="https://www.wbserviceinformatica.com.ar/comercios/"
+  active="comercios"
+>
+  <PageHead
+    kicker="Planes para comercios"
+    titulo="Tu negocio,"
+    acento="sin equipos caídos."
+    texto="Mantenimiento preventivo mensual para comercios de Gualeguay. En vez de llamar cuando algo se rompe, evitamos que se rompa."
+    crumb="Planes para comercios"
+  />
+  <Planes />
+  <Porque />
+  <CtaContacto
+    titulo="¿Cuántos equipos tenés en el negocio?"
+    texto="Contame cuántas máquinas son y qué usás. Armamos un plan a medida en vez de encajarte uno cerrado."
+    mensaje="Hola! Quiero consultar por un plan de mantenimiento para mi comercio"
+  />
+</WbServiceLayout>
