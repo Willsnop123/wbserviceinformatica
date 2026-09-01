@@ -29,36 +29,36 @@
     {
       titulo: "PS4 — Limpieza completa y pasta térmica",
       resultado: "Temperatura bajó de 85°C a 68°C",
-      antes:   "imagenes/ps4-antes.webp",
-      despues: "imagenes/ps4-despues.webp",
+      antes:   "/imagenes/ps4-antes.webp",
+      despues: "/imagenes/ps4-despues.webp",
       cat: "playstation"
     },
     {
       titulo: "PC Gamer — Mantenimiento completo",
       resultado: "Limpieza de componentes y nueva pasta térmica",
-      antes:   "imagenes/pc-antes.webp",
-      despues: "imagenes/pc-despues.webp",
+      antes:   "/imagenes/pc-antes.webp",
+      despues: "/imagenes/pc-despues.webp",
       cat: "pc"
     },
     {
       titulo: "Joystick PS5 — Reparación de drift",
       resultado: "Cambio de potenciómetros y calibración",
-      antes:   "imagenes/joystick-antes.webp",
-      despues: "imagenes/joystick-despues.webp",
+      antes:   "/imagenes/joystick-antes.webp",
+      despues: "/imagenes/joystick-despues.webp",
       cat: "joystick"
     },
     {
       titulo: "PS3 — Limpieza y mantenimiento",
       resultado: "Prevención de fallos por calor",
-      antes:   "imagenes/ps3-antes.webp",
-      despues: "imagenes/ps3-despues.webp",
+      antes:   "/imagenes/ps3-antes.webp",
+      despues: "/imagenes/ps3-despues.webp",
       cat: "playstation"
     },
     {
       titulo: "Xbox One — Mantenimiento preventivo",
       resultado: "Limpieza interna y cambio de pasta térmica",
-      antes:   "imagenes/xbox-antes.webp",
-      despues: "imagenes/xbox-despues.webp",
+      antes:   "/imagenes/xbox-antes.webp",
+      despues: "/imagenes/xbox-despues.webp",
       cat: "xbox"
     }
   ];
