@@ -1,219 +1,24 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Servicio Técnico PC, PlayStation y Xbox en Gualeguay | WB Service</title>
-<meta name="description" content="Reparación de PC, notebooks, PS3, PS4, PS5 y Xbox en Gualeguay, Entre Ríos. Limpieza, mantenimiento, joystick drift, HDMI roto. Diagnóstico sin cargo. Turno por WhatsApp." />
-<meta name="keywords" content="servicio técnico informática Gualeguay, reparación PC Gualeguay, reparación notebook Gualeguay, reparación PlayStation Gualeguay, reparación PS3 PS4 PS5, reparación Xbox Gualeguay, Xbox 360 Xbox One Xbox Series, joystick drift PS4 PS5 Xbox, mantenimiento PC comercios Gualeguay, técnico informático Entre Ríos, WB Service" />
-<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-<meta name="author" content="WB Service — Servicio Técnico Informático" />
-<link rel="canonical" href="https://www.wbserviceinformatica.com.ar/" />
-<link rel="icon" type="image/x-icon" href="favicon.ico" />
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-<link rel="manifest" href="site.webmanifest" />
-<meta name="theme-color" content="#0a0f1c" />
+---
+import WbServiceLayout from '../layouts/WbServiceLayout.astro';
+import schema from '../data/schema-home.json';
 
-<!-- Geo local -->
-<meta name="geo.region" content="AR-E" />
-<meta name="geo.placename" content="Gualeguay, Entre Ríos, Argentina" />
-<meta name="geo.position" content="-33.1416;-59.3174" />
-<meta name="ICBM" content="-33.1416, -59.3174" />
+const title = 'Servicio Técnico PC, PlayStation y Xbox en Gualeguay | WB Service';
+const description = 'Reparación de PC, notebooks, PS3, PS4, PS5 y Xbox en Gualeguay, Entre Ríos. Limpieza, mantenimiento, joystick drift, HDMI roto. Diagnóstico sin cargo. Turno por WhatsApp.';
+const keywords = 'servicio técnico informática Gualeguay, reparación PC Gualeguay, reparación notebook Gualeguay, reparación PlayStation Gualeguay, reparación PS3 PS4 PS5, reparación Xbox Gualeguay, Xbox 360 Xbox One Xbox Series, joystick drift PS4 PS5 Xbox, mantenimiento PC comercios Gualeguay, técnico informático Entre Ríos, WB Service';
+---
 
-<!-- Open Graph (Facebook / WhatsApp / LinkedIn) -->
-<meta property="og:type" content="website" />
-<meta property="og:locale" content="es_AR" />
-<meta property="og:site_name" content="WB Service" />
-<meta property="og:url" content="https://www.wbserviceinformatica.com.ar/" />
-<meta property="og:title" content="Servicio Técnico PC, PlayStation y Xbox en Gualeguay | WB Service" />
-<meta property="og:description" content="Reparación de PC, notebooks, PS3, PS4, PS5 y Xbox en Gualeguay. Limpieza, mantenimiento, joystick drift, HDMI roto. Diagnóstico sin cargo. Turno por WhatsApp." />
-<meta property="og:image" content="https://www.wbserviceinformatica.com.ar/assets/og-image.webp" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="WB Service — Servicio Técnico en Gualeguay, Entre Ríos" />
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Servicio Técnico PC, PlayStation y Xbox en Gualeguay | WB Service" />
-<meta name="twitter:description" content="Reparación de PC, notebooks, PS3, PS4, PS5 y Xbox en Gualeguay. Diagnóstico sin cargo. Turno por WhatsApp." />
-<meta name="twitter:image" content="https://www.wbserviceinformatica.com.ar/assets/og-image.webp" />
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="wb-styles.css" />
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "LocalBusiness",
-      "@id": "https://www.wbserviceinformatica.com.ar/#business",
-      "name": "WB Service — Servicio Técnico Informático",
-      "alternateName": ["WB Service Informática", "WB Service Gualeguay"],
-      "description": "Servicio técnico especializado en reparación y mantenimiento de PC, notebooks, PlayStation (PS3, PS4, PS5) y Xbox en Gualeguay, Entre Ríos. Reparación de joysticks con drift, limpieza profunda y planes de mantenimiento para comercios.",
-      "url": "https://www.wbserviceinformatica.com.ar",
-      "telephone": "+5493444569948",
-      "priceRange": "$$",
-      "currenciesAccepted": "ARS",
-      "paymentAccepted": "Efectivo, Transferencia bancaria",
-      "image": "https://www.wbserviceinformatica.com.ar/assets/og-image.webp",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.wbserviceinformatica.com.ar/assets/logo_icon.webp"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Gualeguay",
-        "addressRegion": "Entre Ríos",
-        "addressCountry": "AR"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": -33.1416,
-        "longitude": -59.3174
-      },
-      "areaServed": [
-        { "@type": "City", "name": "Gualeguay" },
-        { "@type": "AdministrativeArea", "name": "Entre Ríos" }
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Servicios técnicos WB Service",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Reparación de PC",
-              "description": "Diagnóstico, limpieza profunda, cambio de pasta térmica, componentes y mantenimiento de computadoras de escritorio."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Reparación de Notebook",
-              "description": "Limpieza, cambio de pasta térmica, reparación de pantalla, teclado y diagnóstico completo de notebooks."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Reparación de PlayStation (PS3, PS4, PS5)",
-              "description": "Reparación de PS3, PS4 y PS5: limpieza profunda, cambio de HDMI roto, lector de disco, pasta térmica y diagnóstico completo."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Reparación de Xbox (360, One, Series)",
-              "description": "Reparación de Xbox 360, Xbox One, Xbox One S, Xbox One X, Xbox Series S y Xbox Series X. Limpieza, diagnóstico y cambio de componentes."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Reparación de joystick con drift",
-              "description": "Cambio de joystick analógico en controles PS4, PS5, Xbox One y Xbox Series. Reparación de botones, calibración y prueba."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Plan de mantenimiento mensual",
-              "description": "Planes preventivos mensuales para comercios y empresas: limpieza de equipos, actualización de software y soporte técnico prioritario en Gualeguay."
-            }
-          }
-        ]
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "customer service",
-        "telephone": "+5493444569948",
-        "availableLanguage": "Spanish"
-      },
-      "sameAs": ["https://wa.me/5493444569948"]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.wbserviceinformatica.com.ar/#website",
-      "url": "https://www.wbserviceinformatica.com.ar",
-      "name": "WB Service",
-      "description": "Servicio técnico informático en Gualeguay, Entre Ríos",
-      "inLanguage": "es-AR",
-      "publisher": { "@id": "https://www.wbserviceinformatica.com.ar/#business" }
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "¿Qué consolas reparan en WB Service?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Reparamos PlayStation 3 (PS3), PlayStation 4 (PS4), PlayStation 5 (PS5), Xbox 360, Xbox One, Xbox One S, Xbox One X, Xbox Series S y Xbox Series X."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Reparan joysticks con drift?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sí, realizamos cambio de joystick analógico en controles de PS4, PS5 y Xbox (todas las generaciones). Incluye diagnóstico, reemplazo con repuesto de calidad, calibración y prueba antes de devolvértelo."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Cómo saco turno en WB Service?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "El turno se coordina por WhatsApp al +54 9 3444 56-9948. Contanos tu problema y el modelo del equipo, y confirmamos día y horario en menos de 24 horas."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Dónde está el taller en Gualeguay?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Somos un taller privado en Gualeguay, Entre Ríos. Atendemos únicamente con turno previo coordinado por WhatsApp."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Tienen planes de mantenimiento para comercios?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sí, contamos con planes mensuales de mantenimiento preventivo para comercios y empresas de Gualeguay. Incluyen limpieza de equipos, actualización de software y soporte técnico prioritario."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Reparan PC y notebooks además de consolas?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sí, realizamos reparación y mantenimiento de computadoras de escritorio (PC) y notebooks de cualquier marca. Diagnóstico sin cargo, limpieza profunda, cambio de pasta térmica y componentes."
-          }
-        }
-      ]
-    }
-  ]
-}
-</script>
-</head>
-<body>
+<WbServiceLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonical="https://www.wbserviceinformatica.com.ar/"
+  jsonLd={schema}
+>
 
 <!-- ========== NAV ========== -->
 <nav class="nav" aria-label="Principal">
   <a href="#" class="brand">
-    <img src="assets/logo_icon.webp" alt="WB" />
+    <img src="/assets/logo_icon.webp" alt="WB" />
     <div>WB <span>Service</span></div>
   </a>
   <ul>
@@ -247,7 +52,7 @@
   <!-- Cabecera: logo + botón cerrar -->
   <div class="mob-head">
     <a href="#" class="mob-brand" id="mobBrandLink">
-      <img src="assets/logo_icon.webp" alt="WB" />
+      <img src="/assets/logo_icon.webp" alt="WB" />
       <span>WB <em>Service</em></span>
     </a>
     <button class="mob-close" id="mobClose" aria-label="Cerrar menú">
@@ -309,7 +114,7 @@
 <section class="hero" data-screen-label="Hero">
   <div class="hero-grid-bg"></div>
   <div class="hero-glow"></div>
-  <div class="hero-logo-float"><img src="assets/logo_icon.webp" alt="" /></div>
+  <div class="hero-logo-float"><img src="/assets/logo_icon.webp" alt="" /></div>
 
   <div class="hero-inner">
     <div class="hero-badge"><span class="dot"></span> WB SERVICE — GUALEGUAY, ENTRE RÍOS</div>
@@ -370,9 +175,9 @@
     </div>
     <div class="images">
       <div class="equip-row three">
-        <div class="equip" data-eq="laptop"><div class="equip-inner"><img src="assets/notebook-cut.webp" alt="Notebook" loading="lazy" decoding="async" /><span class="tag">Notebook</span></div></div>
-        <div class="equip" data-eq="office"><div class="equip-inner"><img src="assets/pc-office-cut.webp" alt="PC Oficina" loading="lazy" decoding="async" /><span class="tag">PC Oficina</span></div></div>
-        <div class="equip" data-eq="gamer"><div class="equip-inner"><img src="assets/pc-gamer-cut.webp" alt="PC Gamer" loading="lazy" decoding="async" /><span class="tag">PC Gamer</span></div></div>
+        <div class="equip" data-eq="laptop"><div class="equip-inner"><img src="/assets/notebook-cut.webp" alt="Notebook" loading="lazy" decoding="async" /><span class="tag">Notebook</span></div></div>
+        <div class="equip" data-eq="office"><div class="equip-inner"><img src="/assets/pc-office-cut.webp" alt="PC Oficina" loading="lazy" decoding="async" /><span class="tag">PC Oficina</span></div></div>
+        <div class="equip" data-eq="gamer"><div class="equip-inner"><img src="/assets/pc-gamer-cut.webp" alt="PC Gamer" loading="lazy" decoding="async" /><span class="tag">PC Gamer</span></div></div>
       </div>
     </div>
   </div>
@@ -398,8 +203,8 @@
     </div>
     <div class="images">
       <div class="equip-row">
-        <div class="equip" data-eq="ps5"><div class="equip-inner"><img src="assets/ps5-cut.webp" alt="PlayStation 5" loading="lazy" decoding="async" /><span class="tag">PlayStation 5</span></div></div>
-        <div class="equip" data-eq="ps4"><div class="equip-inner"><img src="assets/ps4-cut.webp" alt="PlayStation 4" loading="lazy" decoding="async" /><span class="tag">PlayStation 4</span></div></div>
+        <div class="equip" data-eq="ps5"><div class="equip-inner"><img src="/assets/ps5-cut.webp" alt="PlayStation 5" loading="lazy" decoding="async" /><span class="tag">PlayStation 5</span></div></div>
+        <div class="equip" data-eq="ps4"><div class="equip-inner"><img src="/assets/ps4-cut.webp" alt="PlayStation 4" loading="lazy" decoding="async" /><span class="tag">PlayStation 4</span></div></div>
       </div>
     </div>
   </div>
@@ -425,8 +230,8 @@
     </div>
     <div class="images">
       <div class="equip-row">
-        <div class="equip" data-eq="seriesS"><div class="equip-inner"><img src="assets/xbox-series-s-cut.webp" alt="Xbox Series S" loading="lazy" decoding="async" /><span class="tag">Series S</span></div></div>
-        <div class="equip" data-eq="seriesX"><div class="equip-inner"><img src="assets/xbox-series-x-cut.webp" alt="Xbox Series X" loading="lazy" decoding="async" /><span class="tag">Series X</span></div></div>
+        <div class="equip" data-eq="seriesS"><div class="equip-inner"><img src="/assets/xbox-series-s-cut.webp" alt="Xbox Series S" loading="lazy" decoding="async" /><span class="tag">Series S</span></div></div>
+        <div class="equip" data-eq="seriesX"><div class="equip-inner"><img src="/assets/xbox-series-x-cut.webp" alt="Xbox Series X" loading="lazy" decoding="async" /><span class="tag">Series X</span></div></div>
       </div>
     </div>
   </div>
@@ -554,7 +359,7 @@
         <div><div class="gal-stat-n">PS3·4·5</div><div class="gal-stat-l">PlayStation</div></div>
         <div><div class="gal-stat-n">100%</div><div class="gal-stat-l">Casos reales</div></div>
       </div>
-      <a class="btn-blue" href="galeria.html">
+      <a class="btn-blue" href="/galeria/">
         Ver galería completa →
       </a>
     </div>
@@ -562,10 +367,10 @@
     <!-- Comparador antes / después interactivo -->
     <div class="compare-widget" data-compare>
       <!-- Imagen base: ANTES -->
-      <img class="cw-img" src="imagenes/pc-antes.webp" alt="PC antes de la limpieza" draggable="false" loading="lazy" decoding="async"/>
+      <img class="cw-img" src="/imagenes/pc-antes.webp" alt="PC antes de la limpieza" draggable="false" loading="lazy" decoding="async"/>
       <!-- Imagen superior: DESPUÉS, recortada por clip-path -->
       <div class="cw-after">
-        <img class="cw-img" src="imagenes/pc-despues.webp" alt="PC después de la limpieza" draggable="false" loading="lazy" decoding="async"/>
+        <img class="cw-img" src="/imagenes/pc-despues.webp" alt="PC después de la limpieza" draggable="false" loading="lazy" decoding="async"/>
       </div>
       <!-- Divisor con knob -->
       <div class="cw-divider">
@@ -907,7 +712,7 @@
       <div class="sobre-layout">
         <div class="sobre-photo" data-sobre-photo>
           <div class="sobre-photo-glow"></div>
-          <img src="assets/yo-trabajando.webp" alt="Técnico de WB Service trabajando en una PC" loading="lazy" decoding="async" />
+          <img src="/assets/yo-trabajando.webp" alt="Técnico de WB Service trabajando en una PC" loading="lazy" decoding="async" />
           <div class="sobre-photo-frame"></div>
           <div class="sobre-photo-tag"><span class="dot"></span> EN EL TALLER</div>
         </div>
@@ -1035,7 +840,7 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <div>
-      <div class="footer-brand"><img src="assets/logo_icon.webp" alt="WB" /> <div>WB <span>Service</span></div></div>
+      <div class="footer-brand"><img src="/assets/logo_icon.webp" alt="WB" /> <div>WB <span>Service</span></div></div>
       <p class="footer-desc">Servicio técnico especializado en PC, notebooks, PlayStation y Xbox en Gualeguay, Entre Ríos. Atención personalizada con turno previo.</p>
       <div class="footer-contact">
         <a href="tel:+5493444569948">+54 9 3444 56-9948</a>
@@ -1056,7 +861,7 @@
       <h4>Contacto</h4>
       <ul>
         <li><a href="#sobre">Sobre WB</a></li>
-        <li><a href="galeria.html">Galería</a></li>
+        <li><a href="/galeria/">Galería</a></li>
         <li><a href="#porque">Por qué elegirnos</a></li>
         <li><a href="#ubic">Dónde estamos</a></li>
         <li><a href="https://wa.me/5493444569948?text=Hola!%20Quiero%20consultar" target="_blank" rel="noopener">WhatsApp</a></li>
@@ -1068,8 +873,4 @@
     <div>Gualeguay · Entre Ríos · Argentina</div>
   </div>
 </footer>
-
-<script src="wb-script.js"></script>
-
-</body>
-</html>
+</WbServiceLayout>

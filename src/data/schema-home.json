@@ -1,0 +1,160 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://www.wbserviceinformatica.com.ar/#business",
+      "name": "WB Service — Servicio Técnico Informático",
+      "alternateName": ["WB Service Informática", "WB Service Gualeguay"],
+      "description": "Servicio técnico especializado en reparación y mantenimiento de PC, notebooks, PlayStation (PS3, PS4, PS5) y Xbox en Gualeguay, Entre Ríos. Reparación de joysticks con drift, limpieza profunda y planes de mantenimiento para comercios.",
+      "url": "https://www.wbserviceinformatica.com.ar",
+      "telephone": "+5493444569948",
+      "priceRange": "$$",
+      "currenciesAccepted": "ARS",
+      "paymentAccepted": "Efectivo, Transferencia bancaria",
+      "image": "https://www.wbserviceinformatica.com.ar/assets/og-image.webp",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.wbserviceinformatica.com.ar/assets/logo_icon.webp"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Gualeguay",
+        "addressRegion": "Entre Ríos",
+        "addressCountry": "AR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -33.1416,
+        "longitude": -59.3174
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Gualeguay" },
+        { "@type": "AdministrativeArea", "name": "Entre Ríos" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicios técnicos WB Service",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Reparación de PC",
+              "description": "Diagnóstico, limpieza profunda, cambio de pasta térmica, componentes y mantenimiento de computadoras de escritorio."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Reparación de Notebook",
+              "description": "Limpieza, cambio de pasta térmica, reparación de pantalla, teclado y diagnóstico completo de notebooks."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Reparación de PlayStation (PS3, PS4, PS5)",
+              "description": "Reparación de PS3, PS4 y PS5: limpieza profunda, cambio de HDMI roto, lector de disco, pasta térmica y diagnóstico completo."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Reparación de Xbox (360, One, Series)",
+              "description": "Reparación de Xbox 360, Xbox One, Xbox One S, Xbox One X, Xbox Series S y Xbox Series X. Limpieza, diagnóstico y cambio de componentes."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Reparación de joystick con drift",
+              "description": "Cambio de joystick analógico en controles PS4, PS5, Xbox One y Xbox Series. Reparación de botones, calibración y prueba."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Plan de mantenimiento mensual",
+              "description": "Planes preventivos mensuales para comercios y empresas: limpieza de equipos, actualización de software y soporte técnico prioritario en Gualeguay."
+            }
+          }
+        ]
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "telephone": "+5493444569948",
+        "availableLanguage": "Spanish"
+      },
+      "sameAs": ["https://wa.me/5493444569948"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.wbserviceinformatica.com.ar/#website",
+      "url": "https://www.wbserviceinformatica.com.ar",
+      "name": "WB Service",
+      "description": "Servicio técnico informático en Gualeguay, Entre Ríos",
+      "inLanguage": "es-AR",
+      "publisher": { "@id": "https://www.wbserviceinformatica.com.ar/#business" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué consolas reparan en WB Service?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Reparamos PlayStation 3 (PS3), PlayStation 4 (PS4), PlayStation 5 (PS5), Xbox 360, Xbox One, Xbox One S, Xbox One X, Xbox Series S y Xbox Series X."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Reparan joysticks con drift?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, realizamos cambio de joystick analógico en controles de PS4, PS5 y Xbox (todas las generaciones). Incluye diagnóstico, reemplazo con repuesto de calidad, calibración y prueba antes de devolvértelo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo saco turno en WB Service?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El turno se coordina por WhatsApp al +54 9 3444 56-9948. Contanos tu problema y el modelo del equipo, y confirmamos día y horario en menos de 24 horas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Dónde está el taller en Gualeguay?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Somos un taller privado en Gualeguay, Entre Ríos. Atendemos únicamente con turno previo coordinado por WhatsApp."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Tienen planes de mantenimiento para comercios?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, contamos con planes mensuales de mantenimiento preventivo para comercios y empresas de Gualeguay. Incluyen limpieza de equipos, actualización de software y soporte técnico prioritario."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Reparan PC y notebooks además de consolas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, realizamos reparación y mantenimiento de computadoras de escritorio (PC) y notebooks de cualquier marca. Diagnóstico sin cargo, limpieza profunda, cambio de pasta térmica y componentes."
+          }
+        }
+      ]
+    }
+  ]
+}

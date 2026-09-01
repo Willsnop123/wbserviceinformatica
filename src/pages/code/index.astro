@@ -1,0 +1,82 @@
+---
+import '../../styles/tokens.css';
+
+const title = 'WB Code — Desarrollo de sitios web en Gualeguay';
+const description =
+  'Diseño y desarrollo de landing pages, sitios web y e-commerce. WB Code, la unidad de desarrollo de WB Service en Gualeguay, Entre Ríos.';
+---
+
+<!DOCTYPE html>
+<html lang="es" data-world="code">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<!-- Sin indexar hasta que la fase 3 traiga el contenido real -->
+<meta name="robots" content="noindex, nofollow" />
+<link rel="canonical" href="https://www.wbserviceinformatica.com.ar/code/" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#050508" />
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    background: var(--world-bg);
+    color: var(--world-text);
+    font-family: var(--font-body);
+    text-align: center;
+  }
+
+  .wrap { max-width: 30rem; }
+
+  .mark {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2rem, 8vw, 3.25rem);
+    letter-spacing: 0.14em;
+    margin: 0 0 0.75rem;
+  }
+
+  .mark span { color: var(--world-accent); }
+
+  p { color: var(--world-muted); line-height: 1.7; margin: 0 0 2rem; }
+
+  .status {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--world-accent);
+    border: 1px solid var(--world-accent);
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    margin-bottom: 2rem;
+  }
+
+  a {
+    color: var(--world-text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--world-accent);
+    padding-bottom: 2px;
+  }
+
+  a:hover { color: var(--world-accent); }
+  a:focus-visible { outline: 2px solid var(--world-accent); outline-offset: 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="status">Fase 1 · andamiaje</div>
+  <h1 class="mark">WB <span>Code</span></h1>
+  <p>
+    La ruta responde y el sistema de tokens del mundo espacial está cargado.
+    El contenido real llega en la fase 3, cuando se migran las secciones y la galaxia.
+  </p>
+  <a href="/">Volver a WB Service</a>
+</div>
+</body>
+</html>

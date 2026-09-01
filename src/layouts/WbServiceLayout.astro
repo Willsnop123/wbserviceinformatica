@@ -1,0 +1,83 @@
+---
+import '../styles/wb-service.css';
+
+interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  canonical: string;
+  ogImage?: string;
+  jsonLd?: unknown;
+}
+
+const {
+  title,
+  description,
+  keywords,
+  canonical,
+  ogImage = 'https://www.wbserviceinformatica.com.ar/assets/og-image.webp',
+  jsonLd,
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{title}</title>
+<meta name="description" content={description} />
+{keywords && <meta name="keywords" content={keywords} />}
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<meta name="author" content="WB Service — Servicio Técnico Informático" />
+<link rel="canonical" href={canonical} />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#0a0f1c" />
+
+<!-- Geo local -->
+<meta name="geo.region" content="AR-E" />
+<meta name="geo.placename" content="Gualeguay, Entre Ríos, Argentina" />
+<meta name="geo.position" content="-33.1416;-59.3174" />
+<meta name="ICBM" content="-33.1416, -59.3174" />
+
+<!-- Open Graph (Facebook / WhatsApp / LinkedIn) -->
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_AR" />
+<meta property="og:site_name" content="WB Service" />
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="WB Service — Servicio Técnico en Gualeguay, Entre Ríos" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+  rel="stylesheet"
+  media="print"
+  onload="this.media='all'"
+/>
+<noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</noscript>
+
+{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+</head>
+<body>
+<slot />
+<script src="/wb-script.js" is:inline></script>
+</body>
+</html>

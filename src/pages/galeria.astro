@@ -1,0 +1,294 @@
+---
+import '../styles/wb-service.css';
+import '../styles/galeria.css';
+import schema from '../data/schema-galeria.json';
+
+const title = 'Galería de Trabajos — Antes y Después | WB Service Gualeguay';
+const description = 'Galería de reparaciones reales de WB Service en Gualeguay: PS4, PS3, Xbox One, joysticks y PC antes y después. Resultados comprobables de cada trabajo.';
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<link rel="canonical" href="https://www.wbserviceinformatica.com.ar/galeria/" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#0a0f1c" />
+
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_AR" />
+<meta property="og:site_name" content="WB Service" />
+<meta property="og:url" content="https://www.wbserviceinformatica.com.ar/galeria/" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content="https://www.wbserviceinformatica.com.ar/assets/og-image.webp" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+  rel="stylesheet"
+  media="print"
+  onload="this.media='all'"
+/>
+<noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</noscript>
+
+<!-- TODO fase 2: reemplazar Font Awesome por SVG inline (13 iconos no justifican el CDN completo) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="galeria-header">
+  <div class="header-inner">
+    <a href="/" class="header-brand">
+      <img src="/assets/logo_icon.webp" alt="WB Service">
+    </a>
+    <div class="header-right">
+      <div style="color:var(--muted); font-size:0.82rem; font-weight:600;">
+        <i class="fas fa-images" style="margin-right:6px; color:var(--blue-soft);"></i>Galería de Trabajos
+      </div>
+      <a href="/" class="header-back">
+        <i class="fas fa-arrow-left"></i> <span>Volver al inicio</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="galeria-hero">
+  <div class="hero-badge"><i class="fas fa-star"></i> Resultados reales de clientes en Gualeguay</div>
+  <h2>Los resultados hablan<br>por sí solos</h2>
+  <p>Cada trabajo es una historia de reparación real. Hacé clic en cualquier imagen para ver la comparación completa.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-n" data-target="200">0</div>
+      <div class="hero-stat-l">Reparaciones</div>
+    </div>
+    <div class="hero-stat-div"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-n" data-target="100" data-suffix="%">0%</div>
+      <div class="hero-stat-l">Satisfacción</div>
+    </div>
+    <div class="hero-stat-div"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-n" data-target="5" data-suffix="★">0★</div>
+      <div class="hero-stat-l">Calificación</div>
+    </div>
+    <div class="hero-stat-div"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-n" data-target="3" data-prefix="+" data-suffix=" años">+0 años</div>
+      <div class="hero-stat-l">Experiencia</div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTROS -->
+<div class="filtros-wrapper">
+  <button class="filtro-btn active" data-cat="todos" onclick="filtrar('todos', this)">
+    <i class="fas fa-th"></i> Todos <span class="filtro-count" id="count-todos">5</span>
+  </button>
+  <button class="filtro-btn" data-cat="playstation" onclick="filtrar('playstation', this)">
+    <i class="fab fa-playstation"></i> PlayStation <span class="filtro-count" id="count-playstation">3</span>
+  </button>
+  <button class="filtro-btn" data-cat="xbox" onclick="filtrar('xbox', this)">
+    <i class="fab fa-xbox"></i> Xbox <span class="filtro-count" id="count-xbox">1</span>
+  </button>
+  <button class="filtro-btn" data-cat="joystick" onclick="filtrar('joystick', this)">
+    <i class="fas fa-gamepad"></i> Joystick <span class="filtro-count" id="count-joystick">1</span>
+  </button>
+  <button class="filtro-btn" data-cat="pc" onclick="filtrar('pc', this)">
+    <i class="fas fa-desktop"></i> PC <span class="filtro-count" id="count-pc">1</span>
+  </button>
+</div>
+
+<!-- GRID DE TRABAJOS -->
+<div class="trabajos-grid" id="grid-trabajos">
+
+  <!-- TRABAJO 1: PS4 -->
+  <div class="trabajo-card" data-cat="playstation" data-index="0" onclick="abrirLightbox(0)">
+    <div class="card-comparacion">
+      <div class="card-antes">
+        <img src="/imagenes/ps4-antes.webp" alt="PS4 antes limpieza">
+      </div>
+      <div class="card-despues">
+        <img src="/imagenes/ps4-despues.webp" alt="PS4 después limpieza">
+      </div>
+      <div class="card-divisor"></div>
+      <span class="card-label antes">ANTES</span>
+      <span class="card-label despues">DESPUÉS</span>
+      <div class="card-cat-badge"><i class="fab fa-playstation"></i> PS4</div>
+    </div>
+    <div class="card-info">
+      <div class="card-titulo">PS4 — Limpieza completa y pasta térmica</div>
+      <div class="card-resultado"><i class="fas fa-thermometer-half"></i> Temperatura bajó de 85°C a 68°C</div>
+      <button class="card-ver-mas">Ver en detalle <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <!-- TRABAJO 2: PC Gamer -->
+  <div class="trabajo-card" data-cat="pc" data-index="1" onclick="abrirLightbox(1)">
+    <div class="card-comparacion">
+      <div class="card-antes">
+        <img src="/imagenes/pc-antes.webp" alt="PC antes mantenimiento">
+      </div>
+      <div class="card-despues">
+        <img src="/imagenes/pc-despues.webp" alt="PC después mantenimiento">
+      </div>
+      <div class="card-divisor"></div>
+      <span class="card-label antes">ANTES</span>
+      <span class="card-label despues">DESPUÉS</span>
+      <div class="card-cat-badge"><i class="fas fa-desktop"></i> PC</div>
+    </div>
+    <div class="card-info">
+      <div class="card-titulo">PC Gamer — Mantenimiento completo</div>
+      <div class="card-resultado"><i class="fas fa-check-circle"></i> Limpieza de componentes y nueva pasta térmica</div>
+      <button class="card-ver-mas">Ver en detalle <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <!-- TRABAJO 3: Joystick PS5 -->
+  <div class="trabajo-card" data-cat="joystick" data-index="2" onclick="abrirLightbox(2)">
+    <div class="card-comparacion">
+      <div class="card-antes">
+        <img src="/imagenes/joystick-antes.webp" alt="Joystick PS5 antes reparación">
+      </div>
+      <div class="card-despues">
+        <img src="/imagenes/joystick-despues.webp" alt="Joystick PS5 después reparación">
+      </div>
+      <div class="card-divisor"></div>
+      <span class="card-label antes">ANTES</span>
+      <span class="card-label despues">DESPUÉS</span>
+      <div class="card-cat-badge" style="color:#10b981;"><i class="fas fa-gamepad"></i> Joystick</div>
+    </div>
+    <div class="card-info">
+      <div class="card-titulo">Joystick PS5 — Reparación de drift</div>
+      <div class="card-resultado"><i class="fas fa-check-circle"></i> Cambio de potenciómetros y calibración</div>
+      <button class="card-ver-mas">Ver en detalle <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <!-- TRABAJO 4: PS3 -->
+  <div class="trabajo-card" data-cat="playstation" data-index="3" onclick="abrirLightbox(3)">
+    <div class="card-comparacion">
+      <div class="card-antes">
+        <img src="/imagenes/ps3-antes.webp" alt="PS3 antes limpieza">
+      </div>
+      <div class="card-despues">
+        <img src="/imagenes/ps3-despues.webp" alt="PS3 después limpieza">
+      </div>
+      <div class="card-divisor"></div>
+      <span class="card-label antes">ANTES</span>
+      <span class="card-label despues">DESPUÉS</span>
+      <div class="card-cat-badge"><i class="fab fa-playstation"></i> PS3</div>
+    </div>
+    <div class="card-info">
+      <div class="card-titulo">PS3 — Limpieza y mantenimiento</div>
+      <div class="card-resultado"><i class="fas fa-shield-alt"></i> Prevención de fallos por calor</div>
+      <button class="card-ver-mas">Ver en detalle <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <!-- TRABAJO 5: Xbox -->
+  <div class="trabajo-card" data-cat="xbox" data-index="4" onclick="abrirLightbox(4)">
+    <div class="card-comparacion">
+      <div class="card-antes">
+        <img src="/imagenes/xbox-antes.webp" alt="Xbox One antes limpieza">
+      </div>
+      <div class="card-despues">
+        <img src="/imagenes/xbox-despues.webp" alt="Xbox One después limpieza">
+      </div>
+      <div class="card-divisor"></div>
+      <span class="card-label antes">ANTES</span>
+      <span class="card-label despues">DESPUÉS</span>
+      <div class="card-cat-badge" style="color:#22c55e;"><i class="fab fa-xbox"></i> Xbox</div>
+    </div>
+    <div class="card-info">
+      <div class="card-titulo">Xbox One — Mantenimiento preventivo</div>
+      <div class="card-resultado"><i class="fas fa-check-circle"></i> Limpieza interna y cambio de pasta térmica</div>
+      <button class="card-ver-mas">Ver en detalle <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+
+</div>
+
+<!-- EMPTY STATE -->
+<div class="empty-state" id="empty-state">
+  <i class="fas fa-search"></i>
+  <p>No hay trabajos en esta categoría todavía.<br>¡Pronto agregamos más!</p>
+</div>
+
+<!-- CTA BOTTOM -->
+<div style="padding: 0 24px;">
+  <div class="galeria-cta">
+    <h3>¿Tu equipo necesita este tratamiento?</h3>
+    <p>Turno el mismo día, presupuesto sin compromiso y seguimiento por WhatsApp de todo el proceso.</p>
+    <a href="https://wa.me/5493444569948?text=Hola%21%20Vi%20la%20galer%C3%ADa%20y%20quiero%20consultar%20por%20mi%20equipo" class="btn-wa" target="_blank">
+      <i class="fab fa-whatsapp"></i> Quiero turno ahora
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="galeria-footer">
+  <a href="/"><i class="fas fa-arrow-left"></i> Volver a WB Service</a>
+  <span class="ft-sep">·</span>
+  <span>© 2026 WB Service — Gualeguay, Entre Ríos</span>
+  <span class="ft-sep">·</span>
+  <a href="https://wa.me/5493444569948" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+</footer>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox-overlay" id="lightbox" onclick="cerrarLightboxClick(event)">
+  <div class="lightbox-header">
+    <div>
+      <div class="lightbox-titulo" id="lb-titulo">Trabajo</div>
+      <div class="lightbox-subtitulo" id="lb-subtitulo"><i class="fas fa-check-circle"></i> <span></span></div>
+    </div>
+    <button class="lightbox-cerrar" onclick="cerrarLightbox()"><i class="fas fa-times"></i></button>
+  </div>
+
+  <div class="lightbox-comparacion" id="lb-comparacion">
+    <div class="lb-antes" id="lb-antes">
+      <img id="lb-img-antes" src="" alt="Antes">
+    </div>
+    <div class="lb-despues" id="lb-despues">
+      <img id="lb-img-despues" src="" alt="Después">
+    </div>
+    <div class="lb-slider" id="lb-slider">
+      <div class="lb-slider-handle"><i class="fas fa-arrows-alt-h"></i></div>
+    </div>
+    <span class="lb-label antes">ANTES</span>
+    <span class="lb-label despues">DESPUÉS</span>
+  </div>
+
+  <div class="lb-hint"><i class="fas fa-hand-point-left" style="margin-right:6px;"></i>Arrastrá el divisor para comparar</div>
+
+  <div class="lightbox-controles">
+    <button class="lb-btn" onclick="navegarLb(-1)"><i class="fas fa-chevron-left"></i></button>
+    <div class="lb-indicadores" id="lb-dots"></div>
+    <button class="lb-btn" onclick="navegarLb(1)"><i class="fas fa-chevron-right"></i></button>
+  </div>
+
+  <div class="lb-cta">
+    <a href="https://wa.me/5493444569948?text=Hola%21%20Quiero%20consultar%20por%20mi%20equipo" target="_blank">
+      <i class="fab fa-whatsapp"></i> ¿Tu equipo necesita esto? Consultá ahora
+    </a>
+  </div>
+</div>
+
+<script src="/galeria.js" is:inline></script>
+</body>
+</html>

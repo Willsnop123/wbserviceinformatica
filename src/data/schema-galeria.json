@@ -1,0 +1,32 @@
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://www.wbserviceinformatica.com.ar/galeria.html",
+        "url": "https://www.wbserviceinformatica.com.ar/galeria.html",
+        "name": "Galería de Trabajos — WB Service",
+        "description": "Galería de reparaciones reales con fotos antes y después: PS4, PS3, Xbox One, joysticks y PC en Gualeguay, Entre Ríos.",
+        "inLanguage": "es-AR",
+        "isPartOf": { "@id": "https://www.wbserviceinformatica.com.ar/#website" },
+        "about": { "@id": "https://www.wbserviceinformatica.com.ar/#business" },
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Inicio",
+              "item": "https://www.wbserviceinformatica.com.ar/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Galería de trabajos",
+              "item": "https://www.wbserviceinformatica.com.ar/galeria.html"
+            }
+          ]
+        }
+      }
+    ]
+  }
