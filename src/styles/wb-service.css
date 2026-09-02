@@ -162,9 +162,10 @@ a { text-decoration: none; color: inherit; }
   min-height: 100vh;
   position: relative;
   display: flex; flex-direction: column; justify-content: center;
-  padding: 140px 32px 80px;
+  padding: 180px 32px 120px;
   max-width: 1500px; margin: 0 auto;
   overflow: hidden;
+  align-items: center; text-align: center;
 }
 .hero-grid-bg {
   position: absolute; inset: 0; pointer-events: none;
@@ -190,27 +191,27 @@ a { text-decoration: none; color: inherit; }
   width: 500px; height: 500px; border-radius: 50%;
   background: radial-gradient(circle, rgba(99,102,241,0.10) 0%, transparent 65%);
 }
-.hero-logo-float {
+.hero-mark {
   position: absolute;
-  right: 6%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: min(440px, 38vw);
+  left: 50%; top: 46%;
+  transform: translate(-50%, -50%);
+  width: min(560px, 72vw);
   pointer-events: none;
-  z-index: 1;
-  opacity: 0.85;
+  z-index: 0;
+  opacity: 0.07;
+  filter: blur(1.5px);
 }
-.hero-logo-float img {
+.hero-mark img {
   width: 100%; height: auto;
   filter: drop-shadow(0 0 60px rgba(37,99,235,0.6));
   animation: breathe 5s ease-in-out infinite;
 }
 @keyframes breathe {
-  0%, 100% { transform: scale(1); opacity: 0.72; }
-  50%      { transform: scale(1.03); opacity: 0.88; }
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.03); }
 }
 
-.hero-inner { position: relative; z-index: 2; max-width: 780px; }
+.hero-inner { position: relative; z-index: 2; max-width: 860px; margin: 0 auto; }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 10px;
   background: rgba(37,99,235,0.12);
@@ -235,8 +236,8 @@ a { text-decoration: none; color: inherit; }
 }
 .hero h1 {
   font-weight: 800; line-height: 0.95; letter-spacing: -0.045em;
-  font-size: clamp(2.8rem, 7.5vw, 6rem);
-  margin-bottom: 24px;
+  font-size: clamp(3.1rem, 9vw, 7.4rem);
+  margin-bottom: 34px;
   opacity: 0; transform: translateY(30px);
   animation: heroFadeUp 1s ease-out .25s forwards;
 }
@@ -253,10 +254,13 @@ a { text-decoration: none; color: inherit; }
   animation: heroFadeUp .9s ease-out .4s forwards;
 }
 .hero-desc {
-  color: var(--light); font-size: 1.1rem; line-height: 1.7;
-  max-width: 580px; margin-bottom: 18px;
+  color: var(--muted);
+  font-size: clamp(1.02rem, 1.6vw, 1.2rem);
+  line-height: 1.65;
+  max-width: 46ch;
+  margin: 0 auto 46px;
   opacity: 0; transform: translateY(20px);
-  animation: heroFadeUp .9s ease-out .55s forwards;
+  animation: heroFadeUp .9s ease-out .45s forwards;
 }
 .hero-value {
   color: var(--muted); font-size: 0.92rem; line-height: 1.7;
@@ -2826,4 +2830,57 @@ body.menu-open .wa-float   { opacity: 0; pointer-events: none; }
 .servicios-grid-sec .porque-head h2 .accent {
   background: linear-gradient(135deg, var(--blue-soft), #818cf8);
   background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+/* ============================================================
+   Hero limpio + banda de confianza
+   El aire es el material principal: lo que hace que se lea
+   ordenado no es tener menos cosas, es que respiren.
+   ============================================================ */
+.hero-cta {
+  opacity: 0; transform: translateY(20px);
+  animation: heroFadeUp .9s ease-out .65s forwards;
+  padding: 16px 34px;
+  font-size: 1rem;
+}
+
+/* La marca pasa a ser fondo, no un objeto que compite con el titulo. */
+.hero-mark img { animation: breathe 7s ease-in-out infinite; }
+
+/* Los chips salieron del hero y viven acá: siguen estando, dejaron de
+   amontonarse contra el titulo. */
+.trust-band {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(13, 20, 36, 0.5);
+}
+.trust-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 26px 24px;
+  display: flex; flex-wrap: wrap;
+  justify-content: center; align-items: center;
+  gap: 14px 42px;
+}
+.trust-inner span {
+  position: relative;
+  font-size: 0.86rem; color: var(--light);
+  display: inline-flex; align-items: center; gap: 10px;
+  white-space: nowrap;
+}
+.trust-inner span::before {
+  content: '';
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--blue-soft);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+  flex-shrink: 0;
+}
+
+@media (max-width: 700px) {
+  .hero { padding: 140px 22px 90px; }
+  .trust-inner { gap: 12px 26px; padding: 22px 20px; }
+  .trust-inner span { font-size: 0.8rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-mark img { animation: none; }
 }
