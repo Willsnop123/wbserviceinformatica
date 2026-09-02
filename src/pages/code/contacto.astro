@@ -1,14 +1,18 @@
 ---
 import WbCodeLayout from '../../layouts/WbCodeLayout.astro';
+import { grafo, migas, NEGOCIO_CODE } from '../../lib/schema';
 import Portal from '../../components/Portal.astro';
 import ContactoPage from '../../components/code/pages/ContactoPage';
+
+const schema = grafo(NEGOCIO_CODE, migas([{ nombre: 'Inicio', url: '/' }, { nombre: 'WB Code', url: '/code/' }, { nombre: 'Contacto', url: '/code/contacto/' }]));
 ---
 
 <WbCodeLayout
   title="Contacto — Contanos tu proyecto | WB Code Gualeguay"
   description="Contanos qué necesitás y te armamos una propuesta. Desarrollo web en Gualeguay, Entre Ríos. Respuesta por WhatsApp en el día."
   keywords="contacto desarrollo web Gualeguay, presupuesto pagina web Entre Rios, contratar programador Gualeguay"
-  canonical="https://www.wbserviceinformatica.com.ar/code/contacto/"
+  canonical="https://wbserviceinformatica.com.ar/code/contacto/"
+  jsonLd={schema}
 >
   <ContactoPage client:load />
   <Portal destino="service" />

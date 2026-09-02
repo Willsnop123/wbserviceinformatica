@@ -1,6 +1,7 @@
 ---
 import WbServiceLayout from '../layouts/WbServiceLayout.astro';
 import PageHead from '../components/layout/PageHead.astro';
+import { grafo, migas, servicio } from '../lib/schema';
 import PlayStation from '../components/sections/PlayStation.astro';
 import Xbox from '../components/sections/Xbox.astro';
 import Resenas from '../components/sections/Resenas.astro';
@@ -9,13 +10,23 @@ import CtaContacto from '../components/sections/CtaContacto.astro';
 const title = 'Reparación de PlayStation y Xbox en Gualeguay | WB Service';
 const description = 'Reparación de PS3, PS4, PS5, Xbox 360, Xbox One y Xbox Series en Gualeguay, Entre Ríos. HDMI roto, sobrecalentamiento, lector de disco y limpieza profunda.';
 const keywords = 'reparación PlayStation Gualeguay, reparación PS4 Gualeguay, reparación PS5, reparación PS3, reparación Xbox Gualeguay, Xbox 360 Xbox One Xbox Series, HDMI roto PS4, consola se apaga sola';
+
+const schema = grafo(
+  migas([{ nombre: 'Inicio', url: '/' }, { nombre: 'Consolas', url: '/consolas/' }]),
+  servicio(
+    'Reparación de PlayStation y Xbox',
+    'Reparación de PS3, PS4, PS5, Xbox 360, Xbox One y Xbox Series: HDMI roto, lector de disco, sobrecalentamiento y limpieza profunda.',
+    '/consolas/'
+  )
+);
 ---
 
 <WbServiceLayout
   title={title}
   description={description}
   keywords={keywords}
-  canonical="https://www.wbserviceinformatica.com.ar/consolas/"
+  canonical="https://wbserviceinformatica.com.ar/consolas/"
+  jsonLd={schema}
   active="consolas"
 >
   <PageHead

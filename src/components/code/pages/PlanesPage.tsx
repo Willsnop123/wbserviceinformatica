@@ -5,7 +5,7 @@ import Process from '@/components/code/sections/Process';
 export default function PlanesPage() {
   return (
     <CodeChrome active="/code/planes/">
-      <Plans />
+      <Plans comoH1 />
       <Process />
     </CodeChrome>
   );

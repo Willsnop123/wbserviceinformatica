@@ -53,7 +53,13 @@ const services = [
   },
 ];
 
-export default function Services() {
+interface Props {
+  /** true cuando esta seccion encabeza la pagina: su titulo pasa a ser el h1. */
+  comoH1?: boolean;
+}
+
+export default function Services({ comoH1 = false }: Props) {
+  const Titulo = comoH1 ? 'h1' : 'h2';
   const { ref: sectionRef, isInView } = useInView({ threshold: 0.15 });
   const cardsRef = useRef<HTMLDivElement>(null);
 
@@ -96,10 +102,10 @@ export default function Services() {
       <div className="max-w-7xl mx-auto">
         {/* Title */}
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-6xl font-bold font-display tracking-wider text-space-text mb-6"
+          <Titulo className="text-4xl md:text-6xl font-bold font-display tracking-wider text-space-text mb-6"
               style={{ filter: 'drop-shadow(0 0 32px rgba(108,99,255,0.45))' }}>
             <RevealText text="SERVICIOS" />
-          </h2>
+          </Titulo>
           <p
             className={`text-lg text-space-text-secondary max-w-2xl mx-auto transition-all duration-1000 ${
               isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'

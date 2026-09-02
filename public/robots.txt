@@ -1,4 +1,7 @@
+# Cloudflare antepone su propio bloque de "Managed Content" con las reglas
+# para rastreadores de IA. Esto se sirve a continuacion.
+
 User-agent: *
 Allow: /
 
-Sitemap: https://www.wbserviceinformatica.com.ar/sitemap.xml
+Sitemap: https://wbserviceinformatica.com.ar/sitemap-index.xml

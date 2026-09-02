@@ -1,13 +1,17 @@
 ---
 import WbCodeLayout from '../../layouts/WbCodeLayout.astro';
+import { grafo, migas, NEGOCIO_CODE } from '../../lib/schema';
 import PortfolioPage from '../../components/code/pages/PortfolioPage';
+
+const schema = grafo(NEGOCIO_CODE, migas([{ nombre: 'Inicio', url: '/' }, { nombre: 'WB Code', url: '/code/' }, { nombre: 'Portfolio', url: '/code/portfolio/' }]));
 ---
 
 <WbCodeLayout
   title="Trabajos Realizados — Portfolio | WB Code Gualeguay"
   description="Sitios web reales desarrollados por WB Code en Gualeguay: cervecería artesanal, marroquinería y servicio técnico. Diseño, desarrollo y puesta en línea."
   keywords="portfolio desarrollo web Gualeguay, trabajos web Entre Ríos, ejemplos sitios web Argentina"
-  canonical="https://www.wbserviceinformatica.com.ar/code/portfolio/"
+  canonical="https://wbserviceinformatica.com.ar/code/portfolio/"
+  jsonLd={schema}
 >
   <PortfolioPage client:load />
 </WbCodeLayout>

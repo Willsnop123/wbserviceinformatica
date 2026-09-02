@@ -7,7 +7,13 @@ import RevealText from '@/components/code/effects/RevealText';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Contact() {
+interface Props {
+  /** true cuando esta seccion encabeza la pagina: su titulo pasa a ser el h1. */
+  comoH1?: boolean;
+}
+
+export default function Contact({ comoH1 = false }: Props) {
+  const Titulo = comoH1 ? 'h1' : 'h2';
   const { ref: sectionRef, isInView } = useInView({ threshold: 0.15 });
   const formRef = useRef<HTMLFormElement>(null);
   const [formState, setFormState] = useState<'idle' | 'sending'>('idle');
@@ -94,10 +100,10 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto">
         {/* Title */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-bold font-display tracking-wider text-space-text mb-6"
+          <Titulo className="text-4xl md:text-6xl font-bold font-display tracking-wider text-space-text mb-6"
               style={{ filter: 'drop-shadow(0 0 32px rgba(108,99,255,0.45))' }}>
             <RevealText text="HABLEMOS" />
-          </h2>
+          </Titulo>
           <p
             className={`text-lg text-space-text-secondary max-w-2xl mx-auto transition-all duration-1000 ${
               isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
@@ -300,6 +306,9 @@ export default function Contact() {
                   </>
                 )}
               </button>
+              <p className="mt-3 text-center text-xs text-space-text-muted">
+                Se abre WhatsApp con tus datos cargados. Revisás el mensaje antes de enviarlo.
+              </p>
             </div>
           </form>
         </div>

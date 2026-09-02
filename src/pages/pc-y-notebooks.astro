@@ -1,20 +1,31 @@
 ---
 import WbServiceLayout from '../layouts/WbServiceLayout.astro';
 import PageHead from '../components/layout/PageHead.astro';
+import { grafo, migas, servicio } from '../lib/schema';
 import Pc from '../components/sections/Pc.astro';
 import Resenas from '../components/sections/Resenas.astro';
 import CtaContacto from '../components/sections/CtaContacto.astro';
 
 const title = 'Reparación de PC y Notebooks en Gualeguay | WB Service';
-const description = 'Reparación y mantenimiento de computadoras de escritorio y notebooks en Gualeguay, Entre Ríos. Limpieza profunda, pasta térmica, cambio de componentes y diagnóstico sin cargo.';
+const description = 'Reparación de PC de escritorio y notebooks en Gualeguay, Entre Ríos. Limpieza profunda, pasta térmica y cambio de componentes. Diagnóstico sin cargo.';
 const keywords = 'reparación PC Gualeguay, reparación notebook Gualeguay, limpieza de PC Gualeguay, pasta térmica notebook, service de computadoras Entre Ríos, técnico PC Gualeguay';
+
+const schema = grafo(
+  migas([{ nombre: 'Inicio', url: '/' }, { nombre: 'PC y Notebooks', url: '/pc-y-notebooks/' }]),
+  servicio(
+    'Reparación de PC y Notebooks',
+    'Limpieza profunda, cambio de pasta térmica, reemplazo de componentes y diagnóstico completo de computadoras de escritorio y notebooks.',
+    '/pc-y-notebooks/'
+  )
+);
 ---
 
 <WbServiceLayout
   title={title}
   description={description}
   keywords={keywords}
-  canonical="https://www.wbserviceinformatica.com.ar/pc-y-notebooks/"
+  canonical="https://wbserviceinformatica.com.ar/pc-y-notebooks/"
+  jsonLd={schema}
   active="pc"
 >
   <PageHead

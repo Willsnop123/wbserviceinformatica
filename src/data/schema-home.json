@@ -3,19 +3,19 @@
   "@graph": [
     {
       "@type": "LocalBusiness",
-      "@id": "https://www.wbserviceinformatica.com.ar/#business",
+      "@id": "https://wbserviceinformatica.com.ar/#business",
       "name": "WB Service — Servicio Técnico Informático",
       "alternateName": ["WB Service Informática", "WB Service Gualeguay"],
       "description": "Servicio técnico especializado en reparación y mantenimiento de PC, notebooks, PlayStation (PS3, PS4, PS5) y Xbox en Gualeguay, Entre Ríos. Reparación de joysticks con drift, limpieza profunda y planes de mantenimiento para comercios.",
-      "url": "https://www.wbserviceinformatica.com.ar",
+      "url": "https://wbserviceinformatica.com.ar",
       "telephone": "+5493444569948",
       "priceRange": "$$",
       "currenciesAccepted": "ARS",
       "paymentAccepted": "Efectivo, Transferencia bancaria",
-      "image": "https://www.wbserviceinformatica.com.ar/assets/og-image.webp",
+      "image": "https://wbserviceinformatica.com.ar/assets/og-image.webp",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.wbserviceinformatica.com.ar/assets/logo_icon.webp"
+        "url": "https://wbserviceinformatica.com.ar/assets/logo_icon.webp"
       },
       "address": {
         "@type": "PostalAddress",
@@ -96,12 +96,12 @@
     },
     {
       "@type": "WebSite",
-      "@id": "https://www.wbserviceinformatica.com.ar/#website",
-      "url": "https://www.wbserviceinformatica.com.ar",
+      "@id": "https://wbserviceinformatica.com.ar/#website",
+      "url": "https://wbserviceinformatica.com.ar",
       "name": "WB Service",
       "description": "Servicio técnico informático en Gualeguay, Entre Ríos",
       "inLanguage": "es-AR",
-      "publisher": { "@id": "https://www.wbserviceinformatica.com.ar/#business" }
+      "publisher": { "@id": "https://wbserviceinformatica.com.ar/#business" }
     },
     {
       "@type": "FAQPage",

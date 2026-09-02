@@ -59,7 +59,13 @@ function Planet({ color, size = 52, moonDur = '7s', icon: Icon }: {
   );
 }
 
-export default function Process() {
+interface Props {
+  /** true cuando esta seccion encabeza la pagina: su titulo pasa a ser el h1. */
+  comoH1?: boolean;
+}
+
+export default function Process({ comoH1 = false }: Props) {
+  const Titulo = comoH1 ? 'h1' : 'h2';
   const { ref: sectionRef, isInView } = useInView({ threshold: 0.12 });
   const timelineRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
@@ -94,10 +100,10 @@ export default function Process() {
 
         <div className="relative max-w-5xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-6xl font-bold font-display tracking-wider text-space-text mb-4"
+            <Titulo className="text-4xl md:text-6xl font-bold font-display tracking-wider text-space-text mb-4"
                 style={{ filter: 'drop-shadow(0 0 32px rgba(108,99,255,0.45))' }}>
               <RevealText text="PROCESO DE TRABAJO" />
-            </h2>
+            </Titulo>
             <p className={`text-space-text-secondary transition-all duration-700 ${isInView ? 'opacity-100' : 'opacity-0'}`}>
               Cada misión sigue una trayectoria probada
             </p>

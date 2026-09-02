@@ -5,7 +5,7 @@ import Technologies from '@/components/code/sections/Technologies';
 export default function PortfolioPage() {
   return (
     <CodeChrome active="/code/portfolio/">
-      <Portfolio />
+      <Portfolio comoH1 />
       <Technologies />
     </CodeChrome>
   );

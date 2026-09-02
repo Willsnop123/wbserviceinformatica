@@ -1,6 +1,7 @@
 ---
 import WbServiceLayout from '../layouts/WbServiceLayout.astro';
 import PageHead from '../components/layout/PageHead.astro';
+import { grafo, migas, servicio } from '../lib/schema';
 import Drift from '../components/sections/Drift.astro';
 import Resenas from '../components/sections/Resenas.astro';
 import CtaContacto from '../components/sections/CtaContacto.astro';
@@ -8,13 +9,23 @@ import CtaContacto from '../components/sections/CtaContacto.astro';
 const title = 'Reparación de Joysticks con Drift en Gualeguay | WB Service';
 const description = 'Reparación de joysticks con drift en Gualeguay, Entre Ríos. Cambio de joystick analógico en controles de PS4, PS5, Xbox One y Xbox Series. Con calibración y prueba.';
 const keywords = 'joystick drift Gualeguay, reparación joystick PS4, reparación joystick PS5, drift Xbox One, control se mueve solo, cambio de analógico joystick, reparar mando PlayStation';
+
+const schema = grafo(
+  migas([{ nombre: 'Inicio', url: '/' }, { nombre: 'Joysticks', url: '/joysticks/' }]),
+  servicio(
+    'Reparación de joysticks con drift',
+    'Cambio de joystick analógico en controles de PS4, PS5, Xbox One y Xbox Series, con calibración y prueba antes de la entrega.',
+    '/joysticks/'
+  )
+);
 ---
 
 <WbServiceLayout
   title={title}
   description={description}
   keywords={keywords}
-  canonical="https://www.wbserviceinformatica.com.ar/joysticks/"
+  canonical="https://wbserviceinformatica.com.ar/joysticks/"
+  jsonLd={schema}
   active="joysticks"
 >
   <PageHead

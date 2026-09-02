@@ -9,9 +9,10 @@ interface Props {
   keywords?: string;
   canonical: string;
   noindex?: boolean;
+  jsonLd?: unknown;
 }
 
-const { title, description, keywords, canonical, noindex = false } = Astro.props;
+const { title, description, keywords, canonical, noindex = false, jsonLd } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -44,6 +45,10 @@ const { title, description, keywords, canonical, noindex = false } = Astro.props
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
+<meta property="og:image" content="https://wbserviceinformatica.com.ar/assets/og-image.webp" />
+<meta name="twitter:image" content="https://wbserviceinformatica.com.ar/assets/og-image.webp" />
+
+{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 <ClientRouter />
 </head>
 <body>

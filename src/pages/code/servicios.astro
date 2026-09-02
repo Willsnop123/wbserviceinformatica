@@ -1,13 +1,17 @@
 ---
 import WbCodeLayout from '../../layouts/WbCodeLayout.astro';
+import { grafo, migas, NEGOCIO_CODE } from '../../lib/schema';
 import ServiciosPage from '../../components/code/pages/ServiciosPage';
+
+const schema = grafo(NEGOCIO_CODE, migas([{ nombre: 'Inicio', url: '/' }, { nombre: 'WB Code', url: '/code/' }, { nombre: 'Servicios', url: '/code/servicios/' }]));
 ---
 
 <WbCodeLayout
-  title="Servicios de Desarrollo Web — Landing, Sitios y E-commerce | WB Code"
+  title="Desarrollo Web: Landing, Sitios y Tiendas | WB Code"
   description="Landing pages que convierten, sitios web completos con gestor de contenido y tiendas online con pasarela de pagos. Desarrollo web en Gualeguay, Entre Ríos."
   keywords="desarrollo landing page, sitio web corporativo Gualeguay, tienda online Argentina, e-commerce Entre Ríos, CMS a medida"
-  canonical="https://www.wbserviceinformatica.com.ar/code/servicios/"
+  canonical="https://wbserviceinformatica.com.ar/code/servicios/"
+  jsonLd={schema}
 >
   <ServiciosPage client:load />
 </WbCodeLayout>

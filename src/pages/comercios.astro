@@ -2,6 +2,7 @@
 import WbServiceLayout from '../layouts/WbServiceLayout.astro';
 import Portal from '../components/Portal.astro';
 import PageHead from '../components/layout/PageHead.astro';
+import { grafo, migas, servicio } from '../lib/schema';
 import Planes from '../components/sections/Planes.astro';
 import Porque from '../components/sections/Porque.astro';
 import CtaContacto from '../components/sections/CtaContacto.astro';
@@ -9,13 +10,23 @@ import CtaContacto from '../components/sections/CtaContacto.astro';
 const title = 'Planes de Mantenimiento para Comercios en Gualeguay | WB Service';
 const description = 'Planes mensuales de mantenimiento preventivo para comercios y empresas de Gualeguay. Limpieza de equipos, actualización de software y soporte técnico prioritario.';
 const keywords = 'mantenimiento PC comercios Gualeguay, soporte técnico empresas Entre Ríos, plan mantenimiento informático, service informático mensual Gualeguay, soporte IT comercios';
+
+const schema = grafo(
+  migas([{ nombre: 'Inicio', url: '/' }, { nombre: 'Planes para comercios', url: '/comercios/' }]),
+  servicio(
+    'Plan de mantenimiento para comercios',
+    'Mantenimiento preventivo mensual para comercios y empresas de Gualeguay: limpieza de equipos, actualización de software y soporte prioritario.',
+    '/comercios/'
+  )
+);
 ---
 
 <WbServiceLayout
   title={title}
   description={description}
   keywords={keywords}
-  canonical="https://www.wbserviceinformatica.com.ar/comercios/"
+  canonical="https://wbserviceinformatica.com.ar/comercios/"
+  jsonLd={schema}
   active="comercios"
 >
   <PageHead

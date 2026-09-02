@@ -1,0 +1,97 @@
+---
+import WbServiceLayout from '../layouts/WbServiceLayout.astro';
+
+const title = 'Página no encontrada | WB Service';
+const description = 'La página que buscabas no existe o cambió de dirección.';
+---
+
+<WbServiceLayout
+  title={title}
+  description={description}
+  canonical="https://wbserviceinformatica.com.ar/404/"
+>
+  <section class="pagina-404">
+    <div class="kicker"><span class="bar"></span> Error 404</div>
+    <h1>Esta página<br /><span class="accent">no existe.</span></h1>
+    <p>
+      Puede que el enlace esté viejo o que la dirección tenga un error.
+      Te dejo por dónde seguir.
+    </p>
+
+    <div class="e404-links">
+      <a href="/">Inicio</a>
+      <a href="/pc-y-notebooks/">PC y Notebooks</a>
+      <a href="/consolas/">Consolas</a>
+      <a href="/joysticks/">Joysticks</a>
+      <a href="/galeria/">Galería</a>
+      <a href="/contacto/">Contacto</a>
+    </div>
+
+    <a
+      class="btn-wa"
+      href="https://wa.me/5493444569948?text=Hola!%20Quiero%20consultar"
+      target="_blank"
+      rel="noopener"
+    >
+      Escribime por WhatsApp
+    </a>
+  </section>
+</WbServiceLayout>
+
+<style>
+  .pagina-404 {
+    min-height: 72vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 160px 24px 100px;
+  }
+
+  .pagina-404 :global(.kicker) { justify-content: center; opacity: 1; transform: none; }
+
+  .pagina-404 h1 {
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1.05;
+    margin-bottom: 18px;
+  }
+
+  .pagina-404 h1 :global(.accent) {
+    background: linear-gradient(135deg, var(--blue-soft), #818cf8);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .pagina-404 p {
+    color: var(--muted);
+    font-size: 1.02rem;
+    line-height: 1.7;
+    max-width: 42ch;
+    margin-bottom: 36px;
+  }
+
+  .e404-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+
+  .e404-links a {
+    font-size: 0.88rem;
+    color: var(--light);
+    text-decoration: none;
+    padding: 9px 16px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    transition: border-color 0.25s ease, color 0.25s ease;
+  }
+
+  .e404-links a:hover { border-color: var(--blue-soft); color: #fff; }
+  .e404-links a:focus-visible { outline: 2px solid var(--blue-soft); outline-offset: 2px; }
+</style>

@@ -2,19 +2,25 @@
 import WbServiceLayout from '../layouts/WbServiceLayout.astro';
 import Portal from '../components/Portal.astro';
 import PageHead from '../components/layout/PageHead.astro';
+import { grafo, migas, servicio } from '../lib/schema';
 import Ubicacion from '../components/sections/Ubicacion.astro';
 import Redes from '../components/sections/Redes.astro';
 
 const title = 'Contacto y Ubicación — Turno por WhatsApp | WB Service Gualeguay';
 const description = 'Sacá turno en WB Service, Gualeguay, Entre Ríos. Taller privado con atención únicamente con turno previo, coordinado por WhatsApp al +54 9 3444 56-9948.';
 const keywords = 'WB Service contacto, turno servicio técnico Gualeguay, WhatsApp técnico informático Gualeguay, taller informática Entre Ríos';
+
+const schema = grafo(
+  migas([{ nombre: 'Inicio', url: '/' }, { nombre: 'Contacto', url: '/contacto/' }])
+);
 ---
 
 <WbServiceLayout
   title={title}
   description={description}
   keywords={keywords}
-  canonical="https://www.wbserviceinformatica.com.ar/contacto/"
+  canonical="https://wbserviceinformatica.com.ar/contacto/"
+  jsonLd={schema}
   active="contacto"
 >
   <PageHead

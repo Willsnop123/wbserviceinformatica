@@ -1,0 +1,31 @@
+# Redirecciones 301 para Cloudflare Pages.
+#
+# Esto es lo que le dice a Google "esto se mudo aca, llevate los puntos".
+# Sin estas lineas, el posicionamiento ganado en las URLs viejas se pierde.
+#
+# El sitemap publicado antes de la migracion declaraba solo dos URLs:
+#   https://www.wbserviceinformatica.com.ar/
+#   https://www.wbserviceinformatica.com.ar/galeria.html
+# El www ya lo resuelve Cloudflare a nivel DNS, asi que lo unico que cambia
+# de direccion de verdad es la galeria.
+
+/galeria.html            /galeria/            301
+/index.html              /                    301
+
+# El archivo de verificacion de Search Console se sirve tal cual desde
+# public/. No agregar reglas que lo puedan capturar.
+
+# Las secciones que pasaron a tener pagina propia vivian como anclas dentro
+# del index. Un ancla nunca llega al servidor, asi que no hay nada que
+# redirigir: quien entre con /#pc va a caer en la home y encontrar la
+# tarjeta que lleva a la pagina nueva. Se listan igual por si alguna quedo
+# publicada en algun lado como ruta.
+
+/pc                      /pc-y-notebooks/     301
+/ps                      /consolas/           301
+/xbox                    /consolas/           301
+/drift                   /joysticks/          301
+/planes                  /comercios/          301
+/resenas                 /                    301
+/sobre                   /                    301
+/ubic                    /contacto/           301

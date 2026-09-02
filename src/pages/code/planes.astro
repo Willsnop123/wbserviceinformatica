@@ -1,13 +1,17 @@
 ---
 import WbCodeLayout from '../../layouts/WbCodeLayout.astro';
+import { grafo, migas, NEGOCIO_CODE } from '../../lib/schema';
 import PlanesPage from '../../components/code/pages/PlanesPage';
+
+const schema = grafo(NEGOCIO_CODE, migas([{ nombre: 'Inicio', url: '/' }, { nombre: 'WB Code', url: '/code/' }, { nombre: 'Planes', url: '/code/planes/' }]));
 ---
 
 <WbCodeLayout
   title="Planes y Precios de Desarrollo Web | WB Code Gualeguay"
   description="Precios de referencia para landing pages, sitios web y e-commerce. Presupuesto claro antes de empezar, sin sorpresas a mitad del proyecto."
   keywords="precio pagina web Argentina, cuanto cuesta un sitio web, presupuesto desarrollo web Gualeguay, precio e-commerce Argentina"
-  canonical="https://www.wbserviceinformatica.com.ar/code/planes/"
+  canonical="https://wbserviceinformatica.com.ar/code/planes/"
+  jsonLd={schema}
 >
   <PlanesPage client:load />
 </WbCodeLayout>

@@ -5,7 +5,7 @@ import Process from '@/components/code/sections/Process';
 export default function ServiciosPage() {
   return (
     <CodeChrome active="/code/servicios/">
-      <Services />
+      <Services comoH1 />
       <Process />
     </CodeChrome>
   );

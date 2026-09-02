@@ -178,7 +178,7 @@
       margin-bottom: 20px;
       letter-spacing: 0.5px;
     }
-    .galeria-hero h2 {
+    .galeria-hero h1, .galeria-hero h2 {
       font-size: clamp(1.8rem, 4vw, 2.6rem);
       font-weight: 800;
       margin-bottom: 12px;
