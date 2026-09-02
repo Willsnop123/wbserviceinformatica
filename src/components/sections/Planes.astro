@@ -1,14 +1,28 @@
+---
+interface Props {
+  /**
+   * Cuando la seccion encabeza su propia pagina, el PageHead ya dice lo mismo:
+   * dos titulos pegados haciendo el mismo trabajo. El script que la anima
+   * comprueba el elemento antes de tocarlo, asi que puede faltar.
+   */
+  sinCabecera?: boolean;
+}
+const { sinCabecera = false } = Astro.props;
+---
+
 <section class="planes-cine" id="planes" data-screen-label="05 Planes">
-  <span class="label">[ 05 — MANTENIMIENTO PC PARA COMERCIOS ]</span>
+  {!sinCabecera && <span class="label">[ 05 — MANTENIMIENTO PC PARA COMERCIOS ]</span>}
 
   <div class="planes-stage">
     <div class="planes-bg-grid"></div>
 
-    <div class="planes-head" data-plans-head>
-      <div class="kicker"><span class="bar"></span> Mantenimiento mensual</div>
-      <h2>Planes para<br/><span class="accent">comercios y empresas.</span></h2>
-      <p>Mantenimiento mensual de PCs para que tu negocio nunca se detenga. Diagnóstico, optimización y soporte continuo. Tus equipos, siempre listos para trabajar.</p>
-    </div>
+    {!sinCabecera && (
+      <div class="planes-head" data-plans-head>
+        <div class="kicker"><span class="bar"></span> Mantenimiento mensual</div>
+        <h2>Planes para<br/><span class="accent">comercios y empresas.</span></h2>
+        <p>Mantenimiento mensual de PCs para que tu negocio nunca se detenga. Diagnóstico, optimización y soporte continuo. Tus equipos, siempre listos para trabajar.</p>
+      </div>
+    )}
 
     <div class="planes-deck" data-plans-deck>
       <article class="plancard est" data-plan="0">

@@ -129,7 +129,17 @@ export default function Hero() {
         <div ref={subtitleRef} className="opacity-0">
           <p
             className="text-lg md:text-2xl text-space-text font-light min-h-[1.8rem] tracking-wide"
-            style={{ textShadow: '0 0 24px rgba(108,99,255,0.7), 0 2px 8px rgba(0,0,0,0.8)' }}
+            style={{
+              // El subtitulo cae justo sobre el nucleo brillante de la galaxia.
+              // Las sombras oscuras van primero y apiladas: son las que separan
+              // el texto del fondo. El halo violeta solo lo integra al ambiente.
+              textShadow: [
+                '0 0 12px rgba(3,3,10,0.95)',
+                '0 0 26px rgba(3,3,10,0.9)',
+                '0 2px 10px rgba(0,0,0,0.85)',
+                '0 0 42px rgba(108,99,255,0.5)',
+              ].join(', '),
+            }}
           >
             {subtitleText}
             <span className="animate-blink text-space-accent">_</span>
