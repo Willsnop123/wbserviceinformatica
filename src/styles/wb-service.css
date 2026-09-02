@@ -4,6 +4,9 @@
    ============================================================ */
 
 :root {
+  /* Margen lateral de pagina. Medido en cuberto.com: 108px con la
+     ventana en 1440, o sea 7.5vw. */
+  --margen: clamp(20px, 7.5vw, 108px);
   /* Paleta del sitio actual */
   --bg:        #0a0f1c;
   --bg-2:      #0d1424;
@@ -51,7 +54,8 @@ a { text-decoration: none; color: inherit; }
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
   display: flex; justify-content: space-between; align-items: center;
-  padding: 16px 32px;
+  height: 72px;
+  padding: 0 var(--margen);
   backdrop-filter: saturate(180%) blur(18px);
   -webkit-backdrop-filter: saturate(180%) blur(18px);
   background: rgba(10, 15, 28, 0.7);
@@ -64,16 +68,16 @@ a { text-decoration: none; color: inherit; }
 }
 .nav .brand {
   display: flex; align-items: center; gap: 12px;
-  font-weight: 700; font-size: 17px; letter-spacing: -0.01em;
+  font-weight: 600; font-size: 19px; letter-spacing: -0.01em;
 }
 .nav .brand img { width: 32px; height: 32px; }
 .nav .brand span { color: var(--blue-soft); }
 .nav ul {
-  display: flex; gap: 4px; list-style: none;
+  display: flex; gap: 10px; list-style: none;
 }
 .nav ul a {
-  font-size: 12.5px; font-weight: 500; letter-spacing: 0.01em;
-  padding: 7px 10px; border-radius: 8px;
+  font-size: 17px; font-weight: 400; letter-spacing: 0;
+  padding: 8px 14px; border-radius: 8px;
   color: var(--muted);
   transition: color .2s ease, background .2s ease;
 }
@@ -125,8 +129,8 @@ a { text-decoration: none; color: inherit; }
 .nav ul .dropdown li a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
 
 .nav .cta {
-  font-size: 13px; font-weight: 600;
-  padding: 10px 18px; border-radius: 999px;
+  font-size: 17px; font-weight: 500;
+  height: 50px; padding: 0 26px; border-radius: 999px;
   background: var(--blue); color: #fff;
   display: inline-flex; align-items: center; gap: 8px;
   transition: transform .2s ease, background .2s ease;
@@ -162,25 +166,10 @@ a { text-decoration: none; color: inherit; }
   min-height: 100vh;
   position: relative;
   display: flex; flex-direction: column; justify-content: center;
-  padding: 180px 32px 120px;
+  padding: 200px var(--margen) 130px;
   max-width: 1500px; margin: 0 auto;
   overflow: hidden;
   align-items: center; text-align: center;
-}
-.hero-glow {
-  position: absolute; inset: 0; pointer-events: none;
-}
-.hero-glow::before {
-  content: ""; position: absolute;
-  top: -18%; left: 50%; transform: translateX(-50%);
-  width: 900px; height: 900px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 65%);
-}
-.hero-glow::after {
-  content: ""; position: absolute;
-  bottom: -10%; left: -5%;
-  width: 500px; height: 500px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(99,102,241,0.10) 0%, transparent 65%);
 }
 
 .hero-inner { position: relative; z-index: 2; max-width: 1080px; margin: 0 auto; }
@@ -207,8 +196,8 @@ a { text-decoration: none; color: inherit; }
   50%      { opacity: 0.5; transform: scale(0.85); }
 }
 .hero h1 {
-  font-weight: 800; line-height: 0.95; letter-spacing: -0.045em;
-  font-size: clamp(2.2rem, 5.7vw, 4.7rem);
+  font-weight: 500; line-height: 1; letter-spacing: -0.01em;
+  font-size: clamp(2.1rem, 5.6vw, 5.06rem);
   margin-bottom: 34px;
   /* Reparte las palabras entre lineas en vez de dejar una huerfana. */
   text-wrap: balance;
@@ -229,9 +218,10 @@ a { text-decoration: none; color: inherit; }
 }
 .hero-desc {
   color: var(--muted);
-  font-size: clamp(1.02rem, 1.6vw, 1.2rem);
-  line-height: 1.65;
-  max-width: 46ch;
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+  line-height: 1.2;
+  font-weight: 400;
+  max-width: 52ch;
   margin: 0 auto 46px;
   opacity: 0; transform: translateY(20px);
   animation: heroFadeUp .9s ease-out .45s forwards;
@@ -2859,3 +2849,31 @@ body.menu-open .wa-float   { opacity: 0; pointer-events: none; }
   .trust-inner span { font-size: 0.8rem; }
 }
 
+
+/* ============================================================
+   Nav que se esconde al bajar y vuelve al subir
+   Medido en cuberto.com: barra fija de 72px que descansa en
+   translateY(-72px) y baja con transition transform .3s.
+   ============================================================ */
+.nav {
+  transform: translateY(0);
+  transition: transform .3s ease, background .3s ease, border-color .3s ease;
+}
+.nav.nav-oculto { transform: translateY(-100%); }
+
+/* Con el menú móvil abierto la barra no se esconde: el botón de cerrar
+   vive ahí adentro. */
+body.menu-open .nav { transform: translateY(0) !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .nav { transition: background .3s ease, border-color .3s ease; }
+  .nav.nav-oculto { transform: translateY(0); }
+}
+
+/* El resto de las secciones toma el mismo margen lateral que el hero. */
+.servicios-inner,
+.porque-inner,
+.trust-inner,
+.crumbs,
+.portal-band-inner { padding-left: var(--margen); padding-right: var(--margen); }
+.crumbs { max-width: none; }

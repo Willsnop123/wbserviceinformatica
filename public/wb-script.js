@@ -38,12 +38,29 @@ window.__wbInit = function(signal){
   const clamp       = (v,lo,hi) => Math.max(lo, Math.min(hi, v));
   const remap       = (v,lo,hi) => clamp((v-lo)/(hi-lo), 0, 1);
 
-  // ----- Nav scroll state -----
+  // ----- Nav: fondo al bajar, y se esconde/aparece segun la direccion -----
+  // Copia el patron de cuberto.com: la barra se va al scrollear hacia abajo
+  // y vuelve apenas subis, asi el contenido tiene la pantalla entera pero el
+  // menu esta siempre a un gesto de distancia.
   const nav = document.querySelector('.nav');
+  let ultimoY = window.scrollY;
+  const UMBRAL = 6;      // ignora el temblor del dedo en tactil
+  const DESDE  = 120;    // arriba de todo la barra siempre se ve
+
   function onNav(){
     if(!nav) return;
-    if(window.scrollY > 30) nav.classList.add('scrolled');
+    const y = window.scrollY;
+
+    if(y > 30) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
+
+    const delta = y - ultimoY;
+    if(Math.abs(delta) > UMBRAL){
+      if(delta > 0 && y > DESDE) nav.classList.add('nav-oculto');
+      else nav.classList.remove('nav-oculto');
+      ultimoY = y;
+    }
+    if(y <= DESDE) nav.classList.remove('nav-oculto');
   }
   on(window, 'scroll', onNav, { passive: true });
   onNav();
