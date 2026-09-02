@@ -4,13 +4,12 @@ interface Props {
 }
 const { active } = Astro.props;
 
+// El mismo juego que el nav de escritorio.
 const links = [
-  { key: 'pc',        href: '/pc-y-notebooks/', label: 'PC y Notebooks' },
-  { key: 'consolas',  href: '/consolas/',       label: 'Consolas' },
-  { key: 'joysticks', href: '/joysticks/',      label: 'Joysticks' },
-  { key: 'comercios', href: '/comercios/',      label: 'Planes' },
-  { key: 'galeria',   href: '/galeria/',        label: 'Galería' },
-  { key: 'contacto',  href: '/contacto/',       label: 'Contacto' },
+  { key: 'servicios', href: '/#servicios', label: 'Servicios' },
+  { key: 'galeria',   href: '/galeria/',   label: 'Galería de trabajos' },
+  { key: 'nosotros',  href: '/#sobre',     label: 'Nosotros' },
+  { key: 'contacto',  href: '/contacto/',  label: 'Contacto' },
 ];
 ---
 
