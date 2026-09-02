@@ -167,22 +167,13 @@ a { text-decoration: none; color: inherit; }
   overflow: hidden;
   align-items: center; text-align: center;
 }
-.hero-grid-bg {
-  position: absolute; inset: 0; pointer-events: none;
-  background-image:
-    linear-gradient(rgba(37,99,235,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(37,99,235,0.05) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: radial-gradient(ellipse at 30% 50%, #000 30%, transparent 70%);
-  -webkit-mask-image: radial-gradient(ellipse at 30% 50%, #000 30%, transparent 70%);
-}
 .hero-glow {
   position: absolute; inset: 0; pointer-events: none;
 }
 .hero-glow::before {
   content: ""; position: absolute;
-  top: -10%; right: -10%;
-  width: 700px; height: 700px; border-radius: 50%;
+  top: -18%; left: 50%; transform: translateX(-50%);
+  width: 900px; height: 900px; border-radius: 50%;
   background: radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 65%);
 }
 .hero-glow::after {
@@ -191,27 +182,8 @@ a { text-decoration: none; color: inherit; }
   width: 500px; height: 500px; border-radius: 50%;
   background: radial-gradient(circle, rgba(99,102,241,0.10) 0%, transparent 65%);
 }
-.hero-mark {
-  position: absolute;
-  left: 50%; top: 46%;
-  transform: translate(-50%, -50%);
-  width: min(560px, 72vw);
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.07;
-  filter: blur(1.5px);
-}
-.hero-mark img {
-  width: 100%; height: auto;
-  filter: drop-shadow(0 0 60px rgba(37,99,235,0.6));
-  animation: breathe 5s ease-in-out infinite;
-}
-@keyframes breathe {
-  0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.03); }
-}
 
-.hero-inner { position: relative; z-index: 2; max-width: 860px; margin: 0 auto; }
+.hero-inner { position: relative; z-index: 2; max-width: 1080px; margin: 0 auto; }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 10px;
   background: rgba(37,99,235,0.12);
@@ -236,8 +208,10 @@ a { text-decoration: none; color: inherit; }
 }
 .hero h1 {
   font-weight: 800; line-height: 0.95; letter-spacing: -0.045em;
-  font-size: clamp(3.1rem, 9vw, 7.4rem);
+  font-size: clamp(2.2rem, 5.7vw, 4.7rem);
   margin-bottom: 34px;
+  /* Reparte las palabras entre lineas en vez de dejar una huerfana. */
+  text-wrap: balance;
   opacity: 0; transform: translateY(30px);
   animation: heroFadeUp 1s ease-out .25s forwards;
 }
@@ -333,22 +307,29 @@ a { text-decoration: none; color: inherit; }
 
 .scroll-hint {
   position: absolute;
-  bottom: 36px; left: 50%; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-  font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--muted); font-weight: 600;
-  animation: bobY 2s ease-in-out infinite;
+  bottom: 44px; left: 50%; transform: translateX(-50%);
+  z-index: 2;
 }
-.scroll-hint .arrow {
-  width: 24px; height: 24px; border-radius: 50%;
-  border: 1.5px solid var(--muted);
-  display: grid; place-items: center;
+.scroll-hint .rail {
+  display: block;
+  width: 1px; height: 62px;
+  background: linear-gradient(to bottom, transparent, var(--line) 25%, var(--line) 75%, transparent);
+  position: relative; overflow: hidden;
 }
-.scroll-hint .arrow::after {
-  content: ""; width: 6px; height: 6px;
-  border-right: 1.5px solid var(--muted);
-  border-bottom: 1.5px solid var(--muted);
-  transform: rotate(45deg) translate(-1px, -1px);
+/* La luz recorre la linea hacia abajo: dice "hay mas" sin escribirlo. */
+.scroll-hint .rail::after {
+  content: '';
+  position: absolute; left: -1px;
+  width: 3px; height: 22px; border-radius: 2px;
+  background: linear-gradient(to bottom, transparent, var(--blue-soft), transparent);
+  box-shadow: 0 0 10px rgba(59,130,246,0.9);
+  animation: scrollLuz 2.1s cubic-bezier(.55,.06,.45,.94) infinite;
+}
+@keyframes scrollLuz {
+  0%       { transform: translateY(-24px); opacity: 0; }
+  22%      { opacity: 1; }
+  78%      { opacity: 1; }
+  100%     { transform: translateY(62px); opacity: 0; }
 }
 @keyframes bobY {
   0%, 100% { transform: translate(-50%, 0); }
@@ -2844,9 +2825,6 @@ body.menu-open .wa-float   { opacity: 0; pointer-events: none; }
   font-size: 1rem;
 }
 
-/* La marca pasa a ser fondo, no un objeto que compite con el titulo. */
-.hero-mark img { animation: breathe 7s ease-in-out infinite; }
-
 /* Los chips salieron del hero y viven acá: siguen estando, dejaron de
    amontonarse contra el titulo. */
 .trust-band {
@@ -2881,6 +2859,3 @@ body.menu-open .wa-float   { opacity: 0; pointer-events: none; }
   .trust-inner span { font-size: 0.8rem; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero-mark img { animation: none; }
-}

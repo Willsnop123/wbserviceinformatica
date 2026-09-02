@@ -2,32 +2,25 @@
 /**
  * Hero.
  *
- * Antes apilaba siete bloques: insignia, titulo, tira de categorias, parrafo,
- * cuatro chips, dos botones y cuatro estadisticas. Quedan tres.
+ * Tres bloques: titulo, una linea y un boton. Lo que antes eran siete.
  *
- * Lo que se fue: la insignia (el nav ya dice quienes somos), la tira de
- * categorias (la grilla de servicios que viene abajo dice lo mismo), el boton
- * secundario (la flecha de scroll ya invita a bajar) y las estadisticas, que
- * no eran datos sino etiquetas.
- *
- * Los chips no se borran, bajan a su propia banda: son argumentos de venta y
- * el problema era donde estaban, no que existieran.
+ * Sin cuadricula ni marca de fondo: el titulo no comparte la pantalla con
+ * nada. El unico elemento que se mueve es el indicador de scroll, y se
+ * mueve porque su trabajo es decir "hay mas abajo".
  */
 ---
 
 <section class="hero" data-screen-label="Hero">
-  <div class="hero-grid-bg"></div>
   <div class="hero-glow"></div>
-  <div class="hero-mark"><img src="/assets/logo_icon.webp" alt="" /></div>
 
   <div class="hero-inner">
     <h1>
-      Tu equipo,<br />
-      <span class="accent">como nuevo.</span>
+      Servicio técnico de<br />
+      <span class="accent">informática y consolas.</span>
     </h1>
 
     <p class="hero-desc">
-      Servicio técnico de PC, notebooks, PlayStation y Xbox en Gualeguay.
+      PC, notebooks, PlayStation, Xbox y joysticks en Gualeguay.
       Atención directa, con turno previo.
     </p>
 
@@ -42,9 +35,9 @@
     </a>
   </div>
 
-  <div class="scroll-hint">
-    <span class="arrow"></span>
-    Desplazá
+  <!-- Sin texto: una linea por la que baja una luz, en loop. -->
+  <div class="scroll-hint" aria-hidden="true">
+    <span class="rail"></span>
   </div>
 </section>
 
