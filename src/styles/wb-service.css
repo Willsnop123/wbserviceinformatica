@@ -2895,19 +2895,24 @@ body.menu-open .nav { transform: translateY(0) !important; }
 .btn-cta--grande { height: 60px; padding: 0 38px; font-size: 18px; }
 
 /* La cúpula descansa abajo y sube aplanándose hasta llenar el pill. */
+/* Sin recorte propio: el boton ya tiene overflow hidden. Dos recortes
+   redondeados anidados dejan costuras de 1px en el borde al desaparecer,
+   que es lo que se veia como lineas blancas al volver al color. */
 .btn-cta-fill {
   position: absolute; inset: 0;
-  border-radius: inherit;
-  overflow: hidden;
   z-index: 0;
   pointer-events: none;
 }
 .btn-cta-fill::before {
   content: '';
-  position: absolute; inset: 0;
+  position: absolute;
+  /* Desborda un pixel a cada lado para que su borde antialiaseado quede
+     fuera de la zona recortada y no deje un hilo visible. */
+  top: 0; bottom: 0; left: -1px; right: -1px;
   background: #fff;
   border-radius: 50% 50% 0 0;
-  transform: translateY(101%);
+  /* 105% en vez de 101%: garantiza que salga entero del boton. */
+  transform: translateY(105%);
   transition: transform .5s cubic-bezier(.4, 0, 0, 1),
               border-radius .5s cubic-bezier(.4, 0, 0, 1);
 }
