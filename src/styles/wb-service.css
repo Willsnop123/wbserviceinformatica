@@ -73,12 +73,13 @@ a { text-decoration: none; color: inherit; }
 }
 .nav .brand img { width: 32px; height: 32px; }
 .nav .brand span { color: #fff; }
+.nav-derecha { display: flex; align-items: center; gap: 18px; }
 .nav ul {
-  display: flex; gap: 10px; list-style: none;
+  display: flex; gap: 0; list-style: none; align-items: center;
 }
 .nav ul a {
   font-size: 17px; font-weight: 400; letter-spacing: 0;
-  padding: 8px 14px; border-radius: 8px;
+  padding: 10px 20px; border-radius: 8px;
   color: var(--muted);
   transition: color .2s ease, background .2s ease;
 }
@@ -2871,33 +2872,35 @@ body.menu-open .nav { transform: translateY(0) !important; }
 .portal-band-inner { padding-left: var(--margen); padding-right: var(--margen); }
 .crumbs { max-width: none; }
 
+
 /* ============================================================
-   Botón de contacto del nav
-   Calcado de cuberto.com, con sus tiempos y curvas medidos:
-     relleno .5s cubic-bezier(.4,0,0,1)
-     texto   .8s cubic-bezier(.16,1,.3,1)
+   El botón del sitio — .btn-cta
+   Mecánica medida en cuberto.com:
+     relleno  .5s cubic-bezier(.4,0,0,1)
+     texto    .8s cubic-bezier(.16,1,.3,1)
    ============================================================ */
-.nav .cta {
+.btn-cta {
   position: relative;
   overflow: hidden;
+  isolation: isolate;
   display: inline-flex; align-items: center; justify-content: center;
   height: 50px; padding: 0 28px;
   border-radius: 999px;
-  background: var(--blue);
-  color: #fff;
-  font-size: 17px; font-weight: 500;
-  isolation: isolate;
+  font-size: 17px; font-weight: 500; line-height: 1;
+  text-decoration: none;
+  border: 1px solid transparent;
 }
+.btn-cta--grande { height: 60px; padding: 0 38px; font-size: 18px; }
 
-/* La cúpula descansa abajo, fuera de vista, y sube aplanándose. */
-.nav .cta .cta-fill {
-  position: absolute; inset: 1px;
-  border-radius: 999px;
+/* La cúpula descansa abajo y sube aplanándose hasta llenar el pill. */
+.btn-cta-fill {
+  position: absolute; inset: 0;
+  border-radius: inherit;
   overflow: hidden;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
 }
-.nav .cta .cta-fill::before {
+.btn-cta-fill::before {
   content: '';
   position: absolute; inset: 0;
   background: #fff;
@@ -2906,38 +2909,56 @@ body.menu-open .nav { transform: translateY(0) !important; }
   transition: transform .5s cubic-bezier(.4, 0, 0, 1),
               border-radius .5s cubic-bezier(.4, 0, 0, 1);
 }
-.nav .cta:hover .cta-fill::before,
-.nav .cta:focus-visible .cta-fill::before {
+.btn-cta:hover .btn-cta-fill::before,
+.btn-cta:focus-visible .btn-cta-fill::before {
   transform: translateY(0);
   border-radius: 0;
 }
 
-/* El texto sale por arriba y su copia entra desde abajo. */
-.nav .cta .cta-label {
+/* El texto sale por arriba y entra su copia desde abajo. */
+.btn-cta-label {
+  position: relative;
+  z-index: 1;
   display: block;
   overflow: hidden;
-  line-height: 1.35;
 }
-.nav .cta .cta-label > span {
+.btn-cta-label > span {
   display: block;
   position: relative;
+  white-space: nowrap;
   transition: transform .8s cubic-bezier(.16, 1, .3, 1);
 }
-.nav .cta .cta-label > span::after {
+/* El icono queda fuera del texto que se desliza, asi no desaparece al pasar
+   el mouse: la copia de abajo es solo texto. */
+.btn-cta > svg {
+  position: relative; z-index: 1;
+  width: 17px; height: 17px; flex-shrink: 0;
+  margin-right: 10px;
+}
+.btn-cta-label > span::after {
   content: attr(data-text);
   position: absolute;
   left: 0; top: 100%;
   width: 100%;
-  color: var(--bg);
+  text-align: center;
 }
-.nav .cta:hover .cta-label > span,
-.nav .cta:focus-visible .cta-label > span {
+.btn-cta:hover .btn-cta-label > span,
+.btn-cta:focus-visible .btn-cta-label > span {
   transform: translateY(-100%);
 }
 
-.nav .cta:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+/* Variantes: solo cambian los colores, la mecánica es la misma. */
+.btn-cta--azul  { background: var(--blue); color: #fff; }
+.btn-cta--wa    { background: var(--wa);   color: #06301a; }
+.btn-cta--borde { background: transparent; color: var(--text); border-color: var(--line-strong, rgba(255,255,255,0.22)); }
+
+.btn-cta--azul  .btn-cta-label > span::after,
+.btn-cta--borde .btn-cta-label > span::after { color: var(--bg); }
+.btn-cta--wa    .btn-cta-label > span::after { color: #06301a; }
+
+.btn-cta:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 
 @media (prefers-reduced-motion: reduce) {
-  .nav .cta .cta-fill::before,
-  .nav .cta .cta-label > span { transition: none; }
+  .btn-cta-fill::before,
+  .btn-cta-label > span { transition: none; }
 }

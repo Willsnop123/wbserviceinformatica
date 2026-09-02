@@ -1,0 +1,52 @@
+---
+/**
+ * El boton del sitio.
+ *
+ * Una sola pieza para todos los CTA, con la mecanica medida en cuberto.com:
+ * una cupula que sube desde abajo y se aplana hasta llenar el pill, mientras
+ * el texto sale por arriba y entra su copia.
+ *
+ * variante 'wa'    -> verde de WhatsApp, se llena de blanco
+ * variante 'azul'  -> azul de marca, se llena de blanco
+ * variante 'borde' -> solo contorno, se llena de blanco
+ */
+interface Props {
+  href: string;
+  texto: string;
+  variante?: 'azul' | 'wa' | 'borde';
+  icono?: 'wa' | null;
+  externo?: boolean;
+  grande?: boolean;
+  clase?: string;
+}
+
+const {
+  href,
+  texto,
+  variante = 'azul',
+  icono = null,
+  externo = false,
+  grande = false,
+  clase = '',
+} = Astro.props;
+
+const target = externo ? { target: '_blank', rel: 'noopener' } : {};
+---
+
+<a
+  class:list={['btn-cta', `btn-cta--${variante}`, grande && 'btn-cta--grande', clase]}
+  href={href}
+  {...target}
+>
+  <span class="btn-cta-fill"></span>
+
+  {/* El icono va fuera del texto que se desliza: si viajara con el, en hover
+      desapareceria, porque la copia que entra desde abajo es solo texto. */}
+  {icono === 'wa' && (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+  )}
+
+  <span class="btn-cta-label">
+    <span data-text={texto}>{texto}</span>
+  </span>
+</a>

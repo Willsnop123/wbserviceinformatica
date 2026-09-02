@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from 'astro:transitions';
+import CtaBoton from '../components/layout/CtaBoton.astro';
 import '../styles/wb-service.css';
 import '../styles/galeria.css';
 import '../styles/portal.css';
@@ -238,9 +239,14 @@ const description = 'Galería de reparaciones reales de WB Service en Gualeguay:
   <div class="galeria-cta">
     <h3>¿Tu equipo necesita este tratamiento?</h3>
     <p>Turno el mismo día, presupuesto sin compromiso y seguimiento por WhatsApp de todo el proceso.</p>
-    <a href="https://wa.me/5493444569948?text=Hola%21%20Vi%20la%20galer%C3%ADa%20y%20quiero%20consultar%20por%20mi%20equipo" class="btn-wa" target="_blank">
-      <i class="fab fa-whatsapp"></i> Quiero turno ahora
-    </a>
+    <CtaBoton
+      href="https://wa.me/5493444569948?text=Hola%21%20Vi%20la%20galer%C3%ADa%20y%20quiero%20consultar%20por%20mi%20equipo"
+      texto="Consultar por mi equipo"
+      variante="wa"
+      icono="wa"
+      externo
+      grande
+    />
   </div>
 </div>
 

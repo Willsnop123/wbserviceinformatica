@@ -1,5 +1,6 @@
 ---
 import WbServiceLayout from '../layouts/WbServiceLayout.astro';
+import CtaBoton from '../components/layout/CtaBoton.astro';
 
 const title = 'Página no encontrada | WB Service';
 const description = 'La página que buscabas no existe o cambió de dirección.';
@@ -27,14 +28,14 @@ const description = 'La página que buscabas no existe o cambió de dirección.'
       <a href="/contacto/">Contacto</a>
     </div>
 
-    <a
-      class="btn-wa"
+    <CtaBoton
       href="https://wa.me/5493444569948?text=Hola!%20Quiero%20consultar"
-      target="_blank"
-      rel="noopener"
-    >
-      Escribime por WhatsApp
-    </a>
+      texto="Escribime por WhatsApp"
+      variante="wa"
+      icono="wa"
+      externo
+      grande
+    />
   </section>
 </WbServiceLayout>
 

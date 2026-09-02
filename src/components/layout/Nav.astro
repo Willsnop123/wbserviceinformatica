@@ -1,4 +1,6 @@
 ---
+import CtaBoton from './CtaBoton.astro';
+
 interface Props {
   active?: string;
 }
@@ -11,27 +13,29 @@ const links = [
 ];
 ---
 
+{/*
+  Estructura de cuberto.com, medida a 1440: dos columnas con space-between.
+  El logo solo a la izquierda; links y boton agrupados juntos a la derecha.
+  Los links van pegados entre si —el aire se lo da su padding interno— y
+  recien despues aparece la separacion antes del pill.
+*/}
 <nav class="nav" aria-label="Principal">
   <a href="/" class="brand">
     <img src="/assets/logo_icon.webp" alt="" transition:name="marca-wb" />
     <span>WB Service</span>
   </a>
 
-  <ul>
-    {links.map((l) => (
-      <li>
-        <a href={l.href} aria-current={active === l.key ? 'page' : undefined}>{l.label}</a>
-      </li>
-    ))}
-  </ul>
+  <div class="nav-derecha">
+    <ul>
+      {links.map((l) => (
+        <li>
+          <a href={l.href} aria-current={active === l.key ? 'page' : undefined}>{l.label}</a>
+        </li>
+      ))}
+    </ul>
 
-  {/* Estructura calcada de cuberto.com: una cupula que sube y se aplana para
-      llenar el boton, y el texto que se va hacia arriba mientras entra su
-      copia desde abajo. */}
-  <a class="cta" href="/contacto/">
-    <span class="cta-fill"></span>
-    <span class="cta-label"><span data-text="Contacto">Contacto</span></span>
-  </a>
+    <CtaBoton href="/contacto/" texto="Contacto" clase="cta" />
+  </div>
 
   <button class="ham" aria-label="Menú" id="hamBtn"><span></span><span></span><span></span></button>
 </nav>

@@ -1,3 +1,7 @@
+---
+import CtaBoton from '../layout/CtaBoton.astro';
+---
+
 <section class="drift" id="drift" data-screen-label="04 Drift">
   <div class="drift-inner">
     <div>
@@ -13,9 +17,13 @@
         <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Calibración y prueba</li>
         <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Garantía en el trabajo</li>
       </ul>
-      <a class="btn-wa" href="https://wa.me/5493444569948?text=Hola!%20Quiero%20consultar%20por%20reparaci%C3%B3n%20de%20joystick" target="_blank" rel="noopener">
-        Consultar precio →
-      </a>
+      <CtaBoton
+        href="https://wa.me/5493444569948?text=Hola!%20Quiero%20consultar%20por%20reparaci%C3%B3n%20de%20joystick"
+        texto="Consultar por mi joystick"
+        variante="wa"
+        icono="wa"
+        externo
+      />
     </div>
     <div class="drift-visual">
       <div class="ring r1"></div>
