@@ -4,9 +4,11 @@
    ============================================================ */
 
 :root {
-  /* Margen lateral de pagina. Medido en cuberto.com: 108px con la
-     ventana en 1440, o sea 7.5vw. */
-  --margen: clamp(20px, 7.5vw, 108px);
+  /* Medido en cuberto.com: el contenido tiene tope de 1600px y se centra,
+     con un padding lateral de 7.5vw que se frena en 120px. A 1440 da 108px
+     de margen; a 1920, 275px, porque ademas entra a jugar el centrado. */
+  --ancho-max: 1600px;
+  --margen: min(120px, 7.5vw);
   /* Paleta del sitio actual */
   --bg:        #0a0f1c;
   --bg-2:      #0d1424;
@@ -55,7 +57,7 @@ a { text-decoration: none; color: inherit; }
   position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
   display: flex; justify-content: space-between; align-items: center;
   height: 72px;
-  padding: 0 var(--margen);
+  padding: 0 max(var(--margen), calc((100% - var(--ancho-max)) / 2 + var(--margen)));
   backdrop-filter: saturate(180%) blur(18px);
   -webkit-backdrop-filter: saturate(180%) blur(18px);
   background: rgba(10, 15, 28, 0.7);
@@ -161,7 +163,7 @@ a { text-decoration: none; color: inherit; }
   position: relative;
   display: flex; flex-direction: column; justify-content: center;
   padding: 200px var(--margen) 130px;
-  max-width: 1500px; margin: 0 auto;
+  max-width: var(--ancho-max); margin: 0 auto;
   overflow: hidden;
   align-items: center; text-align: center;
 }
@@ -2961,4 +2963,60 @@ body.menu-open .nav { transform: translateY(0) !important; }
 @media (prefers-reduced-motion: reduce) {
   .btn-cta-fill::before,
   .btn-cta-label > span { transition: none; }
+}
+
+/* ============================================================
+   Links del nav — hover copiado de cuberto.com
+   El texto sale por arriba y entra su copia (misma curva que el
+   botón: .8s cubic-bezier(.16,1,.3,1)) y un subrayado de 1px
+   crece desde el centro.
+   ============================================================ */
+.nav ul a {
+  position: relative;
+  display: block;
+}
+.nav ul a:hover { background: transparent; }
+
+.nav .nav-link-titulo {
+  display: block;
+  overflow: hidden;
+}
+.nav .nav-link-titulo > span {
+  display: block;
+  position: relative;
+  white-space: nowrap;
+  transition: transform .8s cubic-bezier(.16, 1, .3, 1);
+}
+.nav .nav-link-titulo > span::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0; top: 100%;
+  width: 100%;
+  color: var(--text);
+}
+.nav ul a:hover .nav-link-titulo > span,
+.nav ul a:focus-visible .nav-link-titulo > span {
+  transform: translateY(-100%);
+}
+
+/* El subrayado nace en el centro y se abre hacia los costados. */
+.nav ul a::after {
+  content: '';
+  position: absolute;
+  left: 20px; right: 20px; bottom: 4px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform .5s cubic-bezier(.16, 1, .3, 1);
+}
+.nav ul a:hover::after,
+.nav ul a:focus-visible::after { transform: scaleX(1); }
+
+.nav ul a[aria-current='page'] .nav-link-titulo > span { color: var(--text); }
+.nav ul a[aria-current='page']::after { transform: scaleX(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .nav .nav-link-titulo > span,
+  .nav ul a::after { transition: none; }
 }
