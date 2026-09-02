@@ -1,0 +1,103 @@
+---
+/**
+ * La puerta entre los dos mundos.
+ *
+ * destino="code"    -> vive en WB Service y lleva al cosmos
+ * destino="service" -> vive en WB Code y trae de vuelta al taller
+ */
+interface Props {
+  destino: 'code' | 'service';
+}
+
+const { destino } = Astro.props;
+
+const contenido = {
+  code: {
+    href: '/code/',
+    kicker: 'Otra cosa que hacemos',
+    titulo: '¿Necesitás',
+    acento: 'una página web?',
+    texto:
+      'Además del servicio técnico, diseñamos y desarrollamos sitios web. Landing pages, sitios completos y tiendas online, con la misma atención directa de siempre.',
+    meta: ['Landing pages', 'Sitios web', 'E-commerce'],
+    label: 'WB Code',
+    sub: 'Entrar',
+  },
+  service: {
+    href: '/',
+    kicker: 'La otra mitad',
+    titulo: '¿Se te rompió',
+    acento: 'un equipo?',
+    texto:
+      'WB Code nació del taller. Del otro lado seguimos reparando PC, notebooks, PlayStation, Xbox y joysticks en Gualeguay.',
+    meta: ['PC y notebooks', 'Consolas', 'Joysticks'],
+    label: 'WB Service',
+    sub: 'Volver',
+  },
+}[destino];
+---
+
+<section class="portal-band" data-destino={destino} aria-labelledby={`portal-${destino}`}>
+  <div class="portal-band-inner">
+    <div class="portal-copy">
+      <div class="kicker"><span class="bar"></span> {contenido.kicker}</div>
+      <h2 id={`portal-${destino}`}>
+        {contenido.titulo}<br /><span class="accent">{contenido.acento}</span>
+      </h2>
+      <p>{contenido.texto}</p>
+      <div class="portal-meta">
+        {contenido.meta.map((m) => <span>{m}</span>)}
+      </div>
+    </div>
+
+    <a class="portal-door" href={contenido.href} data-portal>
+      <span class="portal-disc"></span>
+      <span class="portal-ring"></span>
+      <span class="portal-core"></span>
+      <span class="portal-label">
+        {contenido.label}
+        <small>{contenido.sub}</small>
+      </span>
+    </a>
+  </div>
+</section>
+
+<script>
+  // Origen del circulo. Que nazca del punto exacto que la persona toco, y no
+  // del centro de la pantalla, es la mitad del efecto.
+  let origen: { x: string; y: string } | null = null;
+
+  const marcar = (raiz: HTMLElement) => {
+    if (!origen) return;
+    raiz.style.setProperty('--portal-x', origen.x);
+    raiz.style.setProperty('--portal-y', origen.y);
+    raiz.classList.add('cruzando-portal');
+  };
+
+  // Se re-registra por pagina: la navegacion sin recarga reemplaza el DOM y
+  // los portales de la pagina anterior dejan de existir.
+  document.addEventListener('astro:page-load', () => {
+    for (const puerta of document.querySelectorAll<HTMLAnchorElement>('[data-portal]')) {
+      puerta.addEventListener('click', () => {
+        const r = puerta.getBoundingClientRect();
+        origen = { x: `${r.left + r.width / 2}px`, y: `${r.top + r.height / 2}px` };
+        marcar(document.documentElement);
+      });
+    }
+  });
+
+  // El intercambio reemplaza los atributos del <html>, asi que la clase y las
+  // coordenadas se perderian justo cuando la animacion las necesita. Se las
+  // pasamos al documento que entra, antes de que ocupe su lugar.
+  document.addEventListener('astro:before-swap', (e) => {
+    if (origen) marcar((e as any).newDocument.documentElement);
+  });
+
+  // Y se limpia despues, para que la proxima navegacion que no sea por un
+  // portal use el fundido normal en vez de abrirse desde el ultimo punto.
+  document.addEventListener('astro:page-load', () => {
+    if (!origen) return;
+    origen = null;
+    setTimeout(() => document.documentElement.classList.remove('cruzando-portal'), 900);
+  });
+</script>

@@ -1,6 +1,8 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import '../styles/wb-service.css';
 import '../styles/galeria.css';
+import '../styles/portal.css';
 import schema from '../data/schema-galeria.json';
 
 const title = 'Galería de Trabajos — Antes y Después | WB Service Gualeguay';
@@ -47,6 +49,7 @@ const description = 'Galería de reparaciones reales de WB Service en Gualeguay:
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
 <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+<ClientRouter />
 </head>
 <body>
 
@@ -290,5 +293,15 @@ const description = 'Galería de reparaciones reales de WB Service en Gualeguay:
 </div>
 
 <script src="/galeria.js" is:inline></script>
+<script is:inline>
+  (function () {
+    var ctrl;
+    document.addEventListener('astro:page-load', function () {
+      if (ctrl) ctrl.abort();
+      ctrl = new AbortController();
+      if (window.__galeriaInit) window.__galeriaInit(ctrl.signal);
+    });
+  })();
+</script>
 </body>
 </html>

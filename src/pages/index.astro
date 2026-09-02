@@ -1,5 +1,6 @@
 ---
 import WbServiceLayout from '../layouts/WbServiceLayout.astro';
+import Portal from '../components/Portal.astro';
 import schema from '../data/schema-home.json';
 import Hero from '../components/sections/Hero.astro';
 import ServiciosGrid from '../components/sections/ServiciosGrid.astro';
@@ -27,4 +28,5 @@ const keywords = 'servicio técnico informática Gualeguay, reparación PC Guale
   <Resenas />
   <Sobre />
   <Porque />
+  <Portal destino="code" />
 </WbServiceLayout>

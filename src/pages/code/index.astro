@@ -1,5 +1,6 @@
 ---
 import WbCodeLayout from '../../layouts/WbCodeLayout.astro';
+import Portal from '../../components/Portal.astro';
 import Inicio from '../../components/code/pages/Inicio';
 ---
 
@@ -10,4 +11,5 @@ import Inicio from '../../components/code/pages/Inicio';
   canonical="https://www.wbserviceinformatica.com.ar/code/"
 >
   <Inicio client:load />
+  <Portal destino="service" />
 </WbCodeLayout>

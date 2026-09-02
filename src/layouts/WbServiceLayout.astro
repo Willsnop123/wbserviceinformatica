@@ -1,5 +1,7 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import '../styles/wb-service.css';
+import '../styles/portal.css';
 import Nav from '../components/layout/Nav.astro';
 import MobileMenu from '../components/layout/MobileMenu.astro';
 import WhatsAppFloat from '../components/layout/WhatsAppFloat.astro';
@@ -81,6 +83,7 @@ const {
 </noscript>
 
 {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+<ClientRouter />
 </head>
 <body>
 <Nav active={active} />
@@ -89,6 +92,20 @@ const {
 <WhatsAppFloat />
 <slot />
 <Footer />
+
 <script src="/wb-script.js" is:inline></script>
+<script is:inline>
+  // El motor de animaciones se re-arranca en cada pagina. Antes de hacerlo se
+  // aborta la señal anterior, que es lo que da de baja los listeners, los
+  // observers y los bucles de la pagina que se acaba de dejar.
+  (function () {
+    var ctrl;
+    document.addEventListener('astro:page-load', function () {
+      if (ctrl) ctrl.abort();
+      ctrl = new AbortController();
+      if (window.__wbInit) window.__wbInit(ctrl.signal);
+    });
+  })();
+</script>
 </body>
 </html>

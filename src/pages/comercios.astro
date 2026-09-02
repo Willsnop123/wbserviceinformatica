@@ -1,5 +1,6 @@
 ---
 import WbServiceLayout from '../layouts/WbServiceLayout.astro';
+import Portal from '../components/Portal.astro';
 import PageHead from '../components/layout/PageHead.astro';
 import Planes from '../components/sections/Planes.astro';
 import Porque from '../components/sections/Porque.astro';
@@ -26,6 +27,7 @@ const keywords = 'mantenimiento PC comercios Gualeguay, soporte técnico empresa
   />
   <Planes />
   <Porque />
+  <Portal destino="code" />
   <CtaContacto
     titulo="¿Cuántos equipos tenés en el negocio?"
     texto="Contame cuántas máquinas son y qué usás. Armamos un plan a medida en vez de encajarte uno cerrado."

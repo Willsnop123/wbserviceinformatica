@@ -1,5 +1,6 @@
 ---
 import WbCodeLayout from '../../layouts/WbCodeLayout.astro';
+import Portal from '../../components/Portal.astro';
 import ContactoPage from '../../components/code/pages/ContactoPage';
 ---
 
@@ -10,4 +11,5 @@ import ContactoPage from '../../components/code/pages/ContactoPage';
   canonical="https://www.wbserviceinformatica.com.ar/code/contacto/"
 >
   <ContactoPage client:load />
+  <Portal destino="service" />
 </WbCodeLayout>

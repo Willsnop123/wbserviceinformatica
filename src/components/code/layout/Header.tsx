@@ -40,7 +40,7 @@ export default function Header({ active }: Props) {
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between h-20">
             <a href="/code/" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
-              <WbCodeIcon size={42} />
+              <span style={{ viewTransitionName: 'marca-wb' }}><WbCodeIcon size={42} /></span>
               <span className="font-display text-xl font-bold text-space-text tracking-wider">WB CODE</span>
             </a>
 

@@ -1,8 +1,36 @@
 /* ============================================================
    WB Service — Motor de animaciones
    ============================================================ */
-(function(){
+window.__wbInit = function(signal){
   'use strict';
+
+  // --- Ciclo de vida ---------------------------------------------------
+  // Con navegacion sin recarga este archivo corre de nuevo en cada pagina.
+  // Sin limpieza, los 16 listeners y 7 observers se acumularian: a las cinco
+  // navegaciones habria 80 handlers de scroll midiendo layout en cada rueda.
+  // Todo lo que se registra abajo se da de baja cuando la señal se aborta.
+
+  function on(target, ev, fn, opts){
+    target.addEventListener(ev, fn, typeof opts === 'object' ? { ...opts, signal } : { signal });
+  }
+
+  function newIO(cb, opts){
+    const io = new IntersectionObserver(cb, opts);
+    signal.addEventListener('abort', () => io.disconnect(), { once: true });
+    return io;
+  }
+
+  // Estas dos sombrean a las globales dentro de toda la funcion, asi los
+  // bucles que se re-agendan solos no siguen corriendo sobre el DOM viejo.
+  const _rafs = new Set(), _timers = new Set();
+  const requestAnimationFrame = fn => { const id = window.requestAnimationFrame(fn); _rafs.add(id); return id; };
+  const setInterval = (fn, ms) => { const id = window.setInterval(fn, ms); _timers.add(id); return id; };
+  signal.addEventListener('abort', () => {
+    _rafs.forEach(id => window.cancelAnimationFrame(id));
+    _timers.forEach(id => window.clearInterval(id));
+    _rafs.clear(); _timers.clear();
+  }, { once: true });
+  // ---------------------------------------------------------------------
 
   // ----- Helpers -----
   const easeOut     = t => 1 - Math.pow(1 - t, 3);
@@ -17,7 +45,7 @@
     if(window.scrollY > 30) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
   }
-  window.addEventListener('scroll', onNav, { passive: true });
+  on(window, 'scroll', onNav, { passive: true });
   onNav();
 
   // ----- Generic cinematic section: services + equipment -----
@@ -69,11 +97,11 @@
         ticking = true;
       }
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', update);
+    on(window, 'scroll', onScroll, { passive: true });
+    on(window, 'resize', update);
     update();
 
-    const io = new IntersectionObserver(entries => {
+    const io = newIO(entries => {
       entries.forEach(e => {
         if(e.isIntersecting) e.target.classList.add('is-in');
         else if(e.boundingClientRect.top > 0) e.target.classList.remove('is-in');
@@ -179,11 +207,11 @@
         ticking = true;
       }
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', update);
+    on(window, 'scroll', onScroll, { passive: true });
+    on(window, 'resize', update);
     update();
 
-    const io = new IntersectionObserver(entries => {
+    const io = newIO(entries => {
       entries.forEach(e => {
         if(e.isIntersecting) e.target.classList.add('is-in');
         else if(e.boundingClientRect.top > 0) e.target.classList.remove('is-in');
@@ -283,11 +311,11 @@
         ticking = true;
       }
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', update);
+    on(window, 'scroll', onScroll, { passive: true });
+    on(window, 'resize', update);
     update();
 
-    const io = new IntersectionObserver(entries => {
+    const io = newIO(entries => {
       entries.forEach(e => {
         if(e.isIntersecting) e.target.classList.add('is-in');
         else if(e.boundingClientRect.top > 0) e.target.classList.remove('is-in');
@@ -373,11 +401,11 @@
         ticking = true;
       }
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', update);
+    on(window, 'scroll', onScroll, { passive: true });
+    on(window, 'resize', update);
     update();
 
-    const io = new IntersectionObserver(entries => {
+    const io = newIO(entries => {
       entries.forEach(e => {
         if(e.isIntersecting) e.target.classList.add('is-in');
         else if(e.boundingClientRect.top > 0) e.target.classList.remove('is-in');
@@ -460,8 +488,8 @@
         ticking = true;
       }
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', update);
+    on(window, 'scroll', onScroll, { passive: true });
+    on(window, 'resize', update);
     update();
   }
   setupPlanes();
@@ -496,8 +524,8 @@
         ticking = true;
       }
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', update);
+    on(window, 'scroll', onScroll, { passive: true });
+    on(window, 'resize', update);
     update();
   }
   setupSobrePhoto();
@@ -567,8 +595,8 @@
         ticking = true;
       }
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', update);
+    on(window, 'scroll', onScroll, { passive: true });
+    on(window, 'resize', update);
     update();
   }
 
@@ -593,7 +621,7 @@
   setupSobre();
 
   // ----- Generic IntersectionObserver fade-in for elements with data-fade -----
-  const fadeIO = new IntersectionObserver(entries => {
+  const fadeIO = newIO(entries => {
     entries.forEach(e => {
       if(e.isIntersecting) e.target.classList.add('in');
     });
@@ -601,7 +629,7 @@
   document.querySelectorAll('[data-fade]').forEach(el => fadeIO.observe(el));
 
   // Generic IO for kicker/heading/items inside non-cinematic sections (planes, galeria, etc)
-  const sectIO = new IntersectionObserver(entries => {
+  const sectIO = newIO(entries => {
     entries.forEach(e => {
       if(e.isIntersecting){
         e.target.classList.add('is-in');
@@ -656,7 +684,7 @@
     function startAuto(){ stopAuto(); raf = requestAnimationFrame(autoStep); }
 
     // Arranca la animación solo cuando el widget es visible
-    const io = new IntersectionObserver(entries => {
+    const io = newIO(entries => {
       if(entries[0].isIntersecting) startAuto();
       else stopAuto();
     }, { threshold: 0.25 });
@@ -672,12 +700,12 @@
       stopAuto();
       if(hint) hint.classList.add('hidden');
     });
-    window.addEventListener('mousemove', e => {
+    on(window, 'mousemove', e => {
       if(!dragging) return;
       const rect = widget.getBoundingClientRect();
       setPos(((e.clientX - rect.left) / rect.width) * 100);
     });
-    window.addEventListener('mouseup', () => {
+    on(window, 'mouseup', () => {
       if(!dragging) return;
       dragging = false;
       widget.classList.remove('dragging');
@@ -830,11 +858,11 @@
     }, { passive: true });
 
     // Resize: recalcular anchos y posición
-    window.addEventListener('resize', () => { setWidths(); goTo(current); });
+    on(window, 'resize', () => { setWidths(); goTo(current); });
 
     setWidths();
     goTo(0);
     startAuto();
   })();
 
-})();
+};

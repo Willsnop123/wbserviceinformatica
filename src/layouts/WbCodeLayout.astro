@@ -1,5 +1,7 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import '../styles/wb-code.css';
+import '../styles/portal.css';
 
 interface Props {
   title: string;
@@ -42,6 +44,7 @@ const { title, description, keywords, canonical, noindex = false } = Astro.props
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
+<ClientRouter />
 </head>
 <body>
 <slot />

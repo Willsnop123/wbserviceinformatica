@@ -1,3 +1,26 @@
+/* ============================================================
+   WB Service — Galería de trabajos
+   ============================================================ */
+window.__galeriaInit = function(signal){
+  'use strict';
+
+  // Mismo criterio que wb-script.js: con navegacion sin recarga esto corre de
+  // nuevo por pagina, asi que todo lo registrado se da de baja con la señal.
+  function on(target, ev, fn, opts){
+    target.addEventListener(ev, fn, typeof opts === 'object' ? { ...opts, signal } : { signal });
+  }
+  function newIO(cb, opts){
+    const io = new IntersectionObserver(cb, opts);
+    signal.addEventListener('abort', () => io.disconnect(), { once: true });
+    return io;
+  }
+  const _timers = new Set();
+  const setInterval = (fn, ms) => { const id = window.setInterval(fn, ms); _timers.add(id); return id; };
+  signal.addEventListener('abort', () => {
+    _timers.forEach(id => window.clearInterval(id));
+    _timers.clear();
+  }, { once: true });
+
   // ===== COUNTER ANIMATION =====
   function animateCounters() {
     document.querySelectorAll('.hero-stat-n[data-target]').forEach(el => {
@@ -18,7 +41,7 @@
     });
   }
   // Trigger when hero is visible
-  const heroObs = new IntersectionObserver(entries => {
+  const heroObs = newIO(entries => {
     entries.forEach(e => { if (e.isIntersecting) { animateCounters(); heroObs.disconnect(); } });
   }, { threshold: 0.3 });
   const heroStats = document.querySelector('.hero-stats');
@@ -141,7 +164,7 @@
     const despues   = document.getElementById('lb-despues');
 
     // Actualizar ancho al redimensionar
-    window.addEventListener('resize', updateLbWidth);
+    on(window, 'resize', updateLbWidth);
 
     function mover(clientX) {
       const rect = container.getBoundingClientRect();
@@ -153,12 +176,12 @@
     }
 
     slider.addEventListener('mousedown',  e => { isDragging = true; e.preventDefault(); });
-    window.addEventListener('mousemove',  e => { if (isDragging) mover(e.clientX); });
-    window.addEventListener('mouseup',    ()  => { isDragging = false; });
+    on(window, 'mousemove',  e => { if (isDragging) mover(e.clientX); });
+    on(window, 'mouseup',    ()  => { isDragging = false; });
 
     slider.addEventListener('touchstart', e => { isDragging = true; e.preventDefault(); }, { passive: false });
-    window.addEventListener('touchmove',  e => { if (isDragging) mover(e.touches[0].clientX); }, { passive: true });
-    window.addEventListener('touchend',   ()  => { isDragging = false; });
+    on(window, 'touchmove',  e => { if (isDragging) mover(e.touches[0].clientX); }, { passive: true });
+    on(window, 'touchend',   ()  => { isDragging = false; });
   }
   initSlider();
 
@@ -183,9 +206,11 @@
   }
 
   // Teclado
-  document.addEventListener('keydown', e => {
+  on(document, 'keydown', e => {
     if (!document.getElementById('lightbox').classList.contains('open')) return;
     if (e.key === 'ArrowRight') navegarLb(1);
     if (e.key === 'ArrowLeft')  navegarLb(-1);
     if (e.key === 'Escape')     cerrarLightbox();
   });
+
+};
