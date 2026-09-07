@@ -1,3 +1,40 @@
+---
+import Acordeon from '../layout/Acordeon.astro';
+
+const servicios = [
+  {
+    titulo: 'Mantenimiento Xbox Series X / S',
+    texto:
+      'Desarmado, limpieza del disipador y los ventiladores, y cambio de pasta térmica. Es lo que devuelve la consola a su temperatura normal y le saca el ruido.',
+  },
+  {
+    titulo: 'Limpieza interna y pasta térmica premium',
+    texto:
+      'Usamos pastas térmicas premium, no la genérica. En las consolas que lo justifican aplicamos metal líquido, que baja varios grados más que cualquier pasta.',
+  },
+  {
+    titulo: 'Reparación de joysticks con drift',
+    texto:
+      'Cambiamos los analógicos por módulos de efecto Hall, que no se desgastan y no vuelven a driftear. Reparamos joysticks de Xbox 360, One, One S, One X, Series S y Series X.',
+  },
+  {
+    titulo: 'Cambio de puerto HDMI',
+    texto:
+      'Consola que enciende pero no da imagen en el televisor. Se reemplaza el puerto con soldadura y componente nuevo.',
+  },
+  {
+    titulo: 'Diagnóstico de fallas de hardware',
+    texto:
+      'Consolas que no encienden, que se reinician solas o que tiran error. Revisamos fuente, placa y almacenamiento hasta dar con el origen, y recién ahí te pasamos el presupuesto.',
+  },
+  {
+    titulo: 'Limpieza de fuente de poder',
+    texto:
+      'La fuente junta polvo y es una de las causas más comunes de apagones repentinos. Se limpia y se revisa por separado del resto de la consola.',
+  },
+];
+---
+
 <section class="cine-xbox" id="xbox" data-screen-label="03 Xbox">
   <span class="label">[ 03 — XBOX ]</span>
   <div class="xbox-pulse"></div>
@@ -6,14 +43,7 @@
     <div class="services">
       <div class="kicker"><span class="bar"></span> Servicio Xbox</div>
       <h2>Series X / Series S,<br/><span class="accent">a pleno.</span></h2>
-      <ul>
-        <li><span class="num">01</span><span class="title">Mantenimiento Xbox Series X / S</span><span class="arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-        <li><span class="num">02</span><span class="title">Limpieza interna y pasta térmica</span><span class="arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-        <li><span class="num">03</span><span class="title">Reparación de joysticks (drift y botones)</span><span class="arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-        <li><span class="num">04</span><span class="title">Cambio de puerto HDMI</span><span class="arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-        <li><span class="num">05</span><span class="title">Diagnóstico de fallas de hardware</span><span class="arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-        <li><span class="num">06</span><span class="title">Limpieza de fuente de poder</span><span class="arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-      </ul>
+      <Acordeon id="xbox" items={servicios} />
     </div>
     <div class="images">
       <div class="equip-row">

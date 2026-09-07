@@ -1,0 +1,42 @@
+---
+/**
+ * Lista de servicios desplegable.
+ *
+ * Usa <details> nativo en vez de un div con JavaScript. Decision deliberada:
+ * funciona sin JS, el teclado y los lectores de pantalla lo entienden solos,
+ * y el navegador se encarga de abrir y cerrar. El atributo name agrupa los
+ * items para que solo uno quede abierto a la vez; donde no este soportado se
+ * pueden abrir varios, que es una degradacion aceptable.
+ *
+ * Se mantiene la estructura <ul><li> porque el motor de animaciones observa
+ * esos li para revelarlos con el scroll.
+ */
+interface Item {
+  titulo: string;
+  texto: string;
+}
+
+interface Props {
+  id: string;
+  items: Item[];
+}
+
+const { id, items } = Astro.props;
+---
+
+<ul class="acordeon">
+  {items.map((item, i) => (
+    <li class="acc-item">
+      <details name={`acc-${id}`} class="acc-det">
+        <summary class="acc-cab">
+          <span class="num">{String(i + 1).padStart(2, '0')}</span>
+          <span class="title">{item.titulo}</span>
+          <span class="acc-signo" aria-hidden="true"></span>
+        </summary>
+        <div class="acc-panel">
+          <p>{item.texto}</p>
+        </div>
+      </details>
+    </li>
+  ))}
+</ul>

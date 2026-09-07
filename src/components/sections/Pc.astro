@@ -1,3 +1,45 @@
+---
+import Acordeon from '../layout/Acordeon.astro';
+
+const servicios = [
+  {
+    titulo: 'Mantenimiento y optimización',
+    texto:
+      'Limpieza interna a fondo, cambio de pasta térmica y revisión de toda la ventilación. La máquina baja de temperatura, deja de tironear y vuelve a arrancar rápido.',
+  },
+  {
+    titulo: 'Reparación de PC y notebooks',
+    texto:
+      'Primero encontramos la falla real, después te pasamos el presupuesto. Cambio de componentes, y en notebooks también pantalla, teclado y bisagras.',
+  },
+  {
+    titulo: 'Formateo e instalación de software',
+    texto:
+      'Windows limpio y actualizado, drivers al día y los programas que usás. Si tenés archivos que no querés perder, los respaldamos antes de tocar nada.',
+  },
+  {
+    titulo: 'Cambio de pasta térmica',
+    texto:
+      'Trabajamos con pastas térmicas premium, no con la genérica que viene de fábrica. En los equipos que lo justifican aplicamos metal líquido, que baja varios grados más.',
+  },
+  {
+    titulo: 'Actualización de drivers',
+    texto:
+      'Placa de video, chipset y periféricos en la versión que corresponde. Muchos cuelgues y pantallas negras salen de acá y no de un problema de hardware.',
+  },
+  {
+    titulo: 'Armado de PC a medida',
+    texto:
+      'Nos contás para qué la vas a usar y cuánto querés gastar, y armamos la configuración que mejor rinde con ese presupuesto. Sin venderte de más.',
+  },
+  {
+    titulo: 'Mantenimiento de placas de video de gama alta',
+    texto:
+      'Desarmado completo, limpieza del disipador y cambio de pasta y almohadillas térmicas. En una placa de gama alta esto es la diferencia entre rendir al máximo o recalentar y perder cuadros.',
+  },
+];
+---
+
 <section class="cine pc" id="pc" data-screen-label="01 PC">
   <span class="label">[ 01 — PC & NOTEBOOKS ]</span>
   <div class="pc-grid-bg" data-pc-grid></div>
@@ -5,16 +47,8 @@
   <div class="stage">
     <div class="services">
       <div class="kicker"><span class="bar"></span> Servicios para PC</div>
-      <h2>Reparación,<br/><span class="accent">a otra escala.</span></h2>
-      <ul>
-        <li><span class="num">01</span><span class="title">Mantenimiento y optimización</span><span class="arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-        <li><span class="num">02</span><span class="title">Reparación de PC y notebooks</span><span class="arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-        <li><span class="num">03</span><span class="title">Formateo e instalación de software</span><span class="arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-        <li><span class="num">04</span><span class="title">Cambio de pasta térmica</span><span class="arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-        <li><span class="num">05</span><span class="title">Actualización de drivers</span><span class="arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-        <li><span class="num">06</span><span class="title">Armado de PC a medida</span><span class="arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-        <li><span class="num">07</span><span class="title">Mantenimiento de Placas de video de gama alta</span><span class="arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-      </ul>
+      <h2>Reparación,<br /><span class="accent">a otra escala.</span></h2>
+      <Acordeon id="pc" items={servicios} />
     </div>
     <div class="images">
       <div class="equip-row three">

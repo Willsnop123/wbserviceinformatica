@@ -1,3 +1,40 @@
+---
+import Acordeon from '../layout/Acordeon.astro';
+
+const servicios = [
+  {
+    titulo: 'Mantenimiento PS3 / PS4 / PS5',
+    texto:
+      'Desarmado completo, limpieza del disipador y los ventiladores, y cambio de pasta térmica. Si la consola suena como un avión o se apaga sola jugando, casi siempre es esto.',
+  },
+  {
+    titulo: 'Metal líquido en PS5',
+    texto:
+      'La PS5 sale de fábrica con metal líquido y con los años se degrada. Lo reemplazamos con producto premium y volvemos a sellar como corresponde, que es la parte delicada del trabajo: mal hecho, el metal líquido arruina la placa.',
+  },
+  {
+    titulo: 'Cambio de puerto HDMI',
+    texto:
+      'Si la consola prende pero no da imagen, en la enorme mayoría de los casos es el puerto HDMI. Se cambia con soldadura y componente nuevo, no con adaptadores ni parches.',
+  },
+  {
+    titulo: 'Reparación de consolas',
+    texto:
+      'Consolas que no encienden, que se apagan solas, que no leen los discos o que tiran error de disco rígido. Buscamos la falla real y te decimos con honestidad si conviene repararla o no.',
+  },
+  {
+    titulo: 'PS3 HEN + tiendas configuradas',
+    texto:
+      'Instalación de HEN en PS3 con las tiendas ya configuradas y funcionando, para que puedas descargar e instalar sin dar vueltas.',
+  },
+  {
+    titulo: 'PS2 FreeMcBoot — juegos desde USB',
+    texto:
+      'Dejamos la PS2 lista para correr juegos desde un pendrive, sin forzar el lector de discos. Ideal para consolas viejas cuyo lector ya no lee.',
+  },
+];
+---
+
 <section class="cine-ps" id="ps" data-screen-label="02 PlayStation">
   <span class="label">[ 02 — PLAYSTATION ]</span>
   <div class="ps-aurora"></div>
@@ -6,14 +43,7 @@
     <div class="services">
       <div class="kicker"><span class="bar"></span> Servicio PlayStation</div>
       <h2>PS3, PS4 y PS5,<br/><span class="accent">sin frenos.</span></h2>
-      <ul>
-        <li><span class="num">01</span><span class="title">Mantenimiento PS3 / PS4 / PS5</span><span class="arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-        <li><span class="num">02</span><span class="title">Metal Líquido PS5 — temperatura mínima</span><span class="arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-        <li><span class="num">03</span><span class="title">Cambio de puerto HDMI</span><span class="arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-        <li><span class="num">04</span><span class="title">Reparación de discos atascados</span><span class="arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-        <li><span class="num">05</span><span class="title">PS3 HEN + tiendas configuradas</span><span class="arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-        <li><span class="num">06</span><span class="title">PS2 FreeMcBoot — juegos desde USB</span><span class="arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-      </ul>
+      <Acordeon id="ps" items={servicios} />
     </div>
     <div class="images">
       <div class="equip-row">
