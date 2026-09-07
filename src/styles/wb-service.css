@@ -3025,3 +3025,66 @@ body.menu-open .nav { transform: translateY(0) !important; }
   .nav .nav-link-titulo > span,
   .nav ul a::after { transition: none; }
 }
+
+/* ============================================================
+   Sistema unificado de secciones
+   Antes cada seccion traia su propio ancho (1080, 1100, 1200,
+   1280, 1300) y su propio peso de titulo (800 con tracking
+   -0.04 o -0.045, interlineado 0.95 o 1 o 1.05). Nada de eso
+   era una decision: era sedimento de haberlas escrito en
+   momentos distintos.
+   ============================================================ */
+
+/* --- Un solo ancho para todo el sitio --- */
+/* Solo las que existen en el markup: listar clases muertas da la falsa
+   impresion de que algo se unifico cuando no toca nada.
+   El portal queda afuera a proposito: su banda es una composicion de dos
+   columnas pensada a 980px, y estirarla a 1600 separa el texto del disco. */
+.porque-inner,
+.ubic-inner,
+.galeria-inner,
+.resenas-inner,
+.cta-band-inner,
+.trust-inner,
+.crumbs {
+  max-width: var(--ancho-max);
+  margin-inline: auto;
+  padding-inline: var(--margen);
+  box-sizing: border-box;
+}
+
+/* El texto largo no debe estirarse hasta 1600px: se lee mal. */
+.cta-band-inner { max-width: 780px; }
+.crumbs { padding-block: 100px 0; }
+
+/* --- Un solo tratamiento tipografico para los titulos --- */
+.planes-head h2,
+.porque-head h2,
+.resenas-head h2,
+.galeria-text h2,
+.ubic-head h2,
+.redes h2,
+.cta-band h2 {
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+  font-size: clamp(1.9rem, 3.6vw, 3.2rem);
+  margin-bottom: 20px;
+}
+
+/* --- Más aire entre secciones --- */
+.servicios,
+.porque,
+.resenas,
+.ubic,
+.redes,
+.cta-band,
+.portal-band { padding-block: clamp(90px, 11vw, 170px); }
+
+.porque-head,
+.resenas-head,
+.ubic-head { margin-bottom: clamp(44px, 5vw, 72px); }
+
+@media (max-width: 700px) {
+  .crumbs { padding-block: 90px 0; }
+}
