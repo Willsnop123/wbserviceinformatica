@@ -2,6 +2,7 @@
 import { ClientRouter } from 'astro:transitions';
 import '../styles/wb-service.css';
 import '../styles/portal.css';
+import ScrollInercia from '../components/ScrollInercia.astro';
 import Nav from '../components/layout/Nav.astro';
 import MobileMenu from '../components/layout/MobileMenu.astro';
 import WhatsAppFloat from '../components/layout/WhatsAppFloat.astro';
@@ -84,6 +85,7 @@ const {
 
 {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 <ClientRouter />
+<ScrollInercia />
 </head>
 <body>
 <Nav active={active} />

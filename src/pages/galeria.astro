@@ -1,6 +1,7 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 import CtaBoton from '../components/layout/CtaBoton.astro';
+import ScrollInercia from '../components/ScrollInercia.astro';
 import '../styles/wb-service.css';
 import '../styles/galeria.css';
 import '../styles/portal.css';
@@ -51,6 +52,7 @@ const description = 'Galería de reparaciones reales de WB Service en Gualeguay:
 
 <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 <ClientRouter />
+<ScrollInercia />
 </head>
 <body>
 
