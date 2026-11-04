@@ -65,6 +65,19 @@ window.__wbInit = function(signal){
   on(window, 'scroll', onNav, { passive: true });
   onNav();
 
+  // Cuando la sección deja de ser más alta que la ventana no hay recorrido
+  // de scroll que mapear: es el layout plano de pantallas chicas, donde el
+  // CSS ya muestra todo. Sin esta salida se divide por cero, el resultado
+  // es NaN, y un NaN escrito en style.opacity no hace nada: el elemento se
+  // queda con el último valor que tuvo, que al cargar la página es
+  // invisible. Se limpian los estilos en línea para devolverle el mando al
+  // CSS en vez de clavarlos a mano.
+  function sinRecorrido(section){
+    section.querySelectorAll('.equip-inner, .plancard, .planes-head, .planes-foot')
+      .forEach(el => { el.style.opacity = ''; el.style.transform = ''; });
+    section.querySelectorAll('.equip').forEach(eq => eq.classList.add('tag-in'));
+  }
+
   // ----- Generic cinematic section: services + equipment -----
   function setupCinematic(sectionId, windows){
     const section = document.getElementById(sectionId);
@@ -81,6 +94,7 @@ window.__wbInit = function(signal){
       const vh = window.innerHeight;
       const scrolled = -rect.top;
       const total = section.offsetHeight - vh;
+      if(total <= 0){ sinRecorrido(section); return; }
       const p = clamp(scrolled / total, 0, 1);
       const stage = section.querySelector('.images');
 
@@ -174,6 +188,7 @@ window.__wbInit = function(signal){
       const vh   = window.innerHeight;
       const scrolled = -rect.top;
       const total    = section.offsetHeight - vh;
+      if(total <= 0){ sinRecorrido(section); return; }
       const p = clamp(scrolled / total, 0, 1);
 
       // Grid background: aparece conforme se hace scroll
@@ -280,6 +295,7 @@ window.__wbInit = function(signal){
       const vh = window.innerHeight;
       const scrolled = -rect.top;
       const total = section.offsetHeight - vh;
+      if(total <= 0){ sinRecorrido(section); return; }
       const p = clamp(scrolled / total, 0, 1);
 
       // Aurora parallax
@@ -367,6 +383,7 @@ window.__wbInit = function(signal){
       const vh = window.innerHeight;
       const scrolled = -rect.top;
       const total = section.offsetHeight - vh;
+      if(total <= 0){ sinRecorrido(section); return; }
       const p = clamp(scrolled / total, 0, 1);
 
       // Pulse intensifies as it approaches
@@ -463,6 +480,7 @@ window.__wbInit = function(signal){
       const vh = window.innerHeight;
       const scrolled = -rect.top;
       const total = section.offsetHeight - vh;
+      if(total <= 0){ sinRecorrido(section); return; }
       const p = clamp(scrolled / total, 0, 1);
 
       // Head: siempre visible (mínimo 15 %) y completo al 14 % de scroll
