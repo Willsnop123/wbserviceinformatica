@@ -78,6 +78,49 @@ window.__wbInit = function(signal){
     section.querySelectorAll('.equip').forEach(eq => eq.classList.add('tag-in'));
   }
 
+  // ----- Revelado: red de seguridad del IntersectionObserver -----
+  //
+  // Los kickers, titulos y servicios arrancan en opacity 0 y un
+  // IntersectionObserver les pone .is-in cuando entran en pantalla. El
+  // problema es que el observer solo avisa cuando el elemento CRUZA el
+  // umbral. Dentro de un escenario `position: sticky` ya fijado, el texto
+  // no se mueve respecto de la ventana: si la primera lectura del observer
+  // sale mal — y sale mal durante la transicion sin recarga, cuando el
+  // navegador todavia esta pintando el documento viejo — no hay segunda
+  // oportunidad. Scrollear no lo arregla porque el elemento no se mueve.
+  // Solo recargar.
+  //
+  // Por eso la posicion tambien se mide a mano, con la misma regla que usa
+  // el observer, en el bucle de scroll que ya esta corriendo y en unas
+  // pasadas despues de arrancar. Si el observer leyo mal, esto lo corrige.
+  function visible(el, frac){
+    const r = el.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    if(r.height === 0) return false;
+    const dentro = Math.min(r.bottom, vh) - Math.max(r.top, 0);
+    return dentro / Math.min(r.height, vh) >= frac;
+  }
+
+  // Misma regla que el observer: entra al estar a la vista, y solo se va si
+  // quedo por debajo de la ventana (asi, al volver desde arriba, la
+  // animacion se repite; al pasar de largo hacia abajo, no parpadea).
+  function revelar(elems){
+    for(const el of elems){
+      if(!el) continue;
+      if(visible(el, 0.25)) el.classList.add('is-in');
+      else if(el.getBoundingClientRect().top > 0) el.classList.remove('is-in');
+    }
+  }
+
+  // La transicion sin recarga puede tardar en asentarse, y el observer
+  // puede haber leido durante ese rato. Se vuelve a mirar unas veces.
+  function revelarAlAsentarse(elems){
+    revelar(elems);
+    [120, 400, 900].forEach(ms => {
+      setTimeout(() => { if(!signal.aborted) revelar(elems); }, ms);
+    });
+  }
+
   // ----- Generic cinematic section: services + equipment -----
   function setupCinematic(sectionId, windows){
     const section = document.getElementById(sectionId);
@@ -88,6 +131,7 @@ window.__wbInit = function(signal){
     const kicker = services.querySelector('.kicker');
     const heading = services.querySelector('h2');
     const items = services.querySelectorAll('li');
+    const revelables = [kicker, heading, ...items].filter(Boolean);
 
     function update(){
       const rect = section.getBoundingClientRect();
@@ -124,7 +168,7 @@ window.__wbInit = function(signal){
     let ticking = false;
     function onScroll(){
       if(!ticking){
-        requestAnimationFrame(() => { update(); ticking = false; });
+        requestAnimationFrame(() => { revelar(revelables); update(); ticking = false; });
         ticking = true;
       }
     }
@@ -142,6 +186,8 @@ window.__wbInit = function(signal){
     if(heading) io.observe(heading);
     items.forEach(li => io.observe(li));
 
+    revelarAlAsentarse(revelables);
+
     return update;
   }
 
@@ -154,6 +200,7 @@ window.__wbInit = function(signal){
     const kicker  = services && services.querySelector('.kicker');
     const heading = services && services.querySelector('h2');
     const items   = services ? services.querySelectorAll('li') : [];
+    const revelables = [kicker, heading, ...items].filter(Boolean);
 
     // Generar partículas tech (cyan + azul eléctrico)
     const particlesBox = section.querySelector('[data-pc-particles]');
@@ -235,7 +282,7 @@ window.__wbInit = function(signal){
     let ticking = false;
     function onScroll(){
       if(!ticking){
-        requestAnimationFrame(() => { update(); ticking = false; });
+        requestAnimationFrame(() => { revelar(revelables); update(); ticking = false; });
         ticking = true;
       }
     }
@@ -252,6 +299,8 @@ window.__wbInit = function(signal){
     if(kicker) io.observe(kicker);
     if(heading) io.observe(heading);
     items.forEach(li => io.observe(li));
+
+    revelarAlAsentarse(revelables);
   }
   setupPC();
 
@@ -265,6 +314,7 @@ window.__wbInit = function(signal){
     const kicker = services && services.querySelector('.kicker');
     const heading = services && services.querySelector('h2');
     const items = services ? services.querySelectorAll('li') : [];
+    const revelables = [kicker, heading, ...items].filter(Boolean);
 
     // Generate floating particles
     const particlesBox = section.querySelector('[data-ps-particles]');
@@ -340,7 +390,7 @@ window.__wbInit = function(signal){
     let ticking = false;
     function onScroll(){
       if(!ticking){
-        requestAnimationFrame(() => { update(); ticking=false; });
+        requestAnimationFrame(() => { revelar(revelables); update(); ticking = false; });
         ticking = true;
       }
     }
@@ -357,6 +407,8 @@ window.__wbInit = function(signal){
     if(kicker) io.observe(kicker);
     if(heading) io.observe(heading);
     items.forEach(li => io.observe(li));
+
+    revelarAlAsentarse(revelables);
   }
   setupPS();
 
@@ -370,6 +422,7 @@ window.__wbInit = function(signal){
     const kicker = services && services.querySelector('.kicker');
     const heading = services && services.querySelector('h2');
     const items = services ? services.querySelectorAll('li') : [];
+    const revelables = [kicker, heading, ...items].filter(Boolean);
 
     // Each equip enters from a side
     const sides = { seriesS: -1, seriesX: 1 }; // S desde izq, X desde der
@@ -431,7 +484,7 @@ window.__wbInit = function(signal){
     let ticking = false;
     function onScroll(){
       if(!ticking){
-        requestAnimationFrame(() => { update(); ticking=false; });
+        requestAnimationFrame(() => { revelar(revelables); update(); ticking = false; });
         ticking = true;
       }
     }
@@ -448,6 +501,8 @@ window.__wbInit = function(signal){
     if(kicker) io.observe(kicker);
     if(heading) io.observe(heading);
     items.forEach(li => io.observe(li));
+
+    revelarAlAsentarse(revelables);
   }
   setupXbox();
 
@@ -676,9 +731,16 @@ window.__wbInit = function(signal){
   // los dos se pisarian. Por eso se excluyen y el resto se toma por defecto:
   // asi una seccion nueva revela su kicker sin tener que anotarse en una lista.
   const CINEMATICAS = '.hero, .cine, .cine-ps, .cine-xbox, .drift';
-  document
-    .querySelectorAll('.kicker, .planes h2, .galeria-text h2, .ubic-head h2, .porque-head h2, .porque-head p')
-    .forEach(el => { if(!el.closest(CINEMATICAS)) sectIO.observe(el); });
+  const genericos = [...document
+    .querySelectorAll('.kicker, .planes h2, .galeria-text h2, .ubic-head h2, .porque-head h2, .porque-head p')]
+    .filter(el => !el.closest(CINEMATICAS));
+  genericos.forEach(el => sectIO.observe(el));
+
+  // La misma red de seguridad que las secciones cinematicas. Aca el riesgo
+  // es menor porque nada esta fijado con sticky y al scrollear el elemento
+  // se mueve, pero la primera lectura del observer puede fallar igual
+  // durante la transicion sin recarga.
+  revelarAlAsentarse(genericos);
 
   // ----- Comparador antes / después -----
   (function(){
