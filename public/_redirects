@@ -12,8 +12,17 @@
 /galeria.html            /galeria/            301
 /index.html              /                    301
 
-# El archivo de verificacion de Search Console se sirve tal cual desde
-# public/. No agregar reglas que lo puedan capturar.
+# Verificacion de Search Console.
+#
+# Cloudflare Pages quita la extension .html por defecto: sin esta regla el
+# archivo responde 308 hacia /googledc90d44876b2a389 en vez de servirse en
+# su direccion exacta. Google lo pide con .html, y un redirect ahi puede
+# dejar el sitio sin verificar.
+#
+# El 200 al final es lo que lo distingue de una redireccion: Cloudflare
+# sirve el contenido en la URL pedida en vez de mandar al visitante a otra.
+
+/googledc90d44876b2a389.html   /googledc90d44876b2a389   200
 
 # Las secciones que pasaron a tener pagina propia vivian como anclas dentro
 # del index. Un ancla nunca llega al servidor, asi que no hay nada que
