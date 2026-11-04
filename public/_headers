@@ -1,0 +1,26 @@
+# Cabeceras para Cloudflare Pages.
+#
+# Los archivos que Astro empaqueta (/_astro/...) llevan un hash en el
+# nombre: cuando cambian, cambia la URL, y el navegador los pide de nuevo
+# solo. Esos pueden cachearse para siempre sin riesgo.
+#
+# Los de public/ no: /wb-script.js se llama siempre igual. Por defecto
+# Cloudflare Pages les pone max-age=14400, o sea cuatro horas. Durante
+# esas cuatro horas el navegador de alguien que ya visito el sitio sigue
+# usando SU copia vieja sin preguntar, aunque ya hayamos publicado el
+# arreglo: queda con el HTML nuevo y el JavaScript viejo.
+#
+# Eso paso de verdad el 2026-11-04 y costo un rato entender por que el
+# sitio seguia roto en un navegador y andaba en otro.
+#
+# max-age=0, must-revalidate no quiere decir "no cachear": el navegador
+# guarda la copia igual, pero antes de usarla pregunta si cambio. Si no
+# cambio, el servidor contesta 304 sin cuerpo. Es un viaje de ida y vuelta
+# de unos pocos bytes a cambio de que cualquier correccion llegue al
+# instante.
+
+/wb-script.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+/galeria.js
+  Cache-Control: public, max-age=0, must-revalidate

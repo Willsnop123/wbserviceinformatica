@@ -55,6 +55,23 @@ La única URL que cambió de dirección de verdad al migrar fue
 **No borrar ese archivo.** Sin él, Google pierde el rastro de las
 direcciones viejas y hay que volver a ganar las posiciones desde cero.
 
+## Las cabeceras de caché
+
+`public/_headers` existe por un motivo concreto. Los archivos que Astro
+empaqueta llevan un hash en el nombre, así que cuando cambian cambia la
+URL y el navegador los pide solos. Los de `public/` no: `wb-script.js`
+se llama siempre igual, y Cloudflare Pages por defecto le pone cuatro
+horas de caché. Durante esas cuatro horas, quien ya visitó el sitio sigue
+usando su copia vieja del JavaScript junto con el HTML nuevo, aunque ya
+hayamos publicado la corrección.
+
+Pasó el 2026-11-04 y costó un rato entender por qué el sitio seguía roto
+en un navegador y andaba en otro. **No borrar ese archivo.**
+
+Si alguna vez una corrección de JavaScript no se ve en producción aunque
+el deploy haya terminado, lo primero es comparar el tamaño del archivo
+que sirve el navegador contra el que sirve `curl`.
+
 ## Archivos que no se tocan
 
 - `public/googledc90d44876b2a389.html` — verificación de Google Search
