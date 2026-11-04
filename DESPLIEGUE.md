@@ -55,22 +55,33 @@ La única URL que cambió de dirección de verdad al migrar fue
 **No borrar ese archivo.** Sin él, Google pierde el rastro de las
 direcciones viejas y hay que volver a ganar las posiciones desde cero.
 
-## Las cabeceras de caché
+## Por qué los scripts llevan `?v=` en la URL
 
-`public/_headers` existe por un motivo concreto. Los archivos que Astro
-empaqueta llevan un hash en el nombre, así que cuando cambian cambia la
-URL y el navegador los pide solos. Los de `public/` no: `wb-script.js`
-se llama siempre igual, y Cloudflare Pages por defecto le pone cuatro
-horas de caché. Durante esas cuatro horas, quien ya visitó el sitio sigue
-usando su copia vieja del JavaScript junto con el HTML nuevo, aunque ya
-hayamos publicado la corrección.
+`wb-script.js` y `galeria.js` viven en `public/`, así que se llaman
+siempre igual. Los que empaqueta Astro llevan un hash en el nombre y se
+renuevan solos; estos no. Cloudflare Pages les pone cuatro horas de
+caché: durante esas cuatro horas, quien ya visitó el sitio sigue usando
+su copia vieja del JavaScript junto con el HTML nuevo, aunque la
+corrección ya esté publicada.
 
-Pasó el 2026-11-04 y costó un rato entender por qué el sitio seguía roto
-en un navegador y andaba en otro. **No borrar ese archivo.**
+Pasó el 2026-11-04 y costó un rato entenderlo, porque `curl` mostraba el
+archivo nuevo —  `curl` no cachea — mientras el navegador seguía con el
+viejo.
+
+**Intenté resolverlo con `public/_headers` y no funciona.** Medido contra
+producción con `cf-cache-status: MISS` (respuesta del origen, sin caché
+del borde de por medio), la cabecera declarada ahí no llega a la
+respuesta: Cloudflare Pages maneja el caché de sus estáticos por su
+cuenta.
+
+Lo que sí funciona es `src/lib/version.ts`: calcula un hash del contenido
+del archivo durante el build y lo agrega a la URL. Si el archivo cambia,
+cambia la URL y el navegador lo pide de nuevo; si no cambia, el caché
+sigue sirviendo. No hay nada que recordar bumpear a mano.
 
 Si alguna vez una corrección de JavaScript no se ve en producción aunque
-el deploy haya terminado, lo primero es comparar el tamaño del archivo
-que sirve el navegador contra el que sirve `curl`.
+el deploy haya terminado, comparar el tamaño del archivo que sirve el
+navegador contra el que sirve `curl`.
 
 ## Archivos que no se tocan
 

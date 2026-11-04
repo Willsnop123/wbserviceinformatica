@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from 'astro:transitions';
+import { versionado } from '../lib/version';
 import '../styles/wb-service.css';
 import '../styles/portal.css';
 import ScrollInercia from '../components/ScrollInercia.astro';
@@ -95,7 +96,7 @@ const {
 <slot />
 <Footer />
 
-<script src="/wb-script.js" is:inline></script>
+<script src={versionado('/wb-script.js')} is:inline></script>
 <script is:inline>
   // El motor de animaciones se re-arranca en cada pagina. Antes de hacerlo se
   // aborta la señal anterior, que es lo que da de baja los listeners, los
