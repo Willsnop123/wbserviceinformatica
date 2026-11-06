@@ -6,10 +6,15 @@
  * pero no mostraba nada: cuatro rectangulos iguales con un dibujito adentro
  * podrian ser los de cualquier taller del pais.
  *
- * Estos paneles van en diagonal y cada uno lleva la foto de un trabajo de
- * verdad — una placa de PC, el procesador de una PS4, los analogicos de
- * efecto Hall, William en el banco. El que recibe el puntero se agranda,
- * empuja a los demas y revela su descripcion, mientras la foto se acerca.
+ * Estos paneles van en diagonal y cada uno lleva una imagen propia: un
+ * disipador de cobre, el blanco de una consola encontrandose con una
+ * rejilla verde, un analogico con estelas de movimiento, una fila de
+ * ventiladores. El que recibe el puntero se agranda, empuja a los demas y
+ * revela su descripcion, mientras la imagen se acerca.
+ *
+ * Los originales viven en recursos/imagenes-originales/, fuera de public/
+ * porque pesan ocho veces mas que lo que necesita el visitante. El LEEME
+ * de esa carpeta tiene el recorte exacto de cada una.
  *
  * El sesgo se hace con `skew` sobre la banda y el inverso sobre el interior
  * de cada panel: asi el borde queda en diagonal pero la foto y el texto
@@ -21,28 +26,28 @@ const servicios = [
     titulo: 'PC y Notebooks',
     texto: 'Limpieza profunda, pasta térmica, cambio de componentes y diagnóstico completo de escritorio y portátiles.',
     foto: '/imagenes/servicio-pc.webp',
-    alt: 'Interior de una PC de escritorio abierta sobre el banco de trabajo',
+    alt: 'Disipador de cobre sobre la placa de una computadora, en primer plano',
   },
   {
     href: '/consolas/',
     titulo: 'PlayStation y Xbox',
     texto: 'PS3, PS4, PS5, Xbox 360, One y Series. Limpieza, HDMI roto, lector de disco y sobrecalentamiento.',
     foto: '/imagenes/servicio-consolas.webp',
-    alt: 'Procesador de una PlayStation 4 a la vista sobre la placa',
+    alt: 'Superficie blanca de una consola junto a una rejilla negra con luz verde saliendo de adentro',
   },
   {
     href: '/joysticks/',
     titulo: 'Joysticks con drift',
     texto: 'Cambio de joystick analógico, botones y calibración. Con prueba antes de devolvértelo.',
     foto: '/imagenes/servicio-joysticks.webp',
-    alt: 'Placa de un joystick con los analógicos de efecto Hall ya colocados',
+    alt: 'Analógico de un joystick en primer plano, con estelas de luz girando a su alrededor',
   },
   {
     href: '/comercios/',
     titulo: 'Planes para comercios',
     texto: 'Mantenimiento preventivo mensual para negocios de Gualeguay, con soporte prioritario.',
     foto: '/imagenes/servicio-comercios.webp',
-    alt: 'William trabajando en el taller sobre una PC abierta',
+    alt: 'Fila de ventiladores idénticos alineados, perdiéndose en la profundidad',
   },
 ];
 ---

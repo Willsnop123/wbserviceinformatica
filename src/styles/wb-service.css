@@ -3456,13 +3456,18 @@ body.menu-open .nav { transform: translateY(0) !important; }
   height: 100%;
   object-fit: cover;
   transform: scale(1.06);
-  filter: grayscale(0.45) brightness(0.52) contrast(1.05);
+  /* En reposo se apagan, pero poco: estas imagenes estan construidas
+     sobre el color — el cobre, el verde de la rejilla, las estelas ambar
+     y azul. Desaturarlas de mas tiraba a la basura justo lo que las hace
+     buenas. Alcanza con bajarles la luz para que el panel elegido se
+     destaque. */
+  filter: grayscale(0.22) brightness(0.62) contrast(1.04);
   transition: transform 1s cubic-bezier(.22, 1, .36, 1), filter .7s ease;
 }
 .sd-panel:hover .sd-foto,
 .sd-panel:focus-within .sd-foto {
   transform: scale(1.22);
-  filter: grayscale(0) brightness(0.74) contrast(1.02);
+  filter: grayscale(0) brightness(0.88) contrast(1.02);
 }
 
 /* Degrade de abajo hacia arriba para que el texto se lea sobre
