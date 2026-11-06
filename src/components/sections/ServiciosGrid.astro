@@ -1,49 +1,87 @@
 ---
+/**
+ * Servicios, en paneles diagonales.
+ *
+ * Reemplaza a la grilla de cuatro tarjetas con icono. La grilla cumplia,
+ * pero no mostraba nada: cuatro rectangulos iguales con un dibujito adentro
+ * podrian ser los de cualquier taller del pais.
+ *
+ * Estos paneles van en diagonal y cada uno lleva la foto de un trabajo de
+ * verdad — una placa de PC, el procesador de una PS4, los analogicos de
+ * efecto Hall, William en el banco. El que recibe el puntero se agranda,
+ * empuja a los demas y revela su descripcion, mientras la foto se acerca.
+ *
+ * El sesgo se hace con `skew` sobre la banda y el inverso sobre el interior
+ * de cada panel: asi el borde queda en diagonal pero la foto y el texto
+ * siguen derechos. Sesgando la foto, saldria deformada.
+ */
 const servicios = [
   {
     href: '/pc-y-notebooks/',
     titulo: 'PC y Notebooks',
     texto: 'Limpieza profunda, pasta térmica, cambio de componentes y diagnóstico completo de escritorio y portátiles.',
-    icono: '<path d="M3 5h18v11H3z" stroke-linejoin="round"/><path d="M2 20h20" stroke-linecap="round"/>',
+    foto: '/imagenes/servicio-pc.webp',
+    alt: 'Interior de una PC de escritorio abierta sobre el banco de trabajo',
   },
   {
     href: '/consolas/',
     titulo: 'PlayStation y Xbox',
     texto: 'PS3, PS4, PS5, Xbox 360, One y Series. Limpieza, HDMI roto, lector de disco y sobrecalentamiento.',
-    icono: '<rect x="2" y="7" width="20" height="10" rx="5"/><path d="M7 11v2M6 12h2" stroke-linecap="round"/><circle cx="16.5" cy="11.5" r=".9" fill="currentColor" stroke="none"/><circle cx="18.5" cy="13.5" r=".9" fill="currentColor" stroke="none"/>',
+    foto: '/imagenes/servicio-consolas.webp',
+    alt: 'Procesador de una PlayStation 4 a la vista sobre la placa',
   },
   {
     href: '/joysticks/',
     titulo: 'Joysticks con drift',
     texto: 'Cambio de joystick analógico, botones y calibración. Con prueba antes de devolvértelo.',
-    icono: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path d="M12 3v3M12 18v3" stroke-linecap="round"/>',
+    foto: '/imagenes/servicio-joysticks.webp',
+    alt: 'Placa de un joystick con los analógicos de efecto Hall ya colocados',
   },
   {
     href: '/comercios/',
     titulo: 'Planes para comercios',
     texto: 'Mantenimiento preventivo mensual para negocios de Gualeguay, con soporte prioritario.',
-    icono: '<path d="M3 21V8l9-5 9 5v13" stroke-linejoin="round"/><path d="M9 21v-6h6v6" stroke-linejoin="round"/>',
+    foto: '/imagenes/servicio-comercios.webp',
+    alt: 'William trabajando en el taller sobre una PC abierta',
   },
 ];
 ---
 
-<section class="porque servicios-grid-sec" id="servicios" data-screen-label="01 Servicios">
+<section class="porque servicios-diag" id="servicios" data-screen-label="01 Servicios">
   <div class="porque-inner">
     <div class="porque-head">
       <div class="kicker"><span class="bar"></span> Servicios</div>
-      <h2>Qué reparamos<br/><span class="accent">en el taller.</span></h2>
+      <h2>Qué reparamos<br /><span class="accent">en el taller.</span></h2>
       <p>Cada servicio tiene su página con el detalle de lo que incluye y cómo trabajamos.</p>
     </div>
-    <div class="porque-grid servicios-grid">
-      {servicios.map((s) => (
-        <a class="pq-card sv-card" href={s.href} data-fade>
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" set:html={s.icono} /></div>
-          <h3>{s.titulo}</h3>
-          <p>{s.texto}</p>
-          <span class="sv-mas">
-            Ver detalle
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </span>
+
+    <div class="sd-banda">
+      {servicios.map((s, i) => (
+        <a class="sd-panel" href={s.href} data-fade style={`--orden:${i}`}>
+          <div class="sd-recto">
+            <img
+              class="sd-foto"
+              src={s.foto}
+              alt={s.alt}
+              width="1000"
+              height="1200"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="sd-velo"></div>
+            {/* h3 y p de verdad: son los nombres de los servicios y el
+                detalle de cada uno, y asi los lee Google igual que antes
+                con las tarjetas. */}
+            <div class="sd-texto">
+              <span class="sd-num">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="sd-titulo">{s.titulo}</h3>
+              <p class="sd-desc">{s.texto}</p>
+              <span class="sd-mas">
+                Ver detalle
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </div>
         </a>
       ))}
     </div>

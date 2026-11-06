@@ -3352,3 +3352,237 @@ body.menu-open .nav { transform: translateY(0) !important; }
   .acc-cab { padding: 9px 0; }
   .acc-panel p { padding-bottom: 12px; font-size: 0.88rem; }
 }
+
+/* ============================================================
+   SERVICIOS EN DIAGONAL
+
+   Cuatro paneles sesgados, uno por servicio, con la foto de un trabajo
+   real adentro. El que recibe el puntero se agranda y empuja a los
+   demas; la foto se acerca y aparece la descripcion.
+
+   El sesgo va sobre la banda y el inverso sobre el interior de cada
+   panel. Asi el BORDE queda en diagonal pero la foto y el texto siguen
+   derechos — sesgando la foto saldria deformada, que es justamente lo
+   que no se quiere.
+   ============================================================ */
+
+.servicios-diag .porque-inner { max-width: var(--ancho-max); }
+
+.sd-banda {
+  display: flex;
+  height: clamp(360px, 40vw, 500px);
+  /* El sesgo se aplica desde el centro, asi que la banda sobresale la
+     mitad de su efecto hacia cada lado y queda con los extremos en
+     diagonal, como el resto. Con 9 grados y 500 px de alto son unos
+     40 px por lado: entra holgado en el margen de la pagina. */
+  transform: skewX(-9deg);
+}
+
+.sd-panel {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  /* La transicion es sobre flex-grow, no sobre width: con flex, el
+     reparto del sobrante es lo que decide cuanto mide cada panel, y
+     animar el ancho a mano pelearia contra eso. */
+  transition: flex-grow .65s cubic-bezier(.22, 1, .36, 1);
+}
+.sd-panel + .sd-panel { border-left: 1px solid rgba(255, 255, 255, 0.10); }
+
+/* Los que no reciben el puntero ceden espacio; el que lo recibe lo toma.
+
+   El peso de los selectores importa: escrito al reves —`.sd-panel:hover`
+   suelto contra `.sd-banda:hover .sd-panel`— gana el segundo, que es mas
+   especifico, y termina achicando TAMBIEN al panel elegido. Se achicaban
+   los cuatro y no se agrandaba ninguno. Por eso el que crece se escribe
+   colgado de la banda, para que pese mas. */
+.sd-banda:hover .sd-panel,
+.sd-banda:focus-within .sd-panel { flex-grow: 0.8; }
+.sd-banda:hover .sd-panel:hover,
+.sd-banda:focus-within .sd-panel:focus-within,
+.sd-banda .sd-panel:focus-visible { flex-grow: 1.9; }
+
+.sd-panel:focus-visible { outline: 2px solid var(--blue-soft); outline-offset: -4px; }
+
+/* El contra-sesgo. Va mas ancho que el panel porque, al enderezarse, sus
+   esquinas se corren: si midiera justo, el panel mostraria el fondo en
+   dos triangulos. */
+.sd-recto {
+  position: absolute;
+  inset: 0 -12%;
+  display: block;
+  transform: skewX(9deg);
+}
+
+.sd-foto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.06);
+  filter: grayscale(0.45) brightness(0.52) contrast(1.05);
+  transition: transform 1s cubic-bezier(.22, 1, .36, 1), filter .7s ease;
+}
+.sd-panel:hover .sd-foto,
+.sd-panel:focus-within .sd-foto {
+  transform: scale(1.22);
+  filter: grayscale(0) brightness(0.74) contrast(1.02);
+}
+
+/* Degrade de abajo hacia arriba para que el texto se lea sobre
+   cualquier foto, por clara que sea. */
+.sd-velo {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+    rgba(4, 8, 20, 0.92) 0%,
+    rgba(4, 8, 20, 0.55) 38%,
+    rgba(4, 8, 20, 0.12) 72%,
+    rgba(4, 8, 20, 0.30) 100%);
+  transition: opacity .6s ease;
+}
+.sd-panel:hover .sd-velo { opacity: 0.88; }
+
+.sd-texto {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  display: block;
+  padding: 0 clamp(18px, 2.2vw, 34px) clamp(22px, 2.4vw, 34px);
+  /* El texto se centra en el panel, no en el rectangulo ensanchado que
+     lo endereza: ese sobresale un 12 % por lado. */
+  margin: 0 12%;
+}
+
+.sd-num {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--blue-soft);
+  margin-bottom: 10px;
+}
+
+.sd-titulo {
+  display: block;
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(1.05rem, 1.45vw, 1.45rem);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: #fff;
+}
+
+/* La descripcion esta siempre en el documento — Google la lee igual —
+   pero solo se despliega cuando el panel se abre. Sin esto, cuatro
+   parrafos apretados en paneles angostos se leen como un amontonamiento. */
+.sd-desc {
+  display: block;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  max-width: 34ch;
+  opacity: 0;
+  max-height: 0;
+  transform: translateY(8px);
+  overflow: hidden;
+  transition: opacity .45s ease, max-height .55s ease, transform .55s ease, margin-top .55s ease;
+}
+.sd-panel:hover .sd-desc,
+.sd-panel:focus-within .sd-desc {
+  opacity: 1;
+  max-height: 12em;
+  margin-top: 12px;
+  transform: translateY(0);
+}
+
+.sd-mas {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--blue-soft);
+}
+.sd-mas svg { transition: transform .35s ease; }
+.sd-panel:hover .sd-mas svg { transform: translateX(5px); }
+
+/* Entrada en cascada al aparecer la seccion, igual que las tarjetas que
+   habia antes. */
+.sd-panel {
+  opacity: 0;
+  transform: translateY(26px);
+}
+.sd-panel.in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity .8s ease, transform .8s ease, flex-grow .65s cubic-bezier(.22, 1, .36, 1);
+  transition-delay: calc(var(--orden, 0) * 0.09s);
+}
+.sd-panel.in:hover { transition-delay: 0s; }
+
+/* ------------------------------------------------------------
+   Pantallas chicas: la diagonal pasa a ser horizontal.
+
+   Cuatro paneles al lado del otro en un telefono darian 85 px cada uno:
+   no entra ni el titulo. Se apilan, y el sesgo pasa al otro eje para que
+   la seccion siga leyendose igual. Sin puntero no hay nada que abrir,
+   asi que las descripciones quedan a la vista desde el arranque.
+   ------------------------------------------------------------ */
+@media (max-width: 920px) {
+  .sd-banda {
+    flex-direction: column;
+    height: auto;
+    transform: skewY(-3deg);
+  }
+  .sd-panel {
+    height: clamp(195px, 50vw, 245px);
+    flex: none;
+  }
+  .sd-panel + .sd-panel {
+    border-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+  }
+  .sd-banda:hover .sd-panel,
+  .sd-banda:focus-within .sd-panel,
+  .sd-panel:hover,
+  .sd-panel:focus-within { flex-grow: 0; }
+
+  .sd-recto {
+    inset: -10% 0;
+    transform: skewY(3deg);
+  }
+  .sd-texto { margin: 0; padding: 0 22px 20px; }
+  .sd-foto { filter: grayscale(0.1) brightness(0.62); }
+
+  /* El texto va apoyado contra el borde de abajo del panel, que tiene
+     alto fijo: si la descripcion creciera, se saldria por arriba y el
+     panel la recortaria sin que nadie se entere. Acotarla a tres
+     renglones lo vuelve imposible. */
+  .sd-desc {
+    opacity: 1;
+    max-height: none;
+    margin-top: 10px;
+    transform: none;
+    font-size: 0.88rem;
+    max-width: 46ch;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .sd-mas { margin-top: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sd-panel,
+  .sd-panel.in,
+  .sd-foto,
+  .sd-desc { transition: none; }
+}
