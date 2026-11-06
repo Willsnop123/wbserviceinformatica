@@ -20,33 +20,40 @@
  * de cada panel: asi el borde queda en diagonal pero la foto y el texto
  * siguen derechos. Sesgando la foto, saldria deformada.
  */
+import { versionado } from '../../lib/version';
+
+/* Las fotos llevan el hash de su contenido pegado a la URL.
+   Sin eso, cambiar una imagen conservando el nombre no llega a nadie: el
+   navegador ya tiene esa URL guardada y sigue mostrando la anterior.
+   Paso con estas cuatro — el archivo nuevo estaba publicado y la pagina
+   seguia mostrando las viejas. */
 const servicios = [
   {
     href: '/pc-y-notebooks/',
     titulo: 'PC y Notebooks',
     texto: 'Limpieza profunda, pasta térmica, cambio de componentes y diagnóstico completo de escritorio y portátiles.',
-    foto: '/imagenes/servicio-pc.webp',
+    foto: versionado('/imagenes/servicio-pc.webp'),
     alt: 'Disipador de cobre sobre la placa de una computadora, en primer plano',
   },
   {
     href: '/consolas/',
     titulo: 'PlayStation y Xbox',
     texto: 'PS3, PS4, PS5, Xbox 360, One y Series. Limpieza, HDMI roto, lector de disco y sobrecalentamiento.',
-    foto: '/imagenes/servicio-consolas.webp',
+    foto: versionado('/imagenes/servicio-consolas.webp'),
     alt: 'Superficie blanca de una consola junto a una rejilla negra con luz verde saliendo de adentro',
   },
   {
     href: '/joysticks/',
     titulo: 'Joysticks con drift',
     texto: 'Cambio de joystick analógico, botones y calibración. Con prueba antes de devolvértelo.',
-    foto: '/imagenes/servicio-joysticks.webp',
+    foto: versionado('/imagenes/servicio-joysticks.webp'),
     alt: 'Analógico de un joystick en primer plano, con estelas de luz girando a su alrededor',
   },
   {
     href: '/comercios/',
     titulo: 'Planes para comercios',
     texto: 'Mantenimiento preventivo mensual para negocios de Gualeguay, con soporte prioritario.',
-    foto: '/imagenes/servicio-comercios.webp',
+    foto: versionado('/imagenes/servicio-comercios.webp'),
     alt: 'Fila de ventiladores idénticos alineados, perdiéndose en la profundidad',
   },
 ];
