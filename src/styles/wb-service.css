@@ -3390,7 +3390,39 @@ body.menu-open .nav { transform: translateY(0) !important; }
      animar el ancho a mano pelearia contra eso. */
   transition: flex-grow .65s cubic-bezier(.22, 1, .36, 1);
 }
-.sd-panel + .sd-panel { border-left: 1px solid rgba(255, 255, 255, 0.10); }
+/* La linea que separa un panel del otro.
+
+   Va como pseudo-elemento y no como `border-left` para poder darle un
+   degrade: con las fotos en penumbra, una linea de brillo parejo se
+   pierde arriba y abajo. Asi la separacion se ve en el medio, donde el
+   ojo la busca, y se apaga en las puntas en vez de cortar de golpe.
+
+   Tambien evita las costuras de un pixel que deja un borde cuando el
+   contenedor esta sesgado y el navegador tiene que redondear. */
+.sd-panel::before {
+  content: '';
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(147, 197, 253, 0.45) 42%,
+    rgba(147, 197, 253, 0.22) 72%,
+    rgba(255, 255, 255, 0.06) 100%);
+  pointer-events: none;
+}
+/* El primero no lleva: ahi no hay nada que separar, es el filo de la banda. */
+.sd-panel:first-child::before { content: none; }
+
+/* Un contorno muy tenue para que la forma de la banda se despegue del
+   fondo. Sin esto, con fotos oscuras sobre una seccion oscura, los
+   extremos en diagonal casi no se leen. */
+.sd-banda {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+}
 
 /* Los que no reciben el puntero ceden espacio; el que lo recibe lo toma.
 
@@ -3544,9 +3576,19 @@ body.menu-open .nav { transform: translateY(0) !important; }
     height: clamp(195px, 50vw, 245px);
     flex: none;
   }
-  .sd-panel + .sd-panel {
-    border-left: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.10);
+  /* Apilados, la separacion corre para el otro lado. */
+  .sd-panel::before {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+    background: linear-gradient(to right,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(147, 197, 253, 0.45) 42%,
+      rgba(147, 197, 253, 0.22) 72%,
+      rgba(255, 255, 255, 0.06) 100%);
   }
   .sd-banda:hover .sd-panel,
   .sd-banda:focus-within .sd-panel,
