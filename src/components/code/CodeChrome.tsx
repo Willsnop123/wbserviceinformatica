@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react';
 import Header from '@/components/code/layout/Header';
 import Footer from '@/components/code/layout/Footer';
+import Redes from '@/components/code/sections/Redes';
 import CustomCursor from '@/components/code/effects/CustomCursor';
 import SupernovaEffect from '@/components/code/effects/SupernovaEffect';
 import GrainOverlay from '@/components/code/effects/GrainOverlay';
@@ -35,6 +36,7 @@ export default function CodeChrome({ active, children }: Props) {
       <div className="relative z-10">
         <Header active={active} />
         <main>{children}</main>
+        <Redes />
         <Footer />
       </div>
 

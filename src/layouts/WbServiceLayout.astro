@@ -8,6 +8,7 @@ import Nav from '../components/layout/Nav.astro';
 import MobileMenu from '../components/layout/MobileMenu.astro';
 import WhatsAppFloat from '../components/layout/WhatsAppFloat.astro';
 import Footer from '../components/layout/Footer.astro';
+import Redes from '../components/sections/Redes.astro';
 
 interface Props {
   title: string;
@@ -94,6 +95,7 @@ const {
 <MobileMenu active={active} />
 <WhatsAppFloat />
 <slot />
+<Redes />
 <Footer />
 
 <script src={versionado('/wb-script.js')} is:inline></script>
