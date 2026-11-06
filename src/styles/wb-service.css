@@ -3633,3 +3633,62 @@ body.menu-open .nav { transform: translateY(0) !important; }
   .sd-foto,
   .sd-desc { transition: none; }
 }
+
+/* ============================================================
+   REDES SOCIALES — iconos grandes, mucho aire
+
+   Antes eran tres botones de 52 px con el icono adentro, apretados.
+   Ahora el icono es la pieza: sin caja, sin borde, grande, y separado
+   por aire de verdad. En esta seccion el espacio vacio ES el diseño —
+   apretarlo le saca todo el efecto.
+
+   En reposo son grises; al acercarse, cada uno se enciende con el color
+   de su marca.
+   ============================================================ */
+
+.redes { padding: clamp(110px, 13vw, 180px) 32px clamp(100px, 12vw, 160px); }
+.redes h2 { margin-bottom: clamp(48px, 6vw, 84px); }
+
+.socials { gap: clamp(34px, 6vw, 76px); }
+
+.social-btn {
+  width: auto;
+  height: auto;
+  /* Area de toque comoda aunque el dibujo sea el que manda. */
+  min-width: 56px;
+  min-height: 56px;
+  padding: 8px;
+  border: 0;
+  border-radius: 10px;
+  background: none;
+  overflow: visible;
+  color: #c3c9d4;
+  transition: transform .35s cubic-bezier(.22, 1, .36, 1), color .35s ease;
+}
+.social-btn svg {
+  width: clamp(44px, 6.2vw, 68px);
+  height: clamp(44px, 6.2vw, 68px);
+}
+/* Ya no hay caja que rellenar: el relleno de color del diseño anterior
+   pintaria un cuadrado detras del dibujo. */
+.social-btn::before { content: none; }
+
+.social-btn:hover,
+.social-btn:focus-visible {
+  transform: translateY(-6px);
+  border-color: transparent;
+  box-shadow: none;
+}
+.social-btn:hover svg,
+.social-btn:focus-visible svg { transform: none; }
+
+.social-btn.ig:hover, .social-btn.ig:focus-visible { color: #e1306c; }
+.social-btn.fb:hover, .social-btn.fb:focus-visible { color: #1877f2; }
+.social-btn.wa:hover, .social-btn.wa:focus-visible { color: #25d366; }
+
+.social-btn:focus-visible { outline: 2px solid var(--blue-soft); outline-offset: 6px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .social-btn { transition: color .35s ease; }
+  .social-btn:hover, .social-btn:focus-visible { transform: none; }
+}
