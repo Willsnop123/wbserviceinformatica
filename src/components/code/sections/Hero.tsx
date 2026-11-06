@@ -97,22 +97,44 @@ export default function Hero() {
         <h1
           ref={titleRef}
           className="font-display font-bold text-space-text mb-4 leading-tight"
-          style={{ perspective: '1000px', fontSize: 'clamp(1.9rem, 5.2vw, 4.6rem)', letterSpacing: 'clamp(0.04em, 0.4vw, 0.09em)' }}
+          style={{ perspective: '1000px', fontSize: 'clamp(1.75rem, 5.2vw, 4.4rem)', letterSpacing: 'clamp(0.04em, 0.4vw, 0.09em)' }}
         >
-          {/* Line 1 */}
-          <div className="block whitespace-nowrap">
-            {titleLine1.split('').map((letter, i) => (
-              <span
-                key={`a-${i}`}
-                className={letter === ' ' ? 'inline-block' : 'letter inline-block'}
-                style={{ transformStyle: 'preserve-3d', ...(letter === ' ' ? { minWidth: '0.3em' } : {}) }}
-              >
-                {letter === ' ' ? ' ' : letter}
+          {/* Linea 1. Cada palabra es un bloque propio: el salto queda
+              permitido ENTRE palabras y prohibido adentro de cada una.
+
+              Antes la linea entera era `whitespace-nowrap`, y encima las
+              palabras iban separadas por un espacio duro. Medida en un
+              telefono de 375 px pedia 424 px contra 327 disponibles, asi
+              que "CREAMOS MUNDOS" se recortaba por los dos lados y quedaba
+              en "REAMOS MUNDO". Ahora, cuando no entra, "MUNDOS" baja al
+              renglon siguiente; en pantallas anchas sigue entrando en una
+              sola linea y no cambia nada.
+
+              El maximo de la fuente bajo de 4.6rem a 4.4rem por esto
+              mismo: medida en 1400 px, "CREAMOS" pedia 529 y "MUNDOS" 481,
+              mas 22 de separacion — 1032 contra los 1024 del contenedor. Se
+              pasaba por ocho pixeles desde siempre; con `nowrap` desbordaba
+              en silencio y no se veia, y al permitir el salto empezo a
+              bajar de renglon tambien en escritorio. */}
+          <div className="flex flex-wrap justify-center gap-x-[0.3em]">
+            {titleLine1.split(' ').map((palabra, p) => (
+              <span key={`p-${p}`} className="inline-block whitespace-nowrap">
+                {palabra.split('').map((letter, i) => (
+                  <span
+                    key={`a-${p}-${i}`}
+                    className="letter inline-block"
+                    style={{ transformStyle: 'preserve-3d' }}
+                  >
+                    {letter}
+                  </span>
+                ))}
               </span>
             ))}
           </div>
-          {/* Line 2 — slightly larger for impact */}
-          <div className="block whitespace-nowrap" style={{ fontSize: '1.22em' }}>
+          {/* Linea 2. Es una sola palabra y no puede partirse, asi que en
+              pantallas chicas renuncia al 22 % extra de tamaño: con el
+              aumento puesto no entraba en un telefono angosto. */}
+          <div className="block whitespace-nowrap text-[1em] sm:text-[1.22em]">
             {titleLine2.split('').map((letter, i) => (
               <span
                 key={`b-${i}`}
