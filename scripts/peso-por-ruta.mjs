@@ -52,9 +52,13 @@ for (const p of pages.sort()) {
   const html = fs.readFileSync(p, 'utf8');
   // Las islas no se cargan con <script src>: el custom element astro-island
   // trae la url del componente y la del renderer en sus atributos.
+  // El `(?:\?[^"]*)?` del final no sobra: los scripts de public/ se sirven
+  // con el hash de su contenido pegado a la URL (ver src/lib/version.ts).
+  // Sin contemplarlo, /wb-script.js?v=85c0357e no coincidia y el script
+  // quedaba fuera de la cuenta: WB Service figuraba con 11 KB en vez de 20.
   const srcs = [
-    ...[...html.matchAll(/<script[^>]*src="(\/[^"]+\.js)"/g)].map((m) => m[1]),
-    ...[...html.matchAll(/(?:component|renderer)-url="(\/[^"]+\.js)"/g)].map((m) => m[1]),
+    ...[...html.matchAll(/<script[^>]*src="(\/[^"?]+\.js)(?:\?[^"]*)?"/g)].map((m) => m[1]),
+    ...[...html.matchAll(/(?:component|renderer)-url="(\/[^"?]+\.js)(?:\?[^"]*)?"/g)].map((m) => m[1]),
   ];
   const inicial = new Set();
   const diferido = new Set();

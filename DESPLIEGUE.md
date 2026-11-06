@@ -34,6 +34,35 @@ Para ver cuánto JavaScript descarga cada ruta:
 node scripts/peso-por-ruta.mjs
 ```
 
+## Las capturas del portfolio de WB Code
+
+Las pantallas que se ven en `/code/portfolio/` no son fotos a mano: las
+genera un script contra los sitios en vivo.
+
+```bash
+node scripts/capturar-portfolio.mjs            # los cinco
+node scripts/capturar-portfolio.mjs konig      # uno solo, por su slug
+```
+
+Para agregar un trabajo nuevo hay que tocar dos lugares: la lista `SITIOS`
+del script, y la lista `TRABAJOS` de
+`src/components/code/sections/Portfolio.tsx`. El slug tiene que ser el
+mismo en los dos — es lo que une el proyecto con sus imágenes.
+
+Usa el Chrome que ya está instalado, hablándole por su protocolo de
+depuración. No descarga ningún navegador.
+
+Dos cosas que conviene saber si algo sale raro:
+
+- **Si un sitio abre con un cartel encima** (Konig tiene un control de
+  edad), hay que agregarle un `preparar` en su entrada de `SITIOS`: un
+  pedacito de JavaScript que lo cierre antes de fotografiar.
+- **La captura va por franjas superpuestas, no de una sola foto.** Estos
+  sitios revelan su contenido a medida que uno baja, así que una foto
+  tomada desde arriba sale con los textos en blanco. Y los bordes de cada
+  franja se descartan porque ahí viven las barras fijas y los botones
+  flotantes, que si no salen repetidos a lo largo de la página.
+
 ## Configuración de Cloudflare Pages
 
 | | |

@@ -1,0 +1,82 @@
+[
+  {
+    "sitio": "vidasana",
+    "formato": "escritorio",
+    "w": 1440,
+    "h": 5400,
+    "kb": 439,
+    "altoCss": 5400
+  },
+  {
+    "sitio": "vidasana",
+    "formato": "movil",
+    "w": 620,
+    "h": 8050,
+    "kb": 359,
+    "altoCss": 5064
+  },
+  {
+    "sitio": "konig",
+    "formato": "escritorio",
+    "w": 1440,
+    "h": 5400,
+    "kb": 270,
+    "altoCss": 5400
+  },
+  {
+    "sitio": "konig",
+    "formato": "movil",
+    "w": 620,
+    "h": 8050,
+    "kb": 278,
+    "altoCss": 5064
+  },
+  {
+    "sitio": "martin",
+    "formato": "escritorio",
+    "w": 1440,
+    "h": 5400,
+    "kb": 339,
+    "altoCss": 5400
+  },
+  {
+    "sitio": "martin",
+    "formato": "movil",
+    "w": 620,
+    "h": 8050,
+    "kb": 217,
+    "altoCss": 5064
+  },
+  {
+    "sitio": "dulce",
+    "formato": "escritorio",
+    "w": 1440,
+    "h": 5400,
+    "kb": 424,
+    "altoCss": 5400
+  },
+  {
+    "sitio": "dulce",
+    "formato": "movil",
+    "w": 620,
+    "h": 8050,
+    "kb": 292,
+    "altoCss": 5064
+  },
+  {
+    "sitio": "dvc",
+    "formato": "escritorio",
+    "w": 1440,
+    "h": 5400,
+    "kb": 301,
+    "altoCss": 5400
+  },
+  {
+    "sitio": "dvc",
+    "formato": "movil",
+    "w": 620,
+    "h": 8050,
+    "kb": 259,
+    "altoCss": 5064
+  }
+]
