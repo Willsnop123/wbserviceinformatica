@@ -21,32 +21,6 @@ window.__galeriaInit = function(signal){
     _timers.clear();
   }, { once: true });
 
-  // ===== COUNTER ANIMATION =====
-  function animateCounters() {
-    document.querySelectorAll('.hero-stat-n[data-target]').forEach(el => {
-      const target = parseInt(el.dataset.target);
-      const prefix = el.dataset.prefix || '';
-      const suffix = el.dataset.suffix || '';
-      let current = 0;
-      const duration = 1400;
-      const step = target / (duration / 16);
-      const timer = setInterval(() => {
-        current = Math.min(current + step, target);
-        el.textContent = prefix + Math.floor(current) + suffix;
-        if (current >= target) {
-          el.textContent = prefix + target + suffix;
-          clearInterval(timer);
-        }
-      }, 16);
-    });
-  }
-  // Trigger when hero is visible
-  const heroObs = newIO(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { animateCounters(); heroObs.disconnect(); } });
-  }, { threshold: 0.3 });
-  const heroStats = document.querySelector('.hero-stats');
-  if (heroStats) heroObs.observe(heroStats);
-
   // ===== DATOS DE TRABAJOS =====
   const trabajos = [
     {
@@ -204,6 +178,40 @@ window.__galeriaInit = function(signal){
     const empty = document.getElementById('empty-state');
     empty.classList.toggle('visible', visibles === 0);
   }
+
+  // ===== OYENTES =====
+  //
+  // Antes esto no existia: el HTML llamaba a las funciones desde atributos
+  // onclick. Cuando el script paso a envolverse en __galeriaInit para poder
+  // re-arrancar con la navegacion sin recarga, todas esas funciones quedaron
+  // dentro de la clausura — y un onclick del HTML solo encuentra lo que esta
+  // colgado de window. Resultado: ni los filtros ni las imagenes respondian,
+  // y sin un solo error en consola, porque llamar a algo inexistente desde
+  // un atributo no rompe nada: simplemente no pasa.
+  //
+  // Enganchados aca, ademas, se dan de baja solos con la señal, que es lo
+  // que hace falta al cambiar de pagina sin recargar.
+
+  document.querySelectorAll('.filtro-btn').forEach(btn => {
+    on(btn, 'click', () => filtrar(btn.dataset.cat, btn));
+  });
+
+  document.querySelectorAll('.trabajo-card').forEach(card => {
+    const abrir = () => abrirLightbox(Number(card.dataset.index));
+    on(card, 'click', abrir);
+    // Las tarjetas son divs: sin esto no hay forma de abrirlas con el teclado.
+    on(card, 'keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrir(); }
+    });
+  });
+
+  const lb = document.getElementById('lightbox');
+  if (lb) on(lb, 'click', cerrarLightboxClick);
+
+  document.querySelectorAll('[data-lb-cerrar]').forEach(b => on(b, 'click', cerrarLightbox));
+  document.querySelectorAll('[data-lb-nav]').forEach(b => {
+    on(b, 'click', () => navegarLb(Number(b.dataset.lbNav)));
+  });
 
   // Teclado
   on(document, 'keydown', e => {

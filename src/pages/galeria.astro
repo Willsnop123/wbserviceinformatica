@@ -81,44 +81,23 @@ const description = 'Galería de reparaciones reales de WB Service en Gualeguay:
   <div class="hero-badge"><i class="fas fa-star"></i> Resultados reales de clientes en Gualeguay</div>
   <h1>Los resultados hablan<br>por sí solos</h1>
   <p>Cada trabajo es una historia de reparación real. Hacé clic en cualquier imagen para ver la comparación completa.</p>
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="hero-stat-n" data-target="200">0</div>
-      <div class="hero-stat-l">Reparaciones</div>
-    </div>
-    <div class="hero-stat-div"></div>
-    <div class="hero-stat">
-      <div class="hero-stat-n" data-target="100" data-suffix="%">0%</div>
-      <div class="hero-stat-l">Satisfacción</div>
-    </div>
-    <div class="hero-stat-div"></div>
-    <div class="hero-stat">
-      <div class="hero-stat-n" data-target="5" data-suffix="★">0★</div>
-      <div class="hero-stat-l">Calificación</div>
-    </div>
-    <div class="hero-stat-div"></div>
-    <div class="hero-stat">
-      <div class="hero-stat-n" data-target="3" data-prefix="+" data-suffix=" años">+0 años</div>
-      <div class="hero-stat-l">Experiencia</div>
-    </div>
-  </div>
 </div>
 
 <!-- FILTROS -->
 <div class="filtros-wrapper">
-  <button class="filtro-btn active" data-cat="todos" onclick="filtrar('todos', this)">
+  <button class="filtro-btn active" data-cat="todos">
     <i class="fas fa-th"></i> Todos <span class="filtro-count" id="count-todos">5</span>
   </button>
-  <button class="filtro-btn" data-cat="playstation" onclick="filtrar('playstation', this)">
+  <button class="filtro-btn" data-cat="playstation">
     <i class="fab fa-playstation"></i> PlayStation <span class="filtro-count" id="count-playstation">3</span>
   </button>
-  <button class="filtro-btn" data-cat="xbox" onclick="filtrar('xbox', this)">
+  <button class="filtro-btn" data-cat="xbox">
     <i class="fab fa-xbox"></i> Xbox <span class="filtro-count" id="count-xbox">1</span>
   </button>
-  <button class="filtro-btn" data-cat="joystick" onclick="filtrar('joystick', this)">
+  <button class="filtro-btn" data-cat="joystick">
     <i class="fas fa-gamepad"></i> Joystick <span class="filtro-count" id="count-joystick">1</span>
   </button>
-  <button class="filtro-btn" data-cat="pc" onclick="filtrar('pc', this)">
+  <button class="filtro-btn" data-cat="pc">
     <i class="fas fa-desktop"></i> PC <span class="filtro-count" id="count-pc">1</span>
   </button>
 </div>
@@ -127,7 +106,7 @@ const description = 'Galería de reparaciones reales de WB Service en Gualeguay:
 <div class="trabajos-grid" id="grid-trabajos">
 
   <!-- TRABAJO 1: PS4 -->
-  <div class="trabajo-card" data-cat="playstation" data-index="0" onclick="abrirLightbox(0)">
+  <div class="trabajo-card" role="button" tabindex="0" data-cat="playstation" data-index="0">
     <div class="card-comparacion">
       <div class="card-antes">
         <img src="/imagenes/ps4-antes.webp" alt="PS4 antes limpieza">
@@ -148,7 +127,7 @@ const description = 'Galería de reparaciones reales de WB Service en Gualeguay:
   </div>
 
   <!-- TRABAJO 2: PC Gamer -->
-  <div class="trabajo-card" data-cat="pc" data-index="1" onclick="abrirLightbox(1)">
+  <div class="trabajo-card" role="button" tabindex="0" data-cat="pc" data-index="1">
     <div class="card-comparacion">
       <div class="card-antes">
         <img src="/imagenes/pc-antes.webp" alt="PC antes mantenimiento">
@@ -169,7 +148,7 @@ const description = 'Galería de reparaciones reales de WB Service en Gualeguay:
   </div>
 
   <!-- TRABAJO 3: Joystick PS5 -->
-  <div class="trabajo-card" data-cat="joystick" data-index="2" onclick="abrirLightbox(2)">
+  <div class="trabajo-card" role="button" tabindex="0" data-cat="joystick" data-index="2">
     <div class="card-comparacion">
       <div class="card-antes">
         <img src="/imagenes/joystick-antes.webp" alt="Joystick PS5 antes reparación">
@@ -190,7 +169,7 @@ const description = 'Galería de reparaciones reales de WB Service en Gualeguay:
   </div>
 
   <!-- TRABAJO 4: PS3 -->
-  <div class="trabajo-card" data-cat="playstation" data-index="3" onclick="abrirLightbox(3)">
+  <div class="trabajo-card" role="button" tabindex="0" data-cat="playstation" data-index="3">
     <div class="card-comparacion">
       <div class="card-antes">
         <img src="/imagenes/ps3-antes.webp" alt="PS3 antes limpieza">
@@ -211,7 +190,7 @@ const description = 'Galería de reparaciones reales de WB Service en Gualeguay:
   </div>
 
   <!-- TRABAJO 5: Xbox -->
-  <div class="trabajo-card" data-cat="xbox" data-index="4" onclick="abrirLightbox(4)">
+  <div class="trabajo-card" role="button" tabindex="0" data-cat="xbox" data-index="4">
     <div class="card-comparacion">
       <div class="card-antes">
         <img src="/imagenes/xbox-antes.webp" alt="Xbox One antes limpieza">
@@ -267,13 +246,13 @@ const description = 'Galería de reparaciones reales de WB Service en Gualeguay:
 </footer>
 
 <!-- ===== LIGHTBOX ===== -->
-<div class="lightbox-overlay" id="lightbox" onclick="cerrarLightboxClick(event)">
+<div class="lightbox-overlay" id="lightbox">
   <div class="lightbox-header">
     <div>
       <div class="lightbox-titulo" id="lb-titulo">Trabajo</div>
       <div class="lightbox-subtitulo" id="lb-subtitulo"><i class="fas fa-check-circle"></i> <span></span></div>
     </div>
-    <button class="lightbox-cerrar" onclick="cerrarLightbox()"><i class="fas fa-times"></i></button>
+    <button class="lightbox-cerrar" data-lb-cerrar><i class="fas fa-times"></i></button>
   </div>
 
   <div class="lightbox-comparacion" id="lb-comparacion">
@@ -293,9 +272,9 @@ const description = 'Galería de reparaciones reales de WB Service en Gualeguay:
   <div class="lb-hint"><i class="fas fa-hand-point-left" style="margin-right:6px;"></i>Arrastrá el divisor para comparar</div>
 
   <div class="lightbox-controles">
-    <button class="lb-btn" onclick="navegarLb(-1)"><i class="fas fa-chevron-left"></i></button>
+    <button class="lb-btn" data-lb-nav="-1"><i class="fas fa-chevron-left"></i></button>
     <div class="lb-indicadores" id="lb-dots"></div>
-    <button class="lb-btn" onclick="navegarLb(1)"><i class="fas fa-chevron-right"></i></button>
+    <button class="lb-btn" data-lb-nav="1"><i class="fas fa-chevron-right"></i></button>
   </div>
 
   <div class="lb-cta">
