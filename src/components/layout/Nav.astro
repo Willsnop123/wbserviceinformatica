@@ -20,9 +20,11 @@ const links = [
   recien despues aparece la separacion antes del pill.
 */}
 <nav class="nav" aria-label="Principal">
-  <a href="/" class="brand">
-    <img src="/assets/logo_icon.webp" alt="" transition:name="marca-wb" />
-    <span>WB Service</span>
+  <a href="/" class="brand" aria-label="WB Service, ir al inicio">
+    <span class="marca marca-service" transition:name="marca-wb">
+      <span class="marca-wb">WB<span class="marca-led" aria-hidden="true"></span></span>
+      <span class="marca-ala">Service</span>
+    </span>
   </a>
 
   <div class="nav-derecha">

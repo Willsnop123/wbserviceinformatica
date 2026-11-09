@@ -1,6 +1,5 @@
 import { Heart } from 'lucide-react';
 import { Instagram, Facebook } from '@/components/code/effects/BrandIcons';
-import WbCodeIcon from '@/components/code/effects/WbCodeIcon';
 
 const navLinks = [
   { label: 'Servicios', href: '/code/servicios/' },
@@ -70,8 +69,11 @@ export default function Footer() {
             href="/code/"
             className="flex flex-col items-center gap-3 mx-auto w-fit hover:opacity-80 transition-opacity"
           >
-            <WbCodeIcon size={80} />
-            <span className="font-display text-2xl font-bold text-space-text tracking-wider">WB CODE</span>
+            <span className="marca marca-code marca-grande text-3xl text-space-text">
+              <span className="marca-wb">WB</span>
+              <span className="marca-cursor" aria-hidden="true" />
+              <span className="marca-ala">Code</span>
+            </span>
           </a>
         </div>
 

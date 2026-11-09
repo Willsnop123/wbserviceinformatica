@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Rocket } from 'lucide-react';
 import Magnetic from '@/components/code/effects/Magnetic';
-import WbCodeIcon from '@/components/code/effects/WbCodeIcon';
 
 const navLinks = [
   { label: 'Servicios', href: '/code/servicios/' },
@@ -39,9 +38,19 @@ export default function Header({ active }: Props) {
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between h-20">
-            <a href="/code/" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
-              <span style={{ viewTransitionName: 'marca-wb' }}><WbCodeIcon size={42} /></span>
-              <span className="font-display text-xl font-bold text-space-text tracking-wider">WB CODE</span>
+            <a
+              href="/code/"
+              aria-label="WB Code, ir al inicio"
+              className="hover:opacity-80 transition-opacity"
+            >
+              <span
+                className="marca marca-code text-xl text-space-text"
+                style={{ viewTransitionName: 'marca-wb' }}
+              >
+                <span className="marca-wb">WB</span>
+                <span className="marca-cursor" aria-hidden="true" />
+                <span className="marca-ala">Code</span>
+              </span>
             </a>
 
             <nav className="hidden lg:flex items-center gap-8">

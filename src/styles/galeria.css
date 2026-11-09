@@ -68,15 +68,13 @@
       text-decoration: none;
       flex-shrink: 0;
     }
-    .header-brand img {
-      width: 52px;
-      height: 52px;
-      object-fit: contain;
-      transition: transform 0.3s ease;
+    .header-brand .marca {
+      font-size: 20px;
+      color: var(--text);
+      transition: opacity 0.3s ease;
     }
-    .header-brand:hover img {
-      transform: rotate(8deg) scale(1.08);
-    }
+    .header-brand:hover .marca { opacity: 0.8; }
+    .header-brand .marca-ala { color: var(--blue-soft); }
     .header-right {
       display: flex;
       align-items: center;
@@ -733,8 +731,7 @@
       .lb-hint { display: none; }
     }
     @media (max-width: 500px) {
-      .header-brand img { max-width: 120px; }
-      .header-brand .divider, .header-brand h1, .header-brand span { display: none; }
+      .header-brand .marca { font-size: 17px; }
       .galeria-hero { padding: 40px 16px 30px; }
       .trabajos-grid { padding: 0 16px 40px; }
       .filtros-wrapper { padding: 0 16px; }

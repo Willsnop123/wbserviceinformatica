@@ -20,7 +20,6 @@ const contenido = {
     texto:
       'Además del servicio técnico, diseñamos y desarrollamos sitios web. Landing pages, sitios completos y tiendas online, con la misma atención directa de siempre.',
     meta: ['Landing pages', 'Sitios web', 'E-commerce'],
-    label: 'WB Code',
     sub: 'Entrar',
   },
   service: {
@@ -31,7 +30,6 @@ const contenido = {
     texto:
       'WB Code nació del taller. Del otro lado seguimos reparando PC, notebooks, PlayStation, Xbox y joysticks en Gualeguay.',
     meta: ['PC y notebooks', 'Consolas', 'Joysticks'],
-    label: 'WB Service',
     sub: 'Volver',
   },
 }[destino];
@@ -55,7 +53,11 @@ const contenido = {
       <span class="portal-ring"></span>
       <span class="portal-core"></span>
       <span class="portal-label">
-        {contenido.label}
+        <span class={`marca marca-chica marca-${destino}`}>
+          <span class="marca-wb">WB{destino === 'service' && <span class="marca-led" aria-hidden="true" />}</span>
+          {destino === 'code' && <span class="marca-cursor" aria-hidden="true" />}
+          <span class="marca-ala">{destino === 'code' ? 'Code' : 'Service'}</span>
+        </span>
         <small>{contenido.sub}</small>
       </span>
     </a>
