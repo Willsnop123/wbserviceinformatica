@@ -44,7 +44,7 @@ export default function Header({ active }: Props) {
               className="hover:opacity-80 transition-opacity"
             >
               <span
-                className="marca marca-code text-xl text-space-text"
+                className="marca marca-code text-2xl text-space-text"
                 style={{ viewTransitionName: 'marca-wb' }}
               >
                 <span className="marca-wb">WB</span>

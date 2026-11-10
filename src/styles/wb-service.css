@@ -70,7 +70,7 @@ a { text-decoration: none; color: inherit; }
 }
 .nav .brand {
   display: flex; align-items: center; gap: 12px;
-  font-weight: 500; font-size: 19px; letter-spacing: -0.01em;
+  font-weight: 500; font-size: 23px; letter-spacing: -0.01em;
   color: #fff;
 }
 .nav .brand .marca { color: #fff; }
@@ -1198,7 +1198,7 @@ footer.site-footer {
 }
 .footer-brand {
   display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
-  font-weight: 800; font-size: 1.1rem;
+  font-weight: 800; font-size: 1.35rem;
 }
 .footer-brand .marca-ala { color: var(--blue-soft); }
 .footer-desc { color: var(--muted); font-size: 0.86rem; line-height: 1.7; max-width: 360px; }
@@ -1985,7 +1985,7 @@ footer.site-footer {
 }
 .mob-brand {
   display: flex; align-items: center; gap: 10px;
-  font-weight: 700; font-size: 17px; letter-spacing: -0.01em;
+  font-weight: 700; font-size: 20px; letter-spacing: -0.01em;
   color: var(--text);
 }
 .mob-brand .marca-ala { color: var(--blue-soft); }

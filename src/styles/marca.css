@@ -8,8 +8,13 @@
     WB Service -> punto LED que respira   (equipo encendido)
     WB Code    -> cursor que parpadea     (terminal)
 
+  Toda la geometria esta en em, no en px: el tamano de la marca se gobierna con
+  una sola perilla, el font-size del contenedor, y el detalle acompana solo. Las
+  proporciones son las del diseno original a 19px (punto 6px, barra 3x19px), que
+  quedan clavadas en estos factores.
+
   El detalle nunca ocupa lugar en el flujo: el punto va absoluto sobre "WB" y la
-  barra tiene ancho y alto fijos reservados. Las animaciones tocan solo opacity y
+  barra tiene ancho y alto reservados. Las animaciones tocan solo opacity y
   box-shadow, asi que no hay reflow ni repintado de layout.
 */
 
@@ -17,9 +22,10 @@
 @import '@fontsource/sora/latin-800.css';
 
 .marca {
-  --marca-punto: 6px;
-  --marca-cursor-ancho: 3px;
-  --marca-cursor-alto: 19px;
+  --marca-punto: 0.32em;        /*  6px a 19px */
+  --marca-cursor-ancho: 0.16em; /*  3px a 19px */
+  --marca-cursor-alto: 1em;     /* 19px a 19px */
+  --marca-aire: 0.37em;         /*  7px a 19px */
 
   display: inline-flex;
   align-items: center;
@@ -43,19 +49,19 @@
 
 /* El punto vive arriba a la derecha de "WB", fuera del flujo. El margen del
    nombre deja el aire que el punto necesita sin que nadie se corra. */
-.marca-service .marca-wb { margin-right: calc(var(--marca-punto) + 7px); }
+.marca-service .marca-wb { margin-right: calc(var(--marca-punto) + var(--marca-aire)); }
 
 .marca-led {
   position: absolute;
-  top: -1px;
-  right: calc(var(--marca-punto) * -1 - 4px);
+  top: -0.05em;
+  right: calc(var(--marca-punto) * -1 - 0.21em);
   width: var(--marca-punto);
   height: var(--marca-punto);
   border-radius: 50%;
   background: #3b82f6;
   box-shadow:
-    0 0 6px 1px rgba(59, 130, 246, 0.85),
-    0 0 14px 3px rgba(59, 130, 246, 0.33);
+    0 0 0.32em 0.05em rgba(59, 130, 246, 0.85),
+    0 0 0.74em 0.16em rgba(59, 130, 246, 0.33);
   animation: marca-led-respira 2.4s ease-in-out infinite;
 }
 
@@ -63,14 +69,14 @@
   0%, 100% {
     opacity: 1;
     box-shadow:
-      0 0 6px 1px rgba(59, 130, 246, 0.85),
-      0 0 14px 3px rgba(59, 130, 246, 0.33);
+      0 0 0.32em 0.05em rgba(59, 130, 246, 0.85),
+      0 0 0.74em 0.16em rgba(59, 130, 246, 0.33);
   }
   50% {
     opacity: 0.45;
     box-shadow:
-      0 0 2px 0 rgba(59, 130, 246, 0.3),
-      0 0 5px 1px rgba(59, 130, 246, 0.1);
+      0 0 0.1em 0 rgba(59, 130, 246, 0.3),
+      0 0 0.26em 0.05em rgba(59, 130, 246, 0.1);
   }
 }
 
@@ -80,7 +86,7 @@
   display: inline-block;
   width: var(--marca-cursor-ancho);
   height: var(--marca-cursor-alto);
-  margin: 0 7px;
+  margin: 0 var(--marca-aire);
   background: #8b5cf6;
   /* steps(1, end): salta de visible a oculto sin pasar por el medio. Un cursor
      de terminal no se desvanece. */
@@ -92,30 +98,16 @@
   55%,  100%   { opacity: 0; }
 }
 
-/* ---------- Tamano grande (pie de pagina) ---------- */
-
-.marca-grande {
-  --marca-punto: 9px;
-  --marca-cursor-ancho: 4px;
-  --marca-cursor-alto: 30px;
-}
-
-/* ---------- Tamano chico (etiqueta del portal) ---------- */
+/* ---------- Etiqueta del portal ---------- */
 
 /* La etiqueta del portal viene en versalitas con mucho tracking; la marca no
-   hereda nada de eso, porque es un logo y no un rotulo. */
+   hereda nada de eso, porque es un logo y no un rotulo. El tamano sale del
+   font-size y el detalle lo sigue solo. */
 .marca-chica {
-  --marca-punto: 5px;
-  --marca-cursor-ancho: 2px;
-  --marca-cursor-alto: 13px;
-
   font-size: 0.95rem;
   letter-spacing: normal;
   text-transform: none;
 }
-
-.marca-chica .marca-cursor { margin: 0 5px; }
-.marca-chica.marca-service .marca-wb { margin-right: calc(var(--marca-punto) + 6px); }
 
 /* ---------- Reducir movimiento ---------- */
 

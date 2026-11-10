@@ -69,7 +69,7 @@ export default function Footer() {
             href="/code/"
             className="flex flex-col items-center gap-3 mx-auto w-fit hover:opacity-80 transition-opacity"
           >
-            <span className="marca marca-code marca-grande text-3xl text-space-text">
+            <span className="marca marca-code text-3xl text-space-text">
               <span className="marca-wb">WB</span>
               <span className="marca-cursor" aria-hidden="true" />
               <span className="marca-ala">Code</span>
